@@ -391,7 +391,103 @@ body{background:radial-gradient(ellipse at 50% -20%,#2a1b13 0,transparent 42%),#
  .mobile-nav{grid-template-columns:repeat(4,1fr);padding:10px 10px calc(10px + env(safe-area-inset-bottom))}
 }
 @media(prefers-reduced-motion:reduce){.view.active{animation:none}}
-</style></head>
+</style>
+<style>
+/* WM REFERENCE MATCH 2026-11 — photographic mobile home, existing app flows preserved */
+:root{--ink:#050505;--surface:#0c0b09;--surface-2:#17120d;--cream:#f7f0e5;--gold:#d7a64e;--sand:#f1ce83;--line:rgba(221,176,97,.28)}
+html,body{background:#050505}
+.app-shell{background:#050505;min-height:100svh}
+.app-header{position:absolute;top:0;left:0;right:0;height:94px;background:linear-gradient(180deg,rgba(0,0,0,.72),transparent);border:0;z-index:40;backdrop-filter:none}
+.header-inner{width:min(1320px,calc(100% - 36px));}
+.brand{gap:12px}
+.brand-mark{width:52px;height:52px;border-radius:50%;border:1px solid #e3bd73;background:radial-gradient(circle,#3b2810,#080705 72%);box-shadow:0 0 16px #dba94d33;color:#f6d58e;font-size:20px}
+.brand-name{font:700 21px/1.05 Georgia,serif;color:#f3d18c;letter-spacing:.025em}
+.brand-name small{font:600 9px var(--sans);letter-spacing:.36em;color:#e7c47d;margin-top:5px}
+.header-right{gap:0}
+.location{display:none}
+.avatar{width:48px;height:48px;border:1px solid #e5bf75;background:rgba(0,0,0,.32);color:#f3d18c;box-shadow:0 0 12px #dba94d22}
+.layout{display:block;width:100%;max-width:none;margin:0;padding:0}
+.side-nav{display:none}
+.main{width:100%;max-width:none}
+#view-home{width:100%;overflow:hidden}
+.home-hero.wm-lux-hero{width:100%;min-height:760px;padding:245px max(34px,calc((100vw - 1180px)/2)) 70px;border:0;border-radius:0;display:flex;align-items:flex-start;background-color:#050505;background-image:linear-gradient(90deg,rgba(0,0,0,.86) 0%,rgba(0,0,0,.66) 43%,rgba(0,0,0,.16) 100%),linear-gradient(0deg,rgba(0,0,0,.72),transparent 35%),url('https://images.unsplash.com/photo-1773904215697-e6c21fc27ac2?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=85&w=1800');background-size:cover;background-position:center center;box-shadow:none}
+.wm-lux-hero:before{background:linear-gradient(120deg,rgba(0,0,0,.15),transparent 48%,rgba(204,145,55,.08));}
+.wm-lux-hero:after{display:none}
+.hero-grain{display:none}
+.hero-copy{max-width:560px;width:100%;padding:0;z-index:5}
+.hero-eyebrow{font:500 11px var(--sans);letter-spacing:.28em;color:#f1dfc3;gap:10px}
+.hero-eyebrow i{color:#dcae5a}
+.hero-kicker{display:none!important}
+.hero-copy h1{font:700 clamp(50px,6vw,78px)/.98 Georgia,serif;letter-spacing:-.055em;color:#fff8ef;margin:24px 0 20px;max-width:620px}
+.hero-copy h1 em{color:#efc56e}
+.hero-copy .hero-intro{font:400 17px/1.55 var(--sans);color:#f1e7d9;max-width:360px;margin:0 0 28px}
+.hero-actions .btn{width:auto;min-width:280px;min-height:64px;justify-content:space-between;padding:0 26px;border-radius:999px;background:linear-gradient(110deg,#ffe2a0 0%,#e4a947 58%,#87501c 100%);border:1px solid #ffe0a0;color:#160d04;font:700 15px var(--sans);letter-spacing:0;box-shadow:0 8px 32px #d99d3e66,inset 0 1px 0 #fff8d9}
+.hero-actions .btn span{font-size:22px}
+.hero-actions .btn b{font-size:25px;margin-left:12px}
+.hero-footnote{font-size:11px;letter-spacing:.22em;margin-top:28px;color:#e4c17b}
+.hero-art{display:none}
+.section{width:min(1180px,calc(100% - 68px));margin:28px auto 0}
+.section-head{align-items:center;margin-bottom:18px}
+.section-head h2{font:700 clamp(24px,3vw,34px)/1.1 Georgia,serif;color:#fff8ed}
+.section-head .eyebrow{font-size:10px;color:#e3bb6e;letter-spacing:.28em}
+.text-button{font-size:13px;color:#e8c77e}
+#home-services{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+#home-services .service-card:nth-child(3){display:none}
+#home-services .service-card{min-height:220px;padding:20px;border:1px solid #b58a4c;border-radius:20px 20px 16px 16px;background-image:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.88) 72%),url('https://tanitblendz.com/assets/hero-bg-BYoq8DxL.jpg');background-size:cover;background-position:center;box-shadow:inset 0 1px 0 #fff2d0,0 12px 28px #0009}
+#home-services .service-card:nth-child(2){background-image:linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.88) 72%),url('https://billibarber.com/assets/hero-bg-7vqu6B0j.jpg')}
+#home-services .service-symbol{width:54px;height:54px;border:1px solid #e0b45f;border-radius:15px;background:rgba(8,7,5,.7);color:#f1cb7a;font-size:26px}
+#home-services .service-card h3{font:700 23px Georgia,serif;color:#fff8ed;margin-top:auto}
+#home-services .service-card p{font-size:13px;color:#e9e0d3;line-height:1.35}
+#home-services .service-price{font-size:15px;color:#f0c36c;padding-top:12px}
+.wm-benefits{margin-top:34px}
+.benefit-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.benefit-grid article{min-height:118px;border-radius:20px;background:linear-gradient(145deg,#17120b,#070605);border:1px solid #785a32}
+.benefit-grid article span{color:#e9bc66}
+.mobile-nav{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));width:auto;grid-template-columns:repeat(4,1fr);padding:12px 8px 10px;background:rgba(7,6,5,.86);border:1px solid #c79b51;border-radius:42px;box-shadow:0 0 25px #dba64c22,inset 0 1px 0 #fff2d033;backdrop-filter:blur(22px);z-index:50}
+.mobile-nav button{background:transparent;border:0;border-radius:30px;color:#eee1ca;font-size:11px;font-weight:600;gap:4px;padding:7px 2px}
+.mobile-nav button span{font-size:22px;color:#e9bd6a}
+.mobile-nav button.active{color:#ffe2a0;background:linear-gradient(180deg,#dba64c2b,transparent);box-shadow:0 0 16px #dba64c1c}
+.toast{z-index:70}
+@media(min-width:900px){
+ .home-hero.wm-lux-hero{min-height:760px;padding-top:260px}
+ .hero-copy h1{font-size:78px}
+}
+@media(max-width:620px){
+ .app-header{height:92px}
+ .header-inner{width:calc(100% - 34px)}
+ .brand-mark{width:52px;height:52px}
+ .brand-name{font-size:19px}
+ .layout{padding:0 0 112px}
+ .home-hero.wm-lux-hero{height:735px;min-height:735px;padding:250px 26px 62px;background-position:58% center;background-image:linear-gradient(90deg,rgba(0,0,0,.78) 0%,rgba(0,0,0,.53) 54%,rgba(0,0,0,.13) 100%),linear-gradient(0deg,rgba(0,0,0,.72),transparent 38%),url('https://images.unsplash.com/photo-1773904215697-e6c21fc27ac2?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=85&w=1400')}
+ .hero-copy{max-width:100%}
+ .hero-eyebrow{font-size:10px;letter-spacing:.2em;gap:7px;white-space:nowrap}
+ .hero-copy h1{font-size:clamp(46px,12.4vw,58px);line-height:1.02;letter-spacing:-.055em;margin:24px 0 20px}
+ .hero-copy .hero-intro{font-size:15px;max-width:255px;line-height:1.5;margin-bottom:28px}
+ .hero-actions .btn{width:min(100%,318px);min-width:0;min-height:62px;font-size:14px}
+ .hero-footnote{margin-top:28px;font-size:10px}
+ .section{width:calc(100% - 38px);margin-top:24px}
+ .section-head{gap:8px;margin-bottom:16px}
+ .section-head h2{font-size:23px;line-height:1.12}
+ .section-head .eyebrow{font-size:9px}
+ .text-button{font-size:11px;white-space:nowrap;padding:6px 0}
+ #home-services{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ #home-services .service-card{min-height:230px;padding:14px;border-radius:17px}
+ #home-services .service-symbol{width:48px;height:48px;font-size:23px}
+ #home-services .service-card h3{font-size:19px;line-height:1.05;margin-top:auto}
+ #home-services .service-card p{font-size:11px}
+ #home-services .service-price{font-size:14px}
+ .wm-benefits{margin-top:32px}
+ .benefit-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+ .benefit-grid article{min-height:112px;padding:8px 4px;gap:7px;border-radius:16px}
+ .benefit-grid article span{font-size:25px}
+ .benefit-grid article strong{font-size:10px;line-height:1.25}
+ .mobile-nav{left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));padding:10px 6px 8px}
+ .mobile-nav button{font-size:10px}
+}
+@media(prefers-reduced-motion:reduce){.mobile-nav,.home-hero{scroll-behavior:auto}}
+</style>
+
+</head>
 <body>
 <div class="app-shell">
 <header class="app-header">
