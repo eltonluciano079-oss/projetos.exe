@@ -8,7 +8,7 @@
 <title>WM Barbearia | Agendamento</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{color-scheme:dark;--ink:#090807;--surface:#15120f;--surface-2:#201a16;--surface-3:#2b211b;--cream:#ece5da;--muted:#a69b8e;--line:rgba(236,229,218,.12);--brown:#552a19;--brown-2:#5e5149;--copper:#9b6342;--gold:#bc9564;--sand:#d8c19e;--silver:#cecece;--bluegrey:#717b86;--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',Arial,sans-serif;--radius:18px}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--ink);color:var(--cream);font-family:var(--sans);font-size:14px;line-height:1.5}button,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--sand);outline-offset:3px}.app-shell{min-height:100vh}.app-header{height:78px;border-bottom:1px solid var(--line);display:flex;align-items:center;position:sticky;top:0;z-index:20;background:rgba(9,8,7,.94);backdrop-filter:blur(16px)}.header-inner{width:min(1180px,calc(100% - 48px));margin:auto;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:12px}.brand-mark{width:38px;height:38px;border:1px solid var(--gold);display:grid;place-items:center;color:var(--sand);font:800 16px var(--serif);transform:rotate(-45deg)}.brand-mark span{transform:rotate(45deg)}.brand-name{font:700 19px var(--serif);letter-spacing:.6px}.brand-name small{display:block;font:600 8px var(--sans);letter-spacing:3px;color:var(--gold);margin-top:-2px}.header-right{display:flex;align-items:center;gap:18px}.location{color:var(--muted);font-size:12px}.location strong{display:block;color:var(--cream);font-weight:600}.avatar{width:38px;height:38px;border-radius:50%;background:var(--brown);border:1px solid rgba(216,193,158,.35);display:grid;place-items:center;color:var(--sand);font-weight:700}
@@ -145,6 +145,64 @@
   .time-choice, .service-card, .mobile-nav button { transition: none; }
 }
 
+
+/* WM — modern cinematic direction, preserving the existing booking experience */
+:root{--heading:'Manrope',var(--sans);--sans:'DM Sans',Arial,sans-serif}
+body{font-family:var(--sans);letter-spacing:-.01em}
+.brand-name,.page-title,.hero-copy h1,.section-head h2,.service-card h3,.booking-step h2,.appointment-card h3{font-family:var(--heading)}
+.app-header{background:rgba(9,8,7,.78);border-bottom-color:rgba(236,229,218,.09);backdrop-filter:blur(22px) saturate(145%);-webkit-backdrop-filter:blur(22px) saturate(145%)}
+.brand-mark{border-radius:11px;transform:none;background:linear-gradient(145deg,rgba(188,149,100,.16),rgba(85,42,25,.12));box-shadow:inset 0 1px 0 #ffffff22}
+.brand-mark span{transform:none}
+.brand-name{letter-spacing:.025em}
+.home-hero{min-height:clamp(390px,48vw,520px);padding:clamp(28px,5vw,58px);border-radius:26px;border-color:rgba(216,193,158,.2);background:radial-gradient(ellipse at 78% 18%,rgba(155,99,66,.34),transparent 36%),radial-gradient(ellipse at 100% 100%,rgba(188,149,100,.13),transparent 42%),linear-gradient(115deg,#211711 0%,#120e0b 62%,#090807 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.09),0 24px 70px rgba(0,0,0,.22)}
+.home-hero:after{content:'WM';right:3%;bottom:-.19em;font-size:clamp(180px,27vw,330px);color:rgba(216,193,158,.065);letter-spacing:-.1em}
+.hero-grain{position:absolute;inset:0;pointer-events:none;opacity:.12;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");mix-blend-mode:soft-light}
+.hero-copy{max-width:570px}
+.hero-eyebrow{display:flex;align-items:center;gap:9px;color:#d8c19e;letter-spacing:2px}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#c79a6c;box-shadow:0 0 12px #c79a6c;display:inline-block}
+.eyebrow-separator{opacity:.45}
+.hero-kicker{font-size:clamp(10px,1vw,12px)!important;letter-spacing:.23em;text-transform:uppercase;color:#d8c19e!important;font-weight:700;margin:25px 0 8px!important}
+.hero-kicker span{color:#fff;opacity:.55}
+.hero-copy h1{font-size:clamp(48px,7vw,82px);line-height:.99;letter-spacing:-.075em;margin:0 0 19px;font-weight:600}
+.hero-copy h1 em{color:#d8c19e}
+.hero-intro{font-size:clamp(14px,1.35vw,17px)!important;line-height:1.65;color:rgba(236,229,218,.76)!important;max-width:390px;min-height:29px;margin:0 0 26px!important}
+.hero-intro.typing:after{content:'';display:inline-block;width:2px;height:1em;background:var(--sand);vertical-align:-.12em;margin-left:4px;animation:wm-caret 1s steps(1) infinite}
+@keyframes wm-caret{50%{opacity:0}}
+.hero-actions{display:flex;flex-wrap:wrap;gap:9px}
+.hero-actions .btn{min-height:46px;border-radius:999px;padding:0 21px;font-size:10px;letter-spacing:.08em}
+.hero-primary{background:#ece5da!important;color:#17100c!important;border-color:#ece5da!important}
+.hero-primary:hover{background:#d8c19e!important;color:#17100c!important}
+.hero-secondary{background:rgba(236,229,218,.06)!important;border-color:rgba(236,229,218,.32)!important;color:#ece5da!important}
+.hero-secondary:hover{background:rgba(236,229,218,.16)!important}
+.hero-footnote{display:flex;align-items:center;gap:11px;margin-top:34px;color:rgba(236,229,218,.52);font-size:9px;font-weight:700;letter-spacing:.19em}
+.hero-footnote i{width:22px;height:1px;background:rgba(216,193,158,.6)}
+.hero-side-note{position:absolute;right:clamp(22px,5vw,58px);top:50%;transform:translateY(-50%);display:grid;justify-items:center;gap:7px;color:rgba(216,193,158,.7);z-index:1}
+.hero-side-note span{font:500 clamp(42px,7vw,78px)/1 var(--heading);letter-spacing:-.1em}
+.hero-side-note small{text-align:center;font-size:8px;line-height:1.5;letter-spacing:.25em}
+.section{margin-top:42px}
+.section-head h2{letter-spacing:-.04em}
+.service-card,.barber-card,.discover-card,.booking-shell,.profile-card,.appointment-card{border-color:rgba(236,229,218,.13);background:linear-gradient(145deg,rgba(35,29,24,.76),rgba(21,18,15,.78));backdrop-filter:blur(18px) saturate(130%);-webkit-backdrop-filter:blur(18px) saturate(130%);box-shadow:inset 0 1px 0 rgba(255,255,255,.045)}
+.service-card{border-radius:17px}
+.btn,.nav-btn,.chip,.choice,.date-choice,.time-choice,.text-button,.mobile-nav button{transition:all .24s cubic-bezier(.2,.75,.25,1)}
+.btn{border-radius:999px}
+.nav-btn{border-radius:12px}
+.mobile-nav{background:rgba(12,10,9,.84);backdrop-filter:blur(24px) saturate(150%);-webkit-backdrop-filter:blur(24px) saturate(150%);border-top-color:rgba(236,229,218,.13)}
+.mobile-nav button.active{background:rgba(155,99,66,.16);border:1px solid rgba(216,193,158,.12)}
+@media(max-width:620px){
+ .home-hero{min-height:440px;padding:27px 22px 24px;border-radius:22px;align-items:flex-end}
+ .hero-copy{max-width:100%}
+ .hero-copy h1{font-size:clamp(49px,13vw,68px)}
+ .hero-side-note{right:23px;top:27px;transform:none;opacity:.52}
+ .hero-side-note span{font-size:42px}
+ .hero-side-note small{font-size:6px}
+ .hero-kicker{margin-top:20px!important}
+ .hero-intro{max-width:310px}
+ .hero-actions{gap:8px}
+ .hero-actions .btn{padding:0 16px;font-size:9px}
+ .hero-footnote{margin-top:24px}
+}
+@media(prefers-reduced-motion:reduce){.hero-intro.typing:after{animation:none}}
+
 </style>
 </head>
 <body>
@@ -169,7 +227,7 @@
   </aside>
   <main class="main">
     <section class="view active" id="view-home">
-      <div class="home-hero"><div class="hero-copy"><div class="eyebrow">BARBEARIA WM · TABOÃO</div><h1>Seu próximo corte.<br><em>Do seu jeito.</em></h1><p>Encontre seu estilo, escolha seu profissional e solicite um horário sem complicação.</p><button class="btn" data-action="start-booking">Agendar agora <span>↗</span></button></div></div>
+      <div class="home-hero"><div class="hero-grain" aria-hidden="true"></div><div class="hero-copy"><div class="eyebrow hero-eyebrow"><span class="live-dot"></span> BARBEARIA WM <span class="eyebrow-separator">/</span> TABOÃO, DIADEMA</div><p class="hero-kicker">ESTILO, PRECISÃO <span>&</span> PRESENÇA.</p><h1>Seu visual.<br><em>Suas regras.</em></h1><p class="hero-intro" id="hero-typewriter" aria-label="Cuidado no detalhe. Atitude em cada corte.">Cuidado no detalhe. Atitude em cada corte.</p><div class="hero-actions"><button class="btn hero-primary" data-action="start-booking">Agendar horário <span>↗</span></button><a class="btn secondary hero-secondary" href="https://wa.me/5511945876259?text=Ol%C3%A1%21%20Gostaria%20de%20conhecer%20os%20servi%C3%A7os%20da%20Barbearia%20WM." target="_blank" rel="noopener noreferrer">Falar com a WM <span>↗</span></a></div><div class="hero-footnote"><span>TER — SÁB</span><i></i><span>09H — 20H</span></div></div><div class="hero-side-note" aria-hidden="true"><span>WM</span><small>BARBER<br>STUDIO</small></div></div>
       <div class="section"><div class="section-head"><div><div class="eyebrow">CUIDADO NA MEDIDA</div><h2>Nossos serviços</h2></div><button class="text-button" data-action="start-booking">Ver todos ↗</button></div><div class="service-grid" id="home-services"></div></div>
       <div class="section"><div class="section-head"><div><div class="eyebrow">ENCONTRE SEU PROFISSIONAL</div><h2>Equipe WM</h2></div><button class="text-button" data-nav="explore">Ver equipe ↗</button></div><div class="barber-grid" id="home-barbers"></div></div>
       <div class="info-strip"><div><strong>Estamos no Taboão, em Diadema</strong><span>Terça a sábado · 9h às 20h</span></div><button class="btn secondary" data-nav="profile">Ver localização</button></div>
@@ -273,6 +331,7 @@ var bookBarber=e.target.closest('[data-book-barber]');if(bookBarber){state.barbe
 $('booking-next').addEventListener('click',function(){if(!validateStep())return;if(state.step<3){state.step++;renderBooking()}else submitBooking()});
 $('booking-back').addEventListener('click',function(){if(state.step>0){state.step--;renderBooking()}});
 $('barber-search').addEventListener('input',function(e){state.search=e.target.value;renderExplore()});
+var heroText='Cuidado no detalhe. Atitude em cada corte.';var heroNode=$('hero-typewriter');if(heroNode&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){heroNode.textContent='';heroNode.classList.add('typing');var heroIndex=0;var heroTimer=setInterval(function(){heroNode.textContent=heroText.slice(0,++heroIndex);if(heroIndex>=heroText.length){clearInterval(heroTimer);heroNode.classList.remove('typing')}},34)}else if(heroNode){heroNode.textContent=heroText}
 renderHome();renderBooking();
 })();
 </script>
