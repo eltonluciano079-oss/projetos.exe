@@ -1221,6 +1221,34 @@ button:focus-visible,a:focus-visible,[role="button"]:focus-visible{
 .mobile-nav button span{display:flex!important;align-items:center!important;justify-content:center!important;width:26px!important;height:26px!important;line-height:1!important;margin:0!important;flex:none!important}
 }
 </style>
+<style id="wm-inner-views-repair">
+/* INNER VIEWS MOBILE LAYOUT REPAIR */
+@media(max-width:900px){
+html,body,.app-shell,.layout,.main{max-width:100%;overflow-x:clip}
+.app-header{position:relative!important;top:auto!important;left:auto!important;right:auto!important;width:100%!important;z-index:40!important;background:#080706!important;border-bottom:1px solid rgba(226,182,104,.16)!important}
+.header-inner{height:100%!important}
+.layout{display:block!important;width:100%!important;min-width:0!important;margin:0!important;padding:0 0 calc(112px + env(safe-area-inset-bottom))!important}
+.main{display:block!important;width:100%!important;min-width:0!important;max-width:100%!important}
+.main>.view:not(#view-home){box-sizing:border-box!important;width:100%!important;min-width:0!important;max-width:100%!important;margin:0!important;padding:30px 18px 24px!important;overflow-x:hidden!important}
+.main>.view:not(#view-home) .eyebrow{margin:0 0 12px!important}
+.main>.view:not(#view-home) .page-title{max-width:100%!important;margin:0 0 12px!important;font-size:clamp(30px,8vw,46px)!important;line-height:1.1!important;letter-spacing:-.035em!important;overflow-wrap:break-word!important}
+.main>.view:not(#view-home) .page-subtitle{max-width:100%!important;margin:0 0 28px!important;font-size:clamp(13px,3.8vw,16px)!important;line-height:1.5!important}
+#view-explore #service-catalog{box-sizing:border-box!important;display:grid!important;width:100%!important;max-width:100%!important;min-width:0!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;margin:0!important;overflow:visible!important}
+#view-explore #service-catalog .service-card{box-sizing:border-box!important;width:100%!important;min-width:0!important;max-width:100%!important;min-height:225px!important;margin:0!important;padding:16px 13px!important;grid-column:auto!important;overflow:hidden!important}
+#view-explore #service-catalog .service-card:nth-child(3){grid-column:1/-1!important;min-height:165px!important}
+#view-explore #service-catalog .service-card h3{font-size:clamp(16px,4.5vw,21px)!important;line-height:1.2!important;overflow-wrap:break-word!important}
+#view-explore #service-catalog .service-card p{font-size:12px!important;line-height:1.4!important;overflow-wrap:break-word!important}
+#view-explore #service-catalog .service-card .service-price{font-size:15px!important;margin-top:auto!important}
+#view-booking .booking-shell,#view-profile .profile-card{box-sizing:border-box!important;width:100%!important;max-width:100%!important;min-width:0!important;margin:0!important;padding:22px 16px!important}
+#view-booking .steps{width:100%!important;min-width:0!important;display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:5px!important}
+#view-booking .step{min-width:0!important;display:flex!important;flex-wrap:wrap!important;justify-content:center!important;text-align:center!important;gap:5px!important;font-size:10px!important}
+#view-booking .step:after{display:none!important}
+#view-booking .booking-step h2{font-size:clamp(25px,7vw,36px)!important;line-height:1.15!important}
+#view-profile .profile-row{min-width:0!important;gap:14px!important}
+#view-profile .profile-row strong{min-width:0!important;overflow-wrap:break-word!important;text-align:right!important}
+}
+@media(max-width:380px){#view-explore #service-catalog{grid-template-columns:minmax(0,1fr)!important}#view-explore #service-catalog .service-card:nth-child(3){grid-column:auto!important}}
+</style>
 </head>
 <body>
 <div class="app-shell">
