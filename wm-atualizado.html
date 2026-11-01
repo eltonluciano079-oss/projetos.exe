@@ -704,6 +704,152 @@ html,body{background:#050505!important}
 }
 </style>
 
+
+<style id="wm-button-detail-pass">
+/* Consistent button system — visual and touch feedback only; existing actions stay intact. */
+:root{
+  --wm-button-gold:#e4bd75;
+  --wm-button-cream:#f7ead1;
+  --wm-button-ink:#1a1006;
+  --wm-button-line:rgba(228,189,117,.48);
+}
+button,a.btn,[role="button"]{
+  -webkit-tap-highlight-color:transparent;
+}
+button:focus-visible,a:focus-visible,[role="button"]:focus-visible{
+  outline:2px solid var(--wm-button-cream)!important;
+  outline-offset:3px!important;
+  box-shadow:0 0 0 5px rgba(228,189,117,.2)!important;
+}
+.btn{
+  min-height:48px;
+  padding:0 20px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  border:1px solid var(--wm-button-gold);
+  border-radius:14px;
+  background:linear-gradient(135deg,#f1d69e 0%,#d9a64f 58%,#a96e2d 100%);
+  color:var(--wm-button-ink);
+  font:700 12px/1.15 var(--sans);
+  letter-spacing:.045em;
+  text-align:center;
+  text-decoration:none;
+  box-shadow:0 5px 16px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.48);
+  transition:background .18s ease,border-color .18s ease,color .18s ease,box-shadow .18s ease,transform .18s ease,filter .18s ease;
+}
+.btn:hover{
+  color:#120b04;
+  border-color:#ffdfa0;
+  background:linear-gradient(135deg,#ffe9b9 0%,#edc16f 58%,#bd843d 100%);
+  box-shadow:0 8px 22px rgba(0,0,0,.3),0 0 0 1px rgba(255,224,160,.16),inset 0 1px 0 rgba(255,255,255,.6);
+  transform:translateY(-1px);
+}
+.btn:active{transform:translateY(1px) scale(.99);box-shadow:inset 0 2px 5px rgba(0,0,0,.2)}
+.btn.secondary,.btn.ghost{
+  color:#f0d49b;
+  background:linear-gradient(135deg,rgba(31,23,14,.96),rgba(13,10,7,.96));
+  border-color:var(--wm-button-line);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+}
+.btn.secondary:hover,.btn.ghost:hover{
+  color:#fff0ce;background:rgba(112,77,35,.38);
+  border-color:#e8c47f;box-shadow:0 5px 16px rgba(0,0,0,.2);
+}
+.btn:disabled,.btn[aria-disabled="true"]{
+  opacity:.48;cursor:not-allowed;filter:saturate(.45);
+  transform:none;box-shadow:none;
+}
+.text-button{
+  min-height:44px;min-width:44px;padding:9px 12px;
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  border:1px solid transparent;border-radius:12px;
+  color:#edc77e;font-weight:700;font-size:12px;
+  text-decoration:none;transition:background .18s ease,border-color .18s ease,color .18s ease;
+}
+.text-button:hover{color:#fff0ce;background:rgba(219,166,76,.1);border-color:rgba(219,166,76,.22)}
+.nav-btn{
+  min-height:48px;padding:11px 14px;border:1px solid transparent;
+  border-radius:14px;text-align:left;
+}
+.nav-btn.active{color:#ffe0a0;border-color:rgba(219,166,76,.28);background:linear-gradient(110deg,rgba(155,99,66,.25),rgba(236,229,218,.045))}
+.chip{
+  min-height:44px;padding:9px 16px;border-radius:24px;
+  display:inline-flex;align-items:center;justify-content:center;
+}
+.choice{
+  min-height:64px;padding:14px 15px;border-radius:14px;
+  border-color:rgba(228,189,117,.2);
+}
+.choice.selected{
+  border-color:#e4bd75;
+  background:linear-gradient(110deg,rgba(155,99,66,.3),rgba(48,32,17,.56));
+  box-shadow:inset 0 0 0 1px rgba(228,189,117,.12),0 5px 15px rgba(0,0,0,.16);
+}
+.choice .radio{width:19px;height:19px;border-color:#b69a6c}
+.choice.selected .radio{border:5px solid #e4bd75;background:#17100a}
+.date-choice{
+  min-height:72px;padding:10px 4px;border-radius:13px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+}
+.date-choice.selected,.time-choice.selected{
+  border-color:#e4bd75;color:#ffe0a0;
+  background:linear-gradient(145deg,rgba(155,99,66,.34),rgba(48,32,17,.62));
+  box-shadow:inset 0 0 0 1px rgba(228,189,117,.12),0 4px 14px rgba(0,0,0,.16);
+}
+.time-choice{
+  min-height:48px;padding:10px 6px;border-radius:11px;
+  font-size:12px;font-weight:700;letter-spacing:.02em;
+}
+.service-card{
+  cursor:pointer;text-align:left;
+}
+.service-card:focus-visible{
+  outline:2px solid #f3d28e!important;outline-offset:3px!important;
+}
+.barber-card button{
+  min-height:44px;min-width:44px;padding:8px 10px;
+  border:1px solid rgba(228,189,117,.24);border-radius:10px;
+  color:#edc77e;background:rgba(219,166,76,.06);
+  font-size:11px;font-weight:700;
+}
+.barber-card button:hover{background:rgba(219,166,76,.14);border-color:#d6aa61}
+.mobile-nav button{
+  min-height:48px;min-width:48px;padding:7px 3px;
+  display:grid;align-content:center;justify-items:center;gap:3px;
+  border:1px solid transparent;border-radius:22px;
+  color:#b9aa94;font-weight:700;
+}
+.mobile-nav button.active{
+  color:#ffe0a0;border-color:rgba(219,166,76,.25);
+  background:linear-gradient(180deg,rgba(219,166,76,.19),rgba(219,166,76,.035));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08);
+}
+.mobile-nav button:active{transform:scale(.97)}
+.booking-actions{align-items:center;gap:12px}
+.booking-actions .btn{min-width:116px}
+.detail-actions .btn{min-width:142px}
+@media(max-width:620px){
+  .btn{min-height:48px;padding:0 15px;font-size:11px}
+  .text-button{min-height:44px;padding:8px 10px;font-size:11px}
+  .choice{min-height:64px;padding:13px 11px}
+  .date-choice{min-height:68px}
+  .time-choice{min-height:48px}
+  .booking-actions{gap:10px}
+  .booking-actions .btn{flex:1;min-width:0;padding:0 8px}
+  .detail-actions{display:grid;grid-template-columns:1fr;gap:10px}
+  .detail-actions .btn{width:100%;min-width:0}
+  .mobile-nav button{min-height:50px}
+}
+@media(hover:none){
+  .btn:hover,.text-button:hover,.barber-card button:hover{transform:none;filter:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .btn,.text-button,.mobile-nav button,.barber-card button{transition:none!important}
+}
+</style>
+
 </head>
 <body>
 <div class="app-shell">
