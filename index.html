@@ -203,6 +203,100 @@ body{font-family:var(--sans);letter-spacing:-.01em}
 }
 @media(prefers-reduced-motion:reduce){.hero-intro.typing:after{animation:none}}
 
+
+/* WM BLACK & GOLD — reference image 2 */
+:root{--ink:#050505;--surface:#100e0b;--surface-2:#17120c;--surface-3:#24190e;--cream:#f5eee3;--muted:#b7aa98;--line:rgba(219,170,91,.27);--gold:#d8a64f;--sand:#f2cf86;--copper:#9c672c}
+body{background:#050505;color:var(--cream)}
+.app-header{background:rgba(4,4,4,.94);border-bottom:1px solid rgba(224,176,93,.24)}
+.brand-mark{transform:none;border-radius:50%;width:48px;height:48px;border:1px solid var(--gold);box-shadow:0 0 18px #d59b3b22,inset 0 0 12px #d59b3b18;font-size:19px}
+.brand-mark span{transform:none}
+.brand-name{color:#f3d28f;font-family:var(--serif);letter-spacing:.04em}
+.brand-name small{color:var(--gold);letter-spacing:.32em}
+.avatar{background:#100d08;border:1px solid var(--gold);color:var(--sand)}
+.layout{width:min(1280px,calc(100% - 48px));grid-template-columns:190px minmax(0,1fr);gap:32px}
+.side-note,.nav-btn.active{border-color:rgba(219,170,91,.3);background:linear-gradient(135deg,#1b1309,#090807)}
+.nav-btn.active,.nav-btn:hover{color:var(--sand)}
+.home-hero.wm-lux-hero{min-height:590px;padding:46px 42px;border:1px solid rgba(229,178,90,.36);border-radius:3px 36px 3px 36px;background:radial-gradient(ellipse at 82% 42%,rgba(173,112,37,.2),transparent 37%),linear-gradient(112deg,#050505 0%,#0a0806 55%,#17100a 100%);box-shadow:inset 0 1px 0 #f4d69b22,0 24px 70px #000b}
+.wm-lux-hero:before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(128deg,transparent 0 110px,rgba(213,159,75,.045) 111px,transparent 113px 205px),radial-gradient(ellipse at 80% 80%,#8b561b22,transparent 45%);pointer-events:none}
+.wm-lux-hero:after{content:'';right:4%;bottom:-7%;width:min(48%,430px);height:88%;border:2px solid #d7a74e99;border-radius:50%;box-shadow:0 0 0 8px #d7a74e16,0 0 28px #d7a74e33;pointer-events:none}
+.hero-copy{max-width:55%;z-index:3}
+.hero-eyebrow{color:#e8d5b6;letter-spacing:.24em;font-size:10px}
+.hero-eyebrow i{color:var(--gold);font-style:normal}
+.hero-kicker{color:var(--gold)!important;letter-spacing:.24em;font-size:10px!important;margin:25px 0 8px!important}
+.hero-copy h1{font:600 clamp(48px,6vw,78px)/.99 var(--serif);letter-spacing:-.06em;margin:18px 0 22px;color:#fff8ed}
+.hero-copy h1 em{color:#e9bb68}
+.hero-copy p{color:#d1c5b6;line-height:1.65}
+.hero-actions .btn{min-height:58px;border-radius:999px;padding:0 28px;background:linear-gradient(110deg,#fff0bd,#d99c42 55%,#8d571e);border:1px solid #ffe4a2;color:#160e04;font-size:12px;box-shadow:0 0 24px #d99c4266,inset 0 1px 0 #fff9d8}
+.hero-actions .btn b{font-size:22px;margin-left:10px}
+.hero-footnote{color:#c5a875;letter-spacing:.2em;margin-top:44px}
+.hero-footnote i{background:var(--gold)}
+.hero-art{position:absolute;z-index:2;right:4%;top:9%;width:44%;height:82%;display:grid;place-items:center;pointer-events:none}
+.hero-logo-seal{width:min(100%,360px);aspect-ratio:1;border:2px solid #d6a24c;border-radius:50%;box-shadow:0 0 0 8px #d6a24c16,0 0 35px #d6a24c35,inset 0 0 40px #d6a24c15;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#edc778;background:radial-gradient(circle,#171008aa,#050505cc 70%);transform:rotate(-5deg)}
+.hero-logo-seal:before{content:'';position:absolute;inset:9px;border:1px solid #d6a24c99;border-radius:50%}
+.seal-wm{font:700 clamp(66px,9vw,112px)/.95 Georgia,serif;letter-spacing:-.1em;text-shadow:0 3px 12px #b77826}
+.seal-name{font:400 clamp(18px,2.4vw,27px) Georgia,serif;letter-spacing:.12em;margin-top:8px}
+.seal-city{font-size:9px;letter-spacing:.45em;margin-top:10px}
+.seal-tools{font-size:28px;margin-top:10px}
+.hero-tool{position:absolute;color:#d8a64f;text-shadow:0 0 18px #d8a64f88;font-size:76px;opacity:.58}
+.tool-one{right:0;bottom:4%;transform:rotate(-28deg)}
+.tool-two{left:2%;bottom:0;transform:rotate(25deg)}
+.section{margin-top:44px}
+.section-head{align-items:center;margin-bottom:20px}
+.section-head h2{font-size:clamp(24px,3vw,34px);color:#fff8ed}
+.section-head .eyebrow{color:var(--gold);letter-spacing:.28em}
+.text-button{color:var(--sand)}
+.service-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.service-card{position:relative;overflow:hidden;min-height:220px;padding:24px;border:1px solid #bd8b43aa;border-radius:24px 4px 24px 4px;background:radial-gradient(ellipse at 100% 0%,#a16a2522,transparent 50%),linear-gradient(145deg,#19130b,#080807 78%);box-shadow:inset 0 1px 0 #ffdda544,0 12px 30px #0008}
+.service-card:after{content:'';position:absolute;inset:auto 15% 0;height:1px;background:linear-gradient(90deg,transparent,#f0c36d,transparent);box-shadow:0 0 12px #d9a54d}
+.service-symbol{width:54px;height:54px;border:1px solid #d6a24c;border-radius:15px;background:#d6a24c12;color:#f2cc7e;font-size:25px}
+.service-card h3{font:600 21px var(--serif);color:#fff5e7;margin-top:18px}
+.service-card p{font-size:12px;color:#c4b7a6;line-height:1.6}
+.service-price{font-size:16px;color:#edbd67}
+.wm-benefits{margin-top:48px}
+.benefit-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.benefit-grid article{min-height:122px;border:1px solid #a87836aa;border-radius:20px 4px 20px 4px;background:linear-gradient(145deg,#19130b,#080807);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:14px}
+.benefit-grid article span{font-size:30px;color:#efc878}
+.benefit-grid article strong{font-size:12px;font-weight:500;color:#e6d9c6}
+.booking-shell,.profile-card,.appointment-card,.discover-card{background:linear-gradient(145deg,#19130b,#090807);border-color:#9f733a88;border-radius:20px 4px 20px 4px}
+.btn{border-radius:999px;background:linear-gradient(110deg,#f8df9e,#c88c37);border-color:#e7bb68;color:#1a1005}
+.btn.secondary,.btn.ghost{background:transparent;color:var(--sand);border-color:#b88843}
+.choice,.date-choice,.time-choice{background:#0d0b08;border-color:#8b632f88}
+.choice.selected,.date-choice.selected,.time-choice.selected{background:#30200d;border-color:#e2b35e;box-shadow:0 0 15px #d6a24c22}
+.step.active,.step.done{color:#edc778}
+.step.active b,.step.done b{background:#3a260f;border-color:#d6a24c;color:#ffe0a1}
+.payment-note,.notice{background:#211709;border-color:#9d702f;color:#d0c0a8}
+.mobile-nav{background:rgba(5,5,5,.97);border-top:1px solid #b8884366}
+.mobile-nav button.active{color:#f2c975;background:linear-gradient(180deg,#d6a24c16,transparent)}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.side-nav{display:none}.home-hero.wm-lux-hero{min-height:540px}}
+@media(max-width:620px){
+ .app-header{height:76px}.header-inner{width:calc(100% - 30px)}
+ .brand-mark{width:44px;height:44px}.brand-name{font-size:18px}
+ .layout{width:calc(100% - 28px);padding:16px 0 110px}
+ .home-hero.wm-lux-hero{min-height:630px;padding:28px 22px;border-radius:3px 28px 3px 28px;align-items:flex-start}
+ .hero-copy{max-width:100%;padding-top:10px}
+ .hero-eyebrow{font-size:9px;letter-spacing:.15em}
+ .hero-kicker{margin-top:22px!important}
+ .hero-copy h1{font-size:clamp(48px,12vw,66px);max-width:100%;margin:18px 0}
+ .hero-copy p{max-width:270px;font-size:14px}
+ .hero-actions .btn{width:min(100%,310px);justify-content:space-between}
+ .hero-footnote{margin-top:30px}
+ .hero-art{width:70%;height:42%;right:4%;top:auto;bottom:2%;opacity:.9}
+ .hero-logo-seal{width:min(100%,250px)}
+ .seal-wm{font-size:76px}.seal-name{font-size:19px}.seal-city{font-size:7px}
+ .hero-tool{font-size:48px}
+ .wm-lux-hero:after{width:67%;height:40%;right:5%;bottom:4%}
+ .section{margin-top:38px}
+ .section-head h2{font-size:23px}
+ .service-grid,.service-catalog{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+ .service-card,.service-card:last-child{min-height:190px;padding:16px;grid-column:auto}
+ .service-card h3{font-size:18px}
+ .service-card p{font-size:10px}
+ .service-price{font-size:14px}
+ .benefit-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .benefit-grid article{min-height:108px}
+ .mobile-nav{grid-template-columns:repeat(4,1fr);padding:10px 8px calc(10px + env(safe-area-inset-bottom))}
+}
+@media(prefers-reduced-motion:reduce){.view.active{animation:none}}
 </style>
 <style>
 /* WM REDESIGN 2026 — structural visual refresh */
@@ -311,32 +405,32 @@ body{background:radial-gradient(ellipse at 50% -20%,#2a1b13 0,transparent 42%),#
     <p class="nav-caption">MENU PRINCIPAL</p>
     <nav class="nav-list" aria-label="Navegação principal">
       <button class="nav-btn active" data-nav="home"><span class="nav-icon">⌂</span>Início</button>
-      <button class="nav-btn" data-nav="explore"><span class="nav-icon">⌕</span>Encontrar barbeiro</button>
+      <button class="nav-btn" data-nav="explore"><span class="nav-icon">✂</span>Serviços</button>
       <button class="nav-btn" data-nav="booking"><span class="nav-icon">▦</span>Agendar horário</button>
       <button class="nav-btn" data-nav="appointments"><span class="nav-icon">◷</span>Meus agendamentos</button>
       <button class="nav-btn" data-nav="profile"><span class="nav-icon">◎</span>Barbearia</button>
     </nav>
-    <div class="side-note"><strong>Seu estilo começa aqui.</strong>Escolha o serviço, encontre seu profissional e solicite seu horário.</div>
+    <div class="side-note"><strong>WM Barbearia</strong>Estilo, confiança e atitude. Taboão · Diadema.</div>
   </aside>
   <main class="main">
     <section class="view active" id="view-home">
-      <div class="home-hero"><div class="hero-grain" aria-hidden="true"></div><div class="hero-copy"><div class="eyebrow hero-eyebrow"><span class="live-dot"></span> BARBEARIA WM <span class="eyebrow-separator">/</span> TABOÃO, DIADEMA</div><p class="hero-kicker">ESTILO, PRECISÃO <span>&</span> PRESENÇA.</p><h1>Seu visual.<br><em>Suas regras.</em></h1><p class="hero-intro" id="hero-typewriter" aria-label="Cuidado no detalhe. Atitude em cada corte.">Cuidado no detalhe. Atitude em cada corte.</p><div class="hero-actions"><button class="btn hero-primary" data-action="start-booking">Agendar horário <span>↗</span></button><a class="btn secondary hero-secondary" href="https://wa.me/5511945876259?text=Ol%C3%A1%21%20Gostaria%20de%20conhecer%20os%20servi%C3%A7os%20da%20Barbearia%20WM." target="_blank" rel="noopener noreferrer">Falar com a WM <span>↗</span></a></div><div class="hero-footnote"><span>TER — SÁB</span><i></i><span>09H — 20H</span></div></div><div class="hero-side-note" aria-hidden="true"><span>WM</span><small>BARBER<br>STUDIO</small></div></div>
-      <div class="section"><div class="section-head"><div><div class="eyebrow">CUIDADO NA MEDIDA</div><h2>Nossos serviços</h2></div><button class="text-button" data-action="start-booking">Ver todos ↗</button></div><div class="service-grid" id="home-services"></div></div>
-      <div class="section"><div class="section-head"><div><div class="eyebrow">ENCONTRE SEU PROFISSIONAL</div><h2>Equipe WM</h2></div><button class="text-button" data-nav="explore">Ver equipe ↗</button></div><div class="barber-grid" id="home-barbers"></div></div>
+      <div class="home-hero wm-lux-hero">
+        <div class="hero-art" aria-hidden="true"><div class="hero-logo-seal"><span class="seal-wm">WM</span><span class="seal-name">BARBEARIA</span><span class="seal-city">DIADEMA · SP</span><span class="seal-tools">✂</span></div><div class="hero-tool tool-one">✂</div><div class="hero-tool tool-two">⌁</div></div>
+        <div class="hero-copy"><div class="eyebrow hero-eyebrow">ESTILO <i>•</i> CONFIANÇA <i>•</i> ATITUDE</div><p class="hero-kicker">BARBEARIA WM <span>—</span> DIADEMA</p><h1>Seu próximo<br>corte.<br><em>Do seu jeito.</em></h1><p class="hero-intro">Agende seu horário e confira nossos serviços.</p><div class="hero-actions"><button class="btn hero-primary" data-action="start-booking"><span>▦</span> Agendar horário <b>→</b></button></div><div class="hero-footnote"><span>TER — SÁB</span><i></i><span>09H — 20H</span></div></div>
+      </div>
+      <div class="section"><div class="section-head"><div><div class="eyebrow">NOSSOS SERVIÇOS</div><h2>Cuidados que fazem a diferença</h2></div><button class="text-button" data-action="start-booking">Ver todos →</button></div><div class="service-grid" id="home-services"></div></div>
+      <div class="section wm-benefits"><div class="section-head"><div><div class="eyebrow">POR QUE ESCOLHER A WM?</div><h2>Qualidade em cada detalhe</h2></div></div><div class="benefit-grid"><article><span>◇</span><strong>Atendimento especializado</strong></article><article><span>♢</span><strong>Ambiente acolhedor</strong></article><article><span>◷</span><strong>Horário organizado</strong></article><article><span>☆</span><strong>Cuidado nos detalhes</strong></article></div></div>
       <div class="info-strip"><div><strong>Estamos no Taboão, em Diadema</strong><span>Terça a sábado · 9h às 20h</span></div><button class="btn secondary" data-nav="profile">Ver localização</button></div>
     </section>
     <section class="view" id="view-explore">
-      <div class="eyebrow">PROFISSIONAIS WM</div><h1 class="page-title">Encontre seu barbeiro.</h1><p class="page-subtitle">Explore os estilos e escolha quem vai cuidar do seu visual.</p>
-      <div class="search-wrap"><span class="search-icon">⌕</span><input id="barber-search" type="search" placeholder="Buscar por nome ou especialidade..." aria-label="Buscar barbeiro"></div>
-      <div class="chips" id="specialty-chips"><button class="chip active" data-filter="Todos">Todos</button><button class="chip" data-filter="Degradê">Degradê</button><button class="chip" data-filter="Clássico">Clássico</button><button class="chip" data-filter="Barba">Barba</button></div>
-      <div class="discover-grid" id="discover-barbers"></div>
+      <div class="eyebrow">SERVIÇOS WM</div><h1 class="page-title">Escolha seu cuidado.</h1><p class="page-subtitle">Conheça os serviços e selecione o que deseja agendar.</p><div class="service-grid service-catalog" id="service-catalog"></div>
     </section>
     <section class="view" id="view-booking">
       <div class="eyebrow">RESERVE SEU MOMENTO</div><h1 class="page-title">Agende seu horário.</h1><p class="page-subtitle">Escolha o que deseja e envie sua solicitação para a equipe WM.</p>
       <div class="booking-shell">
-        <div class="steps" id="step-indicator"><div class="step active"><b>1</b>Serviço</div><div class="step"><b>2</b>Profissional</div><div class="step"><b>3</b>Horário</div><div class="step"><b>4</b>Pagamento</div></div>
+        <div class="steps" id="step-indicator"><div class="step active"><b>1</b>Serviço</div><div class="step"><b>2</b>WM</div><div class="step"><b>3</b>Horário</div><div class="step"><b>4</b>Pagamento</div></div>
         <div class="booking-step active" data-step="0"><h2>O que vamos fazer?</h2><p>Selecione o serviço para seu próximo atendimento.</p><div class="choice-list" id="service-choices"></div></div>
-        <div class="booking-step" data-step="1"><h2>Escolha seu profissional.</h2><p>Selecione um profissional da equipe WM.</p><div class="choice-list" id="barber-choices"></div></div>
+        <div class="booking-step" data-step="1"><h2>Seu atendimento WM.</h2><p>O atendimento é realizado pelo profissional da barbearia.</p><div class="choice-list" id="barber-choices"></div></div>
         <div class="booking-step" data-step="2"><h2>Quando fica melhor?</h2><p>Escolha uma data e um horário de preferência.</p><div class="eyebrow">DATA</div><div class="date-row" id="date-choices"></div><div class="eyebrow">HORÁRIOS DISPONÍVEIS PARA SOLICITAÇÃO</div><div class="time-grid" id="time-choices"></div><div class="payment-note">Os horários exibidos são opções demonstrativas. A equipe precisa confirmar a disponibilidade antes de o agendamento ser considerado confirmado.</div></div>
         <div class="booking-step" data-step="3"><h2>Como deseja pagar?</h2><p>Escolha sua preferência de pagamento.</p><div class="choice-list" id="payment-choices"></div><div class="payment-note">O pagamento digital ainda não está conectado a um provedor. Esta versão registra sua preferência, mas não realiza cobranças nem processa cartões ou Pix.</div><div class="summary" id="booking-summary"></div><div class="notice">Ao enviar, você solicita o horário. A equipe WM confirma o agendamento pelo WhatsApp.</div></div>
         <div class="booking-actions"><button class="btn ghost" id="booking-back" disabled>Voltar</button><button class="btn" id="booking-next">Continuar ↗</button></div>
@@ -360,7 +454,7 @@ body{background:radial-gradient(ellipse at 50% -20%,#2a1b13 0,transparent 42%),#
     </section>
   </main>
 </div>
-<nav class="mobile-nav" aria-label="Navegação inferior"><button class="active" data-nav="home"><span>⌂</span>Início</button><button data-nav="explore"><span>⌕</span>Barbeiros</button><button data-nav="booking"><span>▦</span>Agendar</button><button data-nav="appointments"><span>◷</span>Agenda</button></nav>
+<nav class="mobile-nav" aria-label="Navegação inferior"><button class="active" data-nav="home"><span>⌂</span>Início</button><button data-nav="explore"><span>✂</span>Serviços</button><button data-nav="booking"><span>▦</span>Agendar</button><button data-nav="profile"><span>◎</span>Perfil</button></nav>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </div>
 <script>
@@ -371,11 +465,7 @@ var services=[
 {id:'beard',name:'Barba',description:'Modelagem e acabamento cuidadoso.',price:35,icon:'⌁',duration:'30 min'},
 {id:'combo',name:'Corte + barba',description:'O cuidado completo em uma visita.',price:70,icon:'✦',duration:'70 min'}
 ];
-var barbers=[
-{id:'wm01',name:'Equipe WM · Degradê',initials:'WM',specialty:'Degradê e cortes modernos',tags:['Degradê'],bio:'Atendimento focado em cortes modernos e acabamento de precisão.',experience:'Equipe da casa'},
-{id:'wm02',name:'Equipe WM · Clássico',initials:'WM',specialty:'Cortes clássicos e sociais',tags:['Clássico'],bio:'Cortes tradicionais, alinhamento e estilo atemporal.',experience:'Equipe da casa'},
-{id:'wm03',name:'Equipe WM · Barba',initials:'WM',specialty:'Barba e acabamento',tags:['Barba'],bio:'Modelagem de barba e cuidado com os detalhes do visual.',experience:'Equipe da casa'}
-];
+var barbers=[{id:'wm',name:'Profissional WM',initials:'WM',specialty:'Atendimento da Barbearia WM',tags:[],bio:'Atendimento realizado pelo profissional responsável pela Barbearia WM.',experience:'Barbearia WM'}];
 var state={view:'home',step:0,service:'',barber:'',date:'',time:'',payment:'pix',filter:'Todos',search:'',detail:''};
 var $=function(id){return document.getElementById(id)};
 var money=function(n){return n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})};
@@ -387,15 +477,15 @@ function toast(message){var el=$('toast');el.textContent=message;el.classList.ad
 function nav(view){state.view=view;document.querySelectorAll('.view').forEach(function(el){el.classList.toggle('active',el.id==='view-'+view)});document.querySelectorAll('[data-nav]').forEach(function(el){el.classList.toggle('active',el.getAttribute('data-nav')===view)});window.scrollTo({top:0,behavior:'smooth'});if(view==='explore')renderExplore();if(view==='appointments')renderAppointments();if(view==='booking')renderBooking();if(view==='barber')renderBarberDetail()}
 function serviceCard(s){return '<button class="service-card" data-service="'+s.id+'" aria-label="Selecionar '+escapeHtml(s.name)+'"><span class="service-symbol">'+s.icon+'</span><h3>'+escapeHtml(s.name)+'</h3><p>'+escapeHtml(s.duration)+' · '+escapeHtml(s.description)+'</p><span class="service-price">'+money(s.price)+'</span></button>'}
 function barberMini(b){return '<article class="barber-card"><div class="barber-avatar">'+b.initials+'</div><div><h3>'+escapeHtml(b.name)+'</h3><p>'+escapeHtml(b.specialty)+'</p><button data-barber-detail="'+b.id+'">Ver perfil ↗</button></div></article>'}
-function renderHome(){$('home-services').innerHTML=services.map(serviceCard).join('');$('home-barbers').innerHTML=barbers.map(barberMini).join('')}
-function renderExplore(){var list=barbers.filter(function(b){var match=state.filter==='Todos'||b.tags.indexOf(state.filter)>=0;var q=state.search.toLowerCase();return match&&(!q||(b.name+' '+b.specialty+' '+b.bio).toLowerCase().indexOf(q)>=0)});$('discover-barbers').innerHTML=list.length?list.map(function(b){return '<article class="discover-card"><div class="barber-avatar">'+b.initials+'</div><div><h3>'+escapeHtml(b.name)+'</h3><div class="specialty">'+escapeHtml(b.specialty)+'</div><p>'+escapeHtml(b.bio)+'</p></div><button class="btn secondary" data-barber-detail="'+b.id+'">Ver perfil</button></article>'}).join(''):'<div class="empty-state">Nenhum profissional encontrado.</div>';document.querySelectorAll('[data-filter]').forEach(function(el){el.classList.toggle('active',el.getAttribute('data-filter')===state.filter)})}
-function renderBarberDetail(){var b=barbers.find(function(x){return x.id===state.detail})||barbers[0];$('barber-detail').innerHTML='<div class="profile-card"><div class="barber-avatar" style="width:76px;height:76px;font-size:26px">'+b.initials+'</div><div class="eyebrow" style="margin-top:20px">PROFISSIONAL WM</div><h1 class="page-title">'+escapeHtml(b.name)+'</h1><p class="page-subtitle">'+escapeHtml(b.specialty)+'</p><p style="color:var(--muted);margin-top:18px">'+escapeHtml(b.bio)+'</p><div class="profile-row"><span>Equipe</span><strong>Barbearia WM</strong></div><div class="profile-row"><span>Especialidade</span><strong>'+escapeHtml(b.specialty)+'</strong></div><p class="payment-note">Perfil ilustrativo. A equipe e as especialidades reais precisam ser cadastradas pela barbearia.</p><div class="detail-actions"><button class="btn" data-book-barber="'+b.id+'">Agendar com este profissional ↗</button></div></div>'}
+function renderHome(){$('home-services').innerHTML=services.map(serviceCard).join('');$('service-catalog').innerHTML=services.map(serviceCard).join('')}
+function renderExplore(){$('service-catalog').innerHTML=services.map(serviceCard).join('')}
+function renderBarberDetail(){var b=barbers.find(function(x){return x.id===state.detail})||barbers[0];$('barber-detail').innerHTML='<div class="profile-card"><div class="barber-avatar" style="width:76px;height:76px;font-size:26px">'+b.initials+'</div><div class="eyebrow" style="margin-top:20px">ATENDIMENTO WM</div><h1 class="page-title">'+escapeHtml(b.name)+'</h1><p class="page-subtitle">'+escapeHtml(b.specialty)+'</p><p style="color:var(--muted);margin-top:18px">'+escapeHtml(b.bio)+'</p><div class="profile-row"><span>Equipe</span><strong>Barbearia WM</strong></div><div class="profile-row"><span>Especialidade</span><strong>'+escapeHtml(b.specialty)+'</strong></div><div class="detail-actions"><button class="btn" data-book-barber="'+b.id+'">Agendar com este profissional ↗</button></div></div>'}
 function renderBooking(){
 document.querySelectorAll('.booking-step').forEach(function(el){el.classList.toggle('active',Number(el.dataset.step)===state.step)});
 document.querySelectorAll('.step').forEach(function(el,i){el.classList.toggle('active',i===state.step);el.classList.toggle('done',i<state.step)});
 $('booking-back').disabled=state.step===0;$('booking-next').textContent=state.step===3?'Enviar solicitação ↗':'Continuar ↗';
 $('service-choices').innerHTML=services.map(function(s){return '<button class="choice '+(state.service===s.id?'selected':'')+'" data-pick-service="'+s.id+'"><span><strong>'+escapeHtml(s.name)+'</strong><small>'+escapeHtml(s.duration)+' · '+escapeHtml(s.description)+'</small></span><span class="price">'+money(s.price)+'</span><span class="radio"></span></button>'}).join('');
-$('barber-choices').innerHTML=barbers.map(function(b){return '<button class="choice '+(state.barber===b.id?'selected':'')+'" data-pick-barber="'+b.id+'"><span><strong>'+escapeHtml(b.name)+'</strong><small>'+escapeHtml(b.specialty)+'</small></span><span class="radio"></span></button>'}).join('');
+if(!state.barber)state.barber='wm';$('barber-choices').innerHTML='<div class="choice selected"><span><strong>Profissional WM</strong><small>Atendimento da Barbearia WM</small></span><span class="radio"></span></div>';
 renderDates();renderTimes();
 $('payment-choices').innerHTML=[{id:'pix',name:'Pix',desc:'Preferência de pagamento via Pix'},{id:'card',name:'Cartão',desc:'Preferência de pagamento com cartão'},{id:'onsite',name:'Pagar na barbearia',desc:'Pix ou cartão diretamente no local'}].map(function(p){return '<button class="choice '+(state.payment===p.id?'selected':'')+'" data-pick-payment="'+p.id+'"><span><strong>'+p.name+'</strong><small>'+p.desc+'</small></span><span class="radio"></span></button>'}).join('');
 renderSummary()
