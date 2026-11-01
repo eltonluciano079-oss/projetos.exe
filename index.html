@@ -297,6 +297,48 @@ body{background:#050505;color:var(--cream)}
  .mobile-nav{grid-template-columns:repeat(4,1fr);padding:10px 8px calc(10px + env(safe-area-inset-bottom))}
 }
 @media(prefers-reduced-motion:reduce){.view.active{animation:none}}
+
+/* Home secondary actions — match the main booking CTA */
+.section-head .text-button,
+.info-strip .btn.secondary{
+  min-height:48px;
+  padding:0 22px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  border:1px solid #e4bd75;
+  border-radius:999px;
+  background:linear-gradient(110deg,#f5d99e 0%,#dfa94f 58%,#a96e2d 100%);
+  color:#1a1006;
+  font:800 12px/1.15 var(--sans);
+  letter-spacing:.045em;
+  text-transform:uppercase;
+  text-decoration:none;
+  box-shadow:0 5px 16px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.48);
+  transition:background .18s ease,border-color .18s ease,box-shadow .18s ease,transform .18s ease,filter .18s ease;
+}
+.section-head .text-button:hover,
+.info-strip .btn.secondary:hover{
+  color:#120b04;
+  border-color:#ffdfa0;
+  background:linear-gradient(110deg,#ffe9b9 0%,#edc16f 58%,#bd843d 100%);
+  box-shadow:0 8px 22px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.6);
+  transform:translateY(-1px);
+}
+.section-head .text-button:active,
+.info-strip .btn.secondary:active{
+  transform:translateY(1px) scale(.99);
+}
+@media(max-width:620px){
+  .section-head .text-button,
+  .info-strip .btn.secondary{
+    min-height:48px;
+    padding:0 16px;
+    font-size:11px;
+  }
+}
+
 </style>
 <style>
 /* WM REDESIGN 2026 — structural visual refresh */
