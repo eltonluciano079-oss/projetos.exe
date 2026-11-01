@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090807">
+<meta name="description" content="WM Barbearia — encontre seu estilo e solicite seu próximo horário.">
+<title>WM Barbearia | Agendamento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--ink:#090807;--surface:#15120f;--surface-2:#201a16;--surface-3:#2b211b;--cream:#ece5da;--muted:#a69b8e;--line:rgba(236,229,218,.12);--brown:#552a19;--brown-2:#5e5149;--copper:#9b6342;--gold:#bc9564;--sand:#d8c19e;--silver:#cecece;--bluegrey:#717b86;--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',Arial,sans-serif;--radius:18px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--ink);color:var(--cream);font-family:var(--sans);font-size:14px;line-height:1.5}button,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--sand);outline-offset:3px}.app-shell{min-height:100vh}.app-header{height:78px;border-bottom:1px solid var(--line);display:flex;align-items:center;position:sticky;top:0;z-index:20;background:rgba(9,8,7,.94);backdrop-filter:blur(16px)}.header-inner{width:min(1180px,calc(100% - 48px));margin:auto;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:12px}.brand-mark{width:38px;height:38px;border:1px solid var(--gold);display:grid;place-items:center;color:var(--sand);font:800 16px var(--serif);transform:rotate(-45deg)}.brand-mark span{transform:rotate(45deg)}.brand-name{font:700 19px var(--serif);letter-spacing:.6px}.brand-name small{display:block;font:600 8px var(--sans);letter-spacing:3px;color:var(--gold);margin-top:-2px}.header-right{display:flex;align-items:center;gap:18px}.location{color:var(--muted);font-size:12px}.location strong{display:block;color:var(--cream);font-weight:600}.avatar{width:38px;height:38px;border-radius:50%;background:var(--brown);border:1px solid rgba(216,193,158,.35);display:grid;place-items:center;color:var(--sand);font-weight:700}
+.layout{width:min(1180px,calc(100% - 48px));margin:0 auto;display:grid;grid-template-columns:220px minmax(0,1fr);gap:34px;padding:30px 0 60px}.side-nav{position:sticky;top:108px;align-self:start;padding:10px 0}.nav-caption{font-size:9px;letter-spacing:2.2px;color:var(--muted);font-weight:700;margin:0 0 14px 12px}.nav-list{display:grid;gap:5px}.nav-btn{display:flex;align-items:center;gap:13px;width:100%;border:0;background:transparent;color:var(--muted);padding:13px 14px;border-radius:12px;text-align:left;font-weight:600;transition:.18s}.nav-btn:hover{background:var(--surface-2);color:var(--cream)}.nav-btn.active{background:var(--surface-2);color:var(--sand)}.nav-icon{width:20px;text-align:center;font-size:17px}.side-note{margin-top:42px;padding:18px;border:1px solid var(--line);border-radius:14px;color:var(--muted);font-size:11px}.side-note strong{display:block;color:var(--sand);font:600 17px var(--serif);margin-bottom:6px}.main{min-width:0;max-width:900px}.view{display:none;animation:fade .22s ease}.view.active{display:block}@keyframes fade{from{opacity:.35;transform:translateY(5px)}to{opacity:1;transform:none}}.eyebrow{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:800}.page-title{font:700 clamp(28px,4vw,42px)/1.12 var(--serif);margin:8px 0 7px}.page-subtitle{color:var(--muted);margin:0}.home-hero{position:relative;overflow:hidden;min-height:280px;padding:34px 36px;border:1px solid rgba(216,193,158,.18);border-radius:22px;background:radial-gradient(ellipse at 90% 10%,rgba(155,99,66,.28),transparent 38%),linear-gradient(115deg,#211711 0%,#120e0b 72%);display:flex;align-items:center}.home-hero:after{content:'WM';position:absolute;right:24px;bottom:-44px;font:800 clamp(130px,23vw,245px)/1 var(--serif);color:rgba(216,193,158,.055);pointer-events:none}.hero-copy{position:relative;z-index:1;max-width:440px}.hero-copy h1{font:700 clamp(36px,5vw,54px)/1.03 var(--serif);margin:14px 0}.hero-copy h1 em{color:var(--sand);font-style:normal}.hero-copy p{color:#b6aa9d;max-width:370px;margin:0 0 22px}.btn{border:1px solid var(--gold);background:var(--gold);color:#17100c;min-height:44px;padding:0 19px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;transition:.18s}.btn:hover{background:var(--sand);border-color:var(--sand);transform:translateY(-1px)}.btn.secondary{background:transparent;color:var(--sand);border-color:rgba(216,193,158,.38)}.btn.secondary:hover{background:var(--surface-3)}.btn.ghost{background:transparent;color:var(--cream);border-color:var(--line)}.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}.section{margin-top:34px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:16px}.section-head h2{font:700 24px var(--serif);margin:4px 0 0}.text-button{background:none;border:0;color:var(--sand);font-size:11px;font-weight:700;padding:8px 0}.service-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.service-card{border:1px solid var(--line);border-radius:15px;background:var(--surface);padding:18px;min-height:158px;display:flex;flex-direction:column;transition:.18s}.service-card:hover{border-color:rgba(188,149,100,.55);transform:translateY(-2px)}.service-symbol{width:36px;height:36px;display:grid;place-items:center;border-radius:10px;background:rgba(155,99,66,.17);color:var(--sand);font-size:18px}.service-card h3{font:600 17px var(--serif);margin:14px 0 3px}.service-card p{font-size:11px;color:var(--muted);margin:0}.service-price{margin-top:auto;padding-top:13px;color:var(--sand);font-weight:700;font-size:12px}.barber-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.barber-card{border:1px solid var(--line);border-radius:15px;background:var(--surface);padding:14px;display:flex;gap:12px;align-items:center;min-width:0}.barber-avatar{width:52px;height:52px;border-radius:13px;background:linear-gradient(145deg,var(--brown),var(--surface-3));display:grid;place-items:center;color:var(--sand);font:700 19px var(--serif);flex:none}.barber-card h3{font-size:12px;margin:0 0 3px}.barber-card p{font-size:10px;color:var(--muted);margin:0}.barber-card button{border:0;background:none;color:var(--sand);padding:5px 0;font-size:10px;font-weight:700}
+.info-strip{margin-top:28px;border:1px solid var(--line);border-radius:14px;padding:15px 17px;display:flex;align-items:center;justify-content:space-between;gap:14px;background:rgba(32,26,22,.55)}.info-strip strong{display:block;font-size:12px}.info-strip span{color:var(--muted);font-size:11px}
+.search-wrap{margin:22px 0 14px;position:relative}.search-wrap input{width:100%;height:48px;border:1px solid var(--line);background:var(--surface);border-radius:12px;color:var(--cream);padding:0 16px 0 43px}.search-wrap input::placeholder{color:#81776d}.search-icon{position:absolute;left:15px;top:13px;color:var(--muted);font-size:18px}.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}.chip{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:30px;padding:8px 14px;font-size:10px;font-weight:700}.chip.active{background:var(--brown);border-color:var(--copper);color:var(--sand)}.discover-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.discover-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:17px;display:grid;grid-template-columns:56px 1fr;gap:12px}.discover-card .barber-avatar{width:56px;height:56px}.discover-card h3{font:600 16px var(--serif);margin:0 0 3px}.discover-card .specialty{font-size:10px;color:var(--gold)}.discover-card p{font-size:11px;color:var(--muted);margin:8px 0}.discover-card .btn{grid-column:1/-1;width:100%;min-height:38px}
+.booking-shell{border:1px solid var(--line);border-radius:18px;background:var(--surface);padding:24px;margin-top:22px}.steps{display:flex;gap:0;margin-bottom:28px}.step{flex:1;display:flex;align-items:center;gap:8px;color:#746b61;font-size:10px;font-weight:700}.step:not(:last-child):after{content:'';height:1px;background:var(--line);flex:1;margin:0 7px}.step b{width:25px;height:25px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;font-size:10px}.step.active{color:var(--sand)}.step.active b,.step.done b{background:var(--brown);border-color:var(--copper);color:var(--sand)}.step.done{color:var(--gold)}.booking-step{display:none}.booking-step.active{display:block}.booking-step h2{font:700 25px var(--serif);margin:0 0 5px}.booking-step>p{color:var(--muted);font-size:12px;margin:0 0 20px}.choice-list{display:grid;gap:9px}.choice{width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;text-align:left;padding:14px;border:1px solid var(--line);border-radius:12px;background:#17130f;color:var(--cream)}.choice.selected{border-color:var(--gold);background:rgba(85,42,25,.24)}.choice strong{display:block;font-size:12px}.choice small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.choice .price{color:var(--sand);font-weight:700;white-space:nowrap}.choice .radio{width:17px;height:17px;border:1px solid #77695b;border-radius:50%;flex:none}.choice.selected .radio{border:5px solid var(--gold)}.date-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:12px 0 20px}.date-choice{background:#17130f;border:1px solid var(--line);border-radius:11px;padding:10px 3px;color:var(--muted);text-align:center}.date-choice strong{display:block;color:var(--cream);font-size:16px}.date-choice small{font-size:9px;text-transform:uppercase}.date-choice.selected{border-color:var(--gold);background:rgba(85,42,25,.28);color:var(--sand)}.time-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.time-choice{border:1px solid var(--line);background:#17130f;color:var(--muted);border-radius:9px;padding:10px 4px;font-size:11px}.time-choice.selected{background:var(--brown);border-color:var(--gold);color:var(--sand)}.payment-note{margin-top:14px;border:1px solid rgba(188,149,100,.22);background:rgba(85,42,25,.16);border-radius:10px;padding:12px;color:var(--muted);font-size:10px}.booking-actions{display:flex;justify-content:space-between;gap:12px;margin-top:24px;padding-top:18px;border-top:1px solid var(--line)}.summary{border:1px solid var(--line);border-radius:12px;padding:15px;margin:15px 0}.summary-row{display:flex;justify-content:space-between;gap:16px;padding:7px 0;font-size:11px;color:var(--muted)}.summary-row strong{color:var(--cream);text-align:right}.summary-row.total{border-top:1px solid var(--line);margin-top:7px;padding-top:13px;font-size:14px}.summary-row.total strong{color:var(--sand)}.notice{border:1px solid rgba(188,149,100,.25);background:rgba(188,149,100,.07);padding:12px;border-radius:10px;color:var(--muted);font-size:10px}
+.appointments-list{display:grid;gap:12px;margin-top:22px}.appointment-card{border:1px solid var(--line);background:var(--surface);border-radius:15px;padding:17px;display:flex;justify-content:space-between;gap:16px}.appointment-card h3{font:600 17px var(--serif);margin:0 0 5px}.appointment-card p{color:var(--muted);font-size:11px;margin:0}.status{align-self:start;border:1px solid rgba(188,149,100,.3);border-radius:30px;color:var(--sand);padding:5px 9px;font-size:9px;white-space:nowrap}.empty-state{border:1px dashed var(--line);border-radius:16px;padding:40px 20px;text-align:center;color:var(--muted);margin-top:22px}.empty-state strong{display:block;color:var(--cream);font:600 21px var(--serif);margin:10px 0 5px}.profile-card{border:1px solid var(--line);border-radius:17px;background:var(--surface);padding:22px;margin-top:22px}.profile-row{padding:14px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:16px}.profile-row:last-child{border:0}.profile-row span{color:var(--muted);font-size:11px}.profile-row strong{font-size:11px;text-align:right}.detail-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.toast{position:fixed;left:50%;bottom:92px;transform:translate(-50%,15px);opacity:0;pointer-events:none;background:var(--cream);color:#17100c;padding:12px 17px;border-radius:10px;font-size:11px;font-weight:700;z-index:60;transition:.2s;box-shadow:0 8px 30px #0008}.toast.show{opacity:1;transform:translate(-50%,0)}.mobile-nav{display:none}
+@media(max-width:900px){.layout{grid-template-columns:1fr;gap:0;padding-top:22px}.side-nav{display:none}.main{max-width:none}.home-hero{min-height:260px}.barber-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.app-header{height:65px}.header-inner{width:calc(100% - 32px)}.brand-mark{width:34px;height:34px}.brand-name{font-size:17px}.location{display:none}.layout{width:calc(100% - 32px);padding:20px 0 100px}.home-hero{min-height:300px;padding:25px 22px}.hero-copy h1{font-size:43px}.hero-copy p{font-size:12px;max-width:270px}.service-grid{grid-template-columns:1fr 1fr}.service-card{min-height:150px;padding:14px}.service-card:last-child{grid-column:1/-1;min-height:120px}.barber-grid{grid-template-columns:1fr}.barber-card{padding:12px}.discover-grid{grid-template-columns:1fr}.booking-shell{padding:17px 14px}.steps{gap:2px}.step{font-size:8px;gap:4px}.step:not(:last-child):after{margin:0 3px}.step b{width:22px;height:22px}.date-row{grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}.date-choice{padding:9px 1px}.time-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.booking-actions .btn{flex:1;padding:0 10px}.appointment-card{padding:14px}.mobile-nav{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;bottom:0;left:0;right:0;padding:9px 8px calc(9px + env(safe-area-inset-bottom));background:rgba(15,12,10,.97);border-top:1px solid var(--line);backdrop-filter:blur(18px);z-index:30}.mobile-nav button{border:0;background:none;color:#8d8175;display:grid;justify-items:center;gap:3px;font-size:9px;font-weight:700;padding:4px}.mobile-nav button span{font-size:18px;line-height:1.2}.mobile-nav button.active{color:var(--sand)}.toast{bottom:85px}.section-head h2{font-size:22px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* Glassmorphism controls — visual enhancement only */
+.btn,
+.nav-btn,
+.text-button,
+.chip,
+.choice,
+.date-choice,
+.time-choice,
+.service-card,
+.mobile-nav button {
+  -webkit-backdrop-filter: blur(14px) saturate(135%);
+  backdrop-filter: blur(14px) saturate(135%);
+  transition: background .22s ease, border-color .22s ease, color .22s ease,
+              box-shadow .22s ease, transform .22s ease;
+}
+.btn {
+  color: var(--cream);
+  background: linear-gradient(135deg, rgba(188,149,100,.34), rgba(155,99,66,.16));
+  border: 1px solid rgba(236,229,218,.34);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 5px 18px rgba(0,0,0,.18);
+}
+.btn:hover {
+  color: #fff4e4;
+  background: linear-gradient(135deg, rgba(216,193,158,.42), rgba(155,99,66,.28));
+  border-color: rgba(216,193,158,.72);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.24), 0 8px 24px rgba(0,0,0,.26);
+  transform: translateY(-2px);
+}
+.btn.secondary,
+.btn.ghost {
+  color: var(--sand);
+  background: rgba(236,229,218,.045);
+  border-color: rgba(236,229,218,.2);
+}
+.btn.secondary:hover,
+.btn.ghost:hover {
+  background: rgba(216,193,158,.13);
+  border-color: rgba(216,193,158,.52);
+}
+.nav-btn {
+  border: 1px solid transparent;
+  background: rgba(236,229,218,.018);
+}
+.nav-btn:hover,
+.nav-btn.active {
+  background: linear-gradient(110deg, rgba(155,99,66,.22), rgba(236,229,218,.045));
+  border-color: rgba(216,193,158,.18);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.07);
+}
+.text-button {
+  border-radius: 9px;
+  padding: 8px 11px;
+}
+.text-button:hover {
+  background: rgba(216,193,158,.1);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.1);
+}
+.chip {
+  background: rgba(236,229,218,.035);
+  border-color: rgba(236,229,218,.16);
+}
+.chip:hover,
+.chip.active {
+  background: rgba(155,99,66,.24);
+  border-color: rgba(216,193,158,.48);
+  color: var(--sand);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.1);
+}
+.choice,
+.date-choice,
+.time-choice {
+  background: rgba(23,19,15,.68);
+  border-color: rgba(236,229,218,.14);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.035);
+}
+.choice:hover,
+.date-choice:hover,
+.time-choice:hover {
+  background: rgba(85,42,25,.34);
+  border-color: rgba(216,193,158,.38);
+  color: var(--cream);
+}
+.choice.selected,
+.date-choice.selected,
+.time-choice.selected {
+  background: linear-gradient(135deg, rgba(155,99,66,.34), rgba(85,42,25,.25));
+  border-color: rgba(216,193,158,.66);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 4px 16px rgba(0,0,0,.14);
+}
+.service-card {
+  background: linear-gradient(145deg, rgba(35,29,24,.76), rgba(21,18,15,.72));
+  border-color: rgba(236,229,218,.14);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.045);
+  color: var(--cream);
+  text-align: left;
+}
+.service-card:hover {
+  background: linear-gradient(145deg, rgba(85,55,39,.5), rgba(30,24,19,.82));
+  border-color: rgba(216,193,158,.48);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 10px 26px rgba(0,0,0,.2);
+}
+.mobile-nav button {
+  border-radius: 10px;
+  background: rgba(236,229,218,.025);
+}
+.mobile-nav button:hover,
+.mobile-nav button.active {
+  background: rgba(155,99,66,.16);
+  color: var(--sand);
+}
+.btn:active,
+.nav-btn:active,
+.chip:active,
+.choice:active,
+.date-choice:active,
+.time-choice:active,
+.mobile-nav button:active {
+  transform: scale(.98);
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn, .nav-btn, .text-button, .chip, .choice, .date-choice,
+  .time-choice, .service-card, .mobile-nav button { transition: none; }
+}
+
+
+/* WM — modern cinematic direction, preserving the existing booking experience */
+:root{--heading:'Manrope',var(--sans);--sans:'DM Sans',Arial,sans-serif}
+body{font-family:var(--sans);letter-spacing:-.01em}
+.brand-name,.page-title,.hero-copy h1,.section-head h2,.service-card h3,.booking-step h2,.appointment-card h3{font-family:var(--heading)}
+.app-header{background:rgba(9,8,7,.78);border-bottom-color:rgba(236,229,218,.09);backdrop-filter:blur(22px) saturate(145%);-webkit-backdrop-filter:blur(22px) saturate(145%)}
+.brand-mark{border-radius:11px;transform:none;background:linear-gradient(145deg,rgba(188,149,100,.16),rgba(85,42,25,.12));box-shadow:inset 0 1px 0 #ffffff22}
+.brand-mark span{transform:none}
+.brand-name{letter-spacing:.025em}
+.home-hero{min-height:clamp(390px,48vw,520px);padding:clamp(28px,5vw,58px);border-radius:26px;border-color:rgba(216,193,158,.2);background:radial-gradient(ellipse at 78% 18%,rgba(155,99,66,.34),transparent 36%),radial-gradient(ellipse at 100% 100%,rgba(188,149,100,.13),transparent 42%),linear-gradient(115deg,#211711 0%,#120e0b 62%,#090807 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.09),0 24px 70px rgba(0,0,0,.22)}
+.home-hero:after{content:'WM';right:3%;bottom:-.19em;font-size:clamp(180px,27vw,330px);color:rgba(216,193,158,.065);letter-spacing:-.1em}
+.hero-grain{position:absolute;inset:0;pointer-events:none;opacity:.12;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");mix-blend-mode:soft-light}
+.hero-copy{max-width:570px}
+.hero-eyebrow{display:flex;align-items:center;gap:9px;color:#d8c19e;letter-spacing:2px}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#c79a6c;box-shadow:0 0 12px #c79a6c;display:inline-block}
+.eyebrow-separator{opacity:.45}
+.hero-kicker{font-size:clamp(10px,1vw,12px)!important;letter-spacing:.23em;text-transform:uppercase;color:#d8c19e!important;font-weight:700;margin:25px 0 8px!important}
+.hero-kicker span{color:#fff;opacity:.55}
+.hero-copy h1{font-size:clamp(48px,7vw,82px);line-height:.99;letter-spacing:-.075em;margin:0 0 19px;font-weight:600}
+.hero-copy h1 em{color:#d8c19e}
+.hero-intro{font-size:clamp(14px,1.35vw,17px)!important;line-height:1.65;color:rgba(236,229,218,.76)!important;max-width:390px;min-height:29px;margin:0 0 26px!important}
+.hero-intro.typing:after{content:'';display:inline-block;width:2px;height:1em;background:var(--sand);vertical-align:-.12em;margin-left:4px;animation:wm-caret 1s steps(1) infinite}
+@keyframes wm-caret{50%{opacity:0}}
+.hero-actions{display:flex;flex-wrap:wrap;gap:9px}
+.hero-actions .btn{min-height:46px;border-radius:999px;padding:0 21px;font-size:10px;letter-spacing:.08em}
+.hero-primary{background:#ece5da!important;color:#17100c!important;border-color:#ece5da!important}
+.hero-primary:hover{background:#d8c19e!important;color:#17100c!important}
+.hero-secondary{background:rgba(236,229,218,.06)!important;border-color:rgba(236,229,218,.32)!important;color:#ece5da!important}
+.hero-secondary:hover{background:rgba(236,229,218,.16)!important}
+.hero-footnote{display:flex;align-items:center;gap:11px;margin-top:34px;color:rgba(236,229,218,.52);font-size:9px;font-weight:700;letter-spacing:.19em}
+.hero-footnote i{width:22px;height:1px;background:rgba(216,193,158,.6)}
+.hero-side-note{position:absolute;right:clamp(22px,5vw,58px);top:50%;transform:translateY(-50%);display:grid;justify-items:center;gap:7px;color:rgba(216,193,158,.7);z-index:1}
+.hero-side-note span{font:500 clamp(42px,7vw,78px)/1 var(--heading);letter-spacing:-.1em}
+.hero-side-note small{text-align:center;font-size:8px;line-height:1.5;letter-spacing:.25em}
+.section{margin-top:42px}
+.section-head h2{letter-spacing:-.04em}
+.service-card,.barber-card,.discover-card,.booking-shell,.profile-card,.appointment-card{border-color:rgba(236,229,218,.13);background:linear-gradient(145deg,rgba(35,29,24,.76),rgba(21,18,15,.78));backdrop-filter:blur(18px) saturate(130%);-webkit-backdrop-filter:blur(18px) saturate(130%);box-shadow:inset 0 1px 0 rgba(255,255,255,.045)}
+.service-card{border-radius:17px}
+.btn,.nav-btn,.chip,.choice,.date-choice,.time-choice,.text-button,.mobile-nav button{transition:all .24s cubic-bezier(.2,.75,.25,1)}
+.btn{border-radius:999px}
+.nav-btn{border-radius:12px}
+.mobile-nav{background:rgba(12,10,9,.84);backdrop-filter:blur(24px) saturate(150%);-webkit-backdrop-filter:blur(24px) saturate(150%);border-top-color:rgba(236,229,218,.13)}
+.mobile-nav button.active{background:rgba(155,99,66,.16);border:1px solid rgba(216,193,158,.12)}
+@media(max-width:620px){
+ .home-hero{min-height:440px;padding:27px 22px 24px;border-radius:22px;align-items:flex-end}
+ .hero-copy{max-width:100%}
+ .hero-copy h1{font-size:clamp(49px,13vw,68px)}
+ .hero-side-note{right:23px;top:27px;transform:none;opacity:.52}
+ .hero-side-note span{font-size:42px}
+ .hero-side-note small{font-size:6px}
+ .hero-kicker{margin-top:20px!important}
+ .hero-intro{max-width:310px}
+ .hero-actions{gap:8px}
+ .hero-actions .btn{padding:0 16px;font-size:9px}
+ .hero-footnote{margin-top:24px}
+}
+@media(prefers-reduced-motion:reduce){.hero-intro.typing:after{animation:none}}
+
+
+/* WM BLACK & GOLD — reference image 2 */
+:root{--ink:#050505;--surface:#100e0b;--surface-2:#17120c;--surface-3:#24190e;--cream:#f5eee3;--muted:#b7aa98;--line:rgba(219,170,91,.27);--gold:#d8a64f;--sand:#f2cf86;--copper:#9c672c}
+body{background:#050505;color:var(--cream)}
+.app-header{background:rgba(4,4,4,.94);border-bottom:1px solid rgba(224,176,93,.24)}
+.brand-mark{transform:none;border-radius:50%;width:48px;height:48px;border:1px solid var(--gold);box-shadow:0 0 18px #d59b3b22,inset 0 0 12px #d59b3b18;font-size:19px}
+.brand-mark span{transform:none}
+.brand-name{color:#f3d28f;font-family:var(--serif);letter-spacing:.04em}
+.brand-name small{color:var(--gold);letter-spacing:.32em}
+.avatar{background:#100d08;border:1px solid var(--gold);color:var(--sand)}
+.layout{width:min(1280px,calc(100% - 48px));grid-template-columns:190px minmax(0,1fr);gap:32px}
+.side-note,.nav-btn.active{border-color:rgba(219,170,91,.3);background:linear-gradient(135deg,#1b1309,#090807)}
+.nav-btn.active,.nav-btn:hover{color:var(--sand)}
+.home-hero.wm-lux-hero{min-height:590px;padding:46px 42px;border:1px solid rgba(229,178,90,.36);border-radius:3px 36px 3px 36px;background:radial-gradient(ellipse at 82% 42%,rgba(173,112,37,.2),transparent 37%),linear-gradient(112deg,#050505 0%,#0a0806 55%,#17100a 100%);box-shadow:inset 0 1px 0 #f4d69b22,0 24px 70px #000b}
+.wm-lux-hero:before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(128deg,transparent 0 110px,rgba(213,159,75,.045) 111px,transparent 113px 205px),radial-gradient(ellipse at 80% 80%,#8b561b22,transparent 45%);pointer-events:none}
+.wm-lux-hero:after{content:'';right:4%;bottom:-7%;width:min(48%,430px);height:88%;border:2px solid #d7a74e99;border-radius:50%;box-shadow:0 0 0 8px #d7a74e16,0 0 28px #d7a74e33;pointer-events:none}
+.hero-copy{max-width:55%;z-index:3}
+.hero-eyebrow{color:#e8d5b6;letter-spacing:.24em;font-size:10px}
+.hero-eyebrow i{color:var(--gold);font-style:normal}
+.hero-kicker{color:var(--gold)!important;letter-spacing:.24em;font-size:10px!important;margin:25px 0 8px!important}
+.hero-copy h1{font:600 clamp(48px,6vw,78px)/.99 var(--serif);letter-spacing:-.06em;margin:18px 0 22px;color:#fff8ed}
+.hero-copy h1 em{color:#e9bb68}
+.hero-copy p{color:#d1c5b6;line-height:1.65}
+.hero-actions .btn{min-height:58px;border-radius:999px;padding:0 28px;background:linear-gradient(110deg,#fff0bd,#d99c42 55%,#8d571e);border:1px solid #ffe4a2;color:#160e04;font-size:12px;box-shadow:0 0 24px #d99c4266,inset 0 1px 0 #fff9d8}
+.hero-actions .btn b{font-size:22px;margin-left:10px}
+.hero-footnote{color:#c5a875;letter-spacing:.2em;margin-top:44px}
+.hero-footnote i{background:var(--gold)}
+.hero-art{position:absolute;z-index:2;right:4%;top:9%;width:44%;height:82%;display:grid;place-items:center;pointer-events:none}
+.hero-logo-seal{width:min(100%,360px);aspect-ratio:1;border:2px solid #d6a24c;border-radius:50%;box-shadow:0 0 0 8px #d6a24c16,0 0 35px #d6a24c35,inset 0 0 40px #d6a24c15;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#edc778;background:radial-gradient(circle,#171008aa,#050505cc 70%);transform:rotate(-5deg)}
+.hero-logo-seal:before{content:'';position:absolute;inset:9px;border:1px solid #d6a24c99;border-radius:50%}
+.seal-wm{font:700 clamp(66px,9vw,112px)/.95 Georgia,serif;letter-spacing:-.1em;text-shadow:0 3px 12px #b77826}
+.seal-name{font:400 clamp(18px,2.4vw,27px) Georgia,serif;letter-spacing:.12em;margin-top:8px}
+.seal-city{font-size:9px;letter-spacing:.45em;margin-top:10px}
+.seal-tools{font-size:28px;margin-top:10px}
+.hero-tool{position:absolute;color:#d8a64f;text-shadow:0 0 18px #d8a64f88;font-size:76px;opacity:.58}
+.tool-one{right:0;bottom:4%;transform:rotate(-28deg)}
+.tool-two{left:2%;bottom:0;transform:rotate(25deg)}
+.section{margin-top:44px}
+.section-head{align-items:center;margin-bottom:20px}
+.section-head h2{font-size:clamp(24px,3vw,34px);color:#fff8ed}
+.section-head .eyebrow{color:var(--gold);letter-spacing:.28em}
+.text-button{color:var(--sand)}
+.service-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.service-card{position:relative;overflow:hidden;min-height:220px;padding:24px;border:1px solid #bd8b43aa;border-radius:24px 4px 24px 4px;background:radial-gradient(ellipse at 100% 0%,#a16a2522,transparent 50%),linear-gradient(145deg,#19130b,#080807 78%);box-shadow:inset 0 1px 0 #ffdda544,0 12px 30px #0008}
+.service-card:after{content:'';position:absolute;inset:auto 15% 0;height:1px;background:linear-gradient(90deg,transparent,#f0c36d,transparent);box-shadow:0 0 12px #d9a54d}
+.service-symbol{width:54px;height:54px;border:1px solid #d6a24c;border-radius:15px;background:#d6a24c12;color:#f2cc7e;font-size:25px}
+.service-card h3{font:600 21px var(--serif);color:#fff5e7;margin-top:18px}
+.service-card p{font-size:12px;color:#c4b7a6;line-height:1.6}
+.service-price{font-size:16px;color:#edbd67}
+.wm-benefits{margin-top:48px}
+.benefit-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.benefit-grid article{min-height:122px;border:1px solid #a87836aa;border-radius:20px 4px 20px 4px;background:linear-gradient(145deg,#19130b,#080807);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:14px}
+.benefit-grid article span{font-size:30px;color:#efc878}
+.benefit-grid article strong{font-size:12px;font-weight:500;color:#e6d9c6}
+.booking-shell,.profile-card,.appointment-card,.discover-card{background:linear-gradient(145deg,#19130b,#090807);border-color:#9f733a88;border-radius:20px 4px 20px 4px}
+.btn{border-radius:999px;background:linear-gradient(110deg,#f8df9e,#c88c37);border-color:#e7bb68;color:#1a1005}
+.btn.secondary,.btn.ghost{background:transparent;color:var(--sand);border-color:#b88843}
+.choice,.date-choice,.time-choice{background:#0d0b08;border-color:#8b632f88}
+.choice.selected,.date-choice.selected,.time-choice.selected{background:#30200d;border-color:#e2b35e;box-shadow:0 0 15px #d6a24c22}
+.step.active,.step.done{color:#edc778}
+.step.active b,.step.done b{background:#3a260f;border-color:#d6a24c;color:#ffe0a1}
+.payment-note,.notice{background:#211709;border-color:#9d702f;color:#d0c0a8}
+.mobile-nav{background:rgba(5,5,5,.97);border-top:1px solid #b8884366}
+.mobile-nav button.active{color:#f2c975;background:linear-gradient(180deg,#d6a24c16,transparent)}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.side-nav{display:none}.home-hero.wm-lux-hero{min-height:540px}}
+@media(max-width:620px){
+ .app-header{height:76px}.header-inner{width:calc(100% - 30px)}
+ .brand-mark{width:44px;height:44px}.brand-name{font-size:18px}
+ .layout{width:calc(100% - 28px);padding:16px 0 110px}
+ .home-hero.wm-lux-hero{min-height:630px;padding:28px 22px;border-radius:3px 28px 3px 28px;align-items:flex-start}
+ .hero-copy{max-width:100%;padding-top:10px}
+ .hero-eyebrow{font-size:9px;letter-spacing:.15em}
+ .hero-kicker{margin-top:22px!important}
+ .hero-copy h1{font-size:clamp(48px,12vw,66px);max-width:100%;margin:18px 0}
+ .hero-copy p{max-width:270px;font-size:14px}
+ .hero-actions .btn{width:min(100%,310px);justify-content:space-between}
+ .hero-footnote{margin-top:30px}
+ .hero-art{width:70%;height:42%;right:4%;top:auto;bottom:2%;opacity:.9}
+ .hero-logo-seal{width:min(100%,250px)}
+ .seal-wm{font-size:76px}.seal-name{font-size:19px}.seal-city{font-size:7px}
+ .hero-tool{font-size:48px}
+ .wm-lux-hero:after{width:67%;height:40%;right:5%;bottom:4%}
+ .section{margin-top:38px}
+ .section-head h2{font-size:23px}
+ .service-grid,.service-catalog{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+ .service-card,.service-card:last-child{min-height:190px;padding:16px;grid-column:auto}
+ .service-card h3{font-size:18px}
+ .service-card p{font-size:10px}
+ .service-price{font-size:14px}
+ .benefit-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .benefit-grid article{min-height:108px}
+ .mobile-nav{grid-template-columns:repeat(4,1fr);padding:10px 8px calc(10px + env(safe-area-inset-bottom))}
+}
+@media(prefers-reduced-motion:reduce){.view.active{animation:none}}
+/* WM PREVIEW FRESH BUILD — 2026-11-01 */
+</style>
+<style>
+/* WM REDESIGN 2026 — structural visual refresh */
+:root{--ink:#0b0908;--surface:#17120f;--surface-2:#211913;--surface-3:#302219;--gold:#c5a477;--sand:#ead6b3;--line:rgba(234,214,179,.15)}
+body{background:radial-gradient(ellipse at 50% -20%,#2a1b13 0,transparent 42%),#0b0908}
+.app-header{height:82px;background:rgba(11,9,8,.9);border-bottom:1px solid rgba(234,214,179,.12)}
+.header-inner{width:min(1320px,calc(100% - 64px))}
+.brand-mark{width:44px;height:44px;border-radius:50%;border:1px solid #a98254;background:#24170f;color:#ead6b3;font-size:19px}
+.brand-name{font-size:21px;letter-spacing:.04em}
+.brand-name small{font-size:9px;letter-spacing:.34em}
+.layout{width:min(1320px,calc(100% - 64px));grid-template-columns:190px minmax(0,1fr);gap:46px;padding-top:42px}
+.side-nav{top:112px}
+.nav-caption{font-size:10px;letter-spacing:.2em}
+.nav-btn{border-radius:9px;padding:14px 15px;font-size:13px}
+.nav-btn.active{background:#2a1b13;border-left:2px solid var(--gold);color:var(--sand)}
+.main{max-width:none}
+.view.active{animation:wm-enter .35s ease both}
+@keyframes wm-enter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.home-hero{min-height:490px;padding:clamp(32px,6vw,76px);border-radius:4px 42px 4px 42px;background:linear-gradient(110deg,rgba(32,20,14,.98),rgba(14,11,9,.94) 70%),#17120f;border:1px solid rgba(234,214,179,.2);box-shadow:0 30px 80px #0006}
+.home-hero:after{font-size:clamp(190px,28vw,360px);right:2%;bottom:-.2em;color:rgba(234,214,179,.045)}
+.hero-copy{max-width:650px}
+.hero-eyebrow{font-size:10px;letter-spacing:.28em}
+.hero-copy h1{font-size:clamp(54px,7.4vw,100px);line-height:.94;letter-spacing:-.075em;margin:24px 0}
+.hero-intro{font-size:16px!important;max-width:440px;line-height:1.7}
+.hero-actions .btn{min-height:54px;padding:0 26px;border-radius:4px 18px 4px 18px;font-size:11px}
+.hero-primary{background:var(--sand)!important;border-color:var(--sand)!important;color:#17100c!important}
+.hero-secondary{border-radius:4px 18px 4px 18px!important}
+.hero-footnote{margin-top:48px}
+.hero-side-note{right:8%;opacity:.65}
+.section{margin-top:54px}
+.section-head{align-items:center;margin-bottom:22px}
+.section-head h2{font-size:clamp(27px,3vw,38px);letter-spacing:-.04em}
+.eyebrow{letter-spacing:.24em;font-size:10px}
+.service-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.service-card{min-height:220px;padding:24px;border-radius:4px 22px 4px 22px;background:linear-gradient(145deg,#201811,#120f0d);position:relative;overflow:hidden}
+.service-card:after{content:'↗';position:absolute;right:22px;top:22px;color:rgba(234,214,179,.45);font-size:20px}
+.service-symbol{width:48px;height:48px;border-radius:50%;font-size:22px;background:#332116}
+.service-card h3{font-size:22px;margin-top:25px}
+.service-card p{font-size:12px;line-height:1.65;max-width:220px}
+.service-price{font-size:15px;padding-top:20px}
+.barber-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.barber-card{padding:18px;border-radius:4px 18px 4px 18px;background:#17120f}
+.barber-avatar{width:58px;height:58px;border-radius:50%;border:1px solid rgba(234,214,179,.2)}
+.info-strip{padding:22px 24px;border-radius:4px 20px 4px 20px;background:#1b140f}
+.page-title{font-size:clamp(36px,5vw,58px);letter-spacing:-.055em}
+.booking-shell,.profile-card{border-radius:4px 26px 4px 26px;padding:30px;background:linear-gradient(145deg,#1d1712,#120f0d)}
+.booking-step h2{font-size:32px}
+.choice{padding:18px;border-radius:4px 14px 4px 14px}
+.date-choice,.time-choice{padding:13px 7px;border-radius:4px 12px 4px 12px}
+.discover-card{padding:20px;border-radius:4px 20px 4px 20px}
+.appointment-card{padding:22px;border-radius:4px 20px 4px 20px}
+.btn{border-radius:4px 16px 4px 16px;min-height:48px}
+.mobile-nav{background:rgba(13,10,8,.97);border-top:1px solid rgba(234,214,179,.16);padding-top:12px}
+.mobile-nav button{font-size:10px;gap:5px}
+.mobile-nav button span{font-size:21px}
+.mobile-nav button.active{background:rgba(197,164,119,.12);border-radius:4px 12px 4px 12px}
+@media(max-width:900px){
+ .layout{grid-template-columns:1fr;gap:0;padding-top:24px}
+ .side-nav{display:none}
+ .main{max-width:none}
+ .home-hero{min-height:440px}
+}
+@media(max-width:620px){
+ .app-header{height:72px}
+ .header-inner{width:calc(100% - 36px)}
+ .brand-mark{width:39px;height:39px}
+ .brand-name{font-size:18px}
+ .layout{width:calc(100% - 36px);padding:18px 0 112px}
+ .home-hero{min-height:510px;padding:30px 24px;border-radius:4px 30px 4px 30px;align-items:flex-start}
+ .hero-copy{padding-top:14px}
+ .hero-copy h1{font-size:clamp(51px,13vw,70px);line-height:.96;margin:24px 0 20px;max-width:100%}
+ .hero-intro{font-size:14px!important;max-width:290px;min-height:52px}
+ .hero-actions{display:grid;grid-template-columns:1fr;max-width:260px}
+ .hero-actions .btn{width:100%;min-height:52px}
+ .hero-footnote{margin-top:34px}
+ .hero-side-note{right:22px;top:auto;bottom:28px;transform:none}
+ .hero-side-note span{font-size:42px}
+ .section{margin-top:42px}
+ .section-head h2{font-size:27px}
+ .service-grid{display:flex;overflow-x:auto;gap:12px;padding:2px 2px 14px;scroll-snap-type:x mandatory}
+ .service-card,.service-card:last-child{flex:0 0 82%;min-height:205px;grid-column:auto;scroll-snap-align:start;padding:20px}
+ .service-card h3{font-size:21px}
+ .barber-grid{grid-template-columns:1fr;gap:10px}
+ .barber-card{padding:15px}
+ .info-strip{align-items:flex-start;flex-direction:column}
+ .info-strip .btn{width:100%}
+ .booking-shell{padding:20px 15px}
+ .booking-step h2{font-size:27px}
+ .steps{margin-bottom:22px}
+ .discover-card{padding:15px}
+ .profile-card{padding:18px}
+ .mobile-nav{grid-template-columns:repeat(4,1fr);padding:10px 10px calc(10px + env(safe-area-inset-bottom))}
+}
+@media(prefers-reduced-motion:reduce){.view.active{animation:none}}
+</style></head>
+<body>
+<div class="app-shell">
+<header class="app-header">
+  <div class="header-inner">
+    <a class="brand" href="#" aria-label="WM Barbearia, início" data-nav="home"><span class="brand-mark"><span>W</span></span><span class="brand-name">WM BARBEARIA<small>ESTILO & PRECISÃO</small></span></a>
+    <div class="header-right"><div class="location">VOCÊ ESTÁ EM<strong>Taboão · Diadema, SP</strong></div><div class="avatar" aria-label="Perfil">WM</div></div>
+  </div>
+</header>
+<div class="layout">
+  <aside class="side-nav">
+    <p class="nav-caption">MENU PRINCIPAL</p>
+    <nav class="nav-list" aria-label="Navegação principal">
+      <button class="nav-btn active" data-nav="home"><span class="nav-icon">⌂</span>Início</button>
+      <button class="nav-btn" data-nav="explore"><span class="nav-icon">✂</span>Serviços</button>
+      <button class="nav-btn" data-nav="booking"><span class="nav-icon">▦</span>Agendar horário</button>
+      <button class="nav-btn" data-nav="appointments"><span class="nav-icon">◷</span>Meus agendamentos</button>
+      <button class="nav-btn" data-nav="profile"><span class="nav-icon">◎</span>Barbearia</button>
+    </nav>
+    <div class="side-note"><strong>WM Barbearia</strong>Estilo, confiança e atitude. Taboão · Diadema.</div>
+  </aside>
+  <main class="main">
+    <section class="view active" id="view-home">
+      <div class="home-hero wm-lux-hero">
+        <div class="hero-art" aria-hidden="true"><div class="hero-logo-seal"><span class="seal-wm">WM</span><span class="seal-name">BARBEARIA</span><span class="seal-city">DIADEMA · SP</span><span class="seal-tools">✂</span></div><div class="hero-tool tool-one">✂</div><div class="hero-tool tool-two">⌁</div></div>
+        <div class="hero-copy"><div class="eyebrow hero-eyebrow">ESTILO <i>•</i> CONFIANÇA <i>•</i> ATITUDE</div><p class="hero-kicker">BARBEARIA WM <span>—</span> DIADEMA</p><h1>Seu próximo<br>corte.<br><em>Do seu jeito.</em></h1><p class="hero-intro">Agende seu horário e confira nossos serviços.</p><div class="hero-actions"><button class="btn hero-primary" data-action="start-booking"><span>▦</span> Agendar horário <b>→</b></button></div><div class="hero-footnote"><span>TER — SÁB</span><i></i><span>09H — 20H</span></div></div>
+      </div>
+      <div class="section"><div class="section-head"><div><div class="eyebrow">NOSSOS SERVIÇOS</div><h2>Cuidados que fazem a diferença</h2></div><button class="text-button" data-action="start-booking">Ver todos →</button></div><div class="service-grid" id="home-services"></div></div>
+      <div class="section wm-benefits"><div class="section-head"><div><div class="eyebrow">POR QUE ESCOLHER A WM?</div><h2>Qualidade em cada detalhe</h2></div></div><div class="benefit-grid"><article><span>◇</span><strong>Atendimento especializado</strong></article><article><span>♢</span><strong>Ambiente acolhedor</strong></article><article><span>◷</span><strong>Horário organizado</strong></article><article><span>☆</span><strong>Cuidado nos detalhes</strong></article></div></div>
+      <div class="info-strip"><div><strong>Estamos no Taboão, em Diadema</strong><span>Terça a sábado · 9h às 20h</span></div><button class="btn secondary" data-nav="profile">Ver localização</button></div>
+    </section>
+    <section class="view" id="view-explore">
+      <div class="eyebrow">SERVIÇOS WM</div><h1 class="page-title">Escolha seu cuidado.</h1><p class="page-subtitle">Conheça os serviços e selecione o que deseja agendar.</p><div class="service-grid service-catalog" id="service-catalog"></div>
+    </section>
+    <section class="view" id="view-booking">
+      <div class="eyebrow">RESERVE SEU MOMENTO</div><h1 class="page-title">Agende seu horário.</h1><p class="page-subtitle">Escolha o que deseja e envie sua solicitação para a equipe WM.</p>
+      <div class="booking-shell">
+        <div class="steps" id="step-indicator"><div class="step active"><b>1</b>Serviço</div><div class="step"><b>2</b>WM</div><div class="step"><b>3</b>Horário</div><div class="step"><b>4</b>Pagamento</div></div>
+        <div class="booking-step active" data-step="0"><h2>O que vamos fazer?</h2><p>Selecione o serviço para seu próximo atendimento.</p><div class="choice-list" id="service-choices"></div></div>
+        <div class="booking-step" data-step="1"><h2>Seu atendimento WM.</h2><p>O atendimento é realizado pelo profissional da barbearia.</p><div class="choice-list" id="barber-choices"></div></div>
+        <div class="booking-step" data-step="2"><h2>Quando fica melhor?</h2><p>Escolha uma data e um horário de preferência.</p><div class="eyebrow">DATA</div><div class="date-row" id="date-choices"></div><div class="eyebrow">HORÁRIOS DISPONÍVEIS PARA SOLICITAÇÃO</div><div class="time-grid" id="time-choices"></div><div class="payment-note">Os horários exibidos são opções demonstrativas. A equipe precisa confirmar a disponibilidade antes de o agendamento ser considerado confirmado.</div></div>
+        <div class="booking-step" data-step="3"><h2>Como deseja pagar?</h2><p>Escolha sua preferência de pagamento.</p><div class="choice-list" id="payment-choices"></div><div class="payment-note">O pagamento digital ainda não está conectado a um provedor. Esta versão registra sua preferência, mas não realiza cobranças nem processa cartões ou Pix.</div><div class="summary" id="booking-summary"></div><div class="notice">Ao enviar, você solicita o horário. A equipe WM confirma o agendamento pelo WhatsApp.</div></div>
+        <div class="booking-actions"><button class="btn ghost" id="booking-back" disabled>Voltar</button><button class="btn" id="booking-next">Continuar ↗</button></div>
+      </div>
+    </section>
+    <section class="view" id="view-appointments">
+      <div class="eyebrow">SUA AGENDA</div><h1 class="page-title">Meus agendamentos.</h1><p class="page-subtitle">Acompanhe suas solicitações de horário.</p><div id="appointments-content"></div>
+    </section>
+    <section class="view" id="view-profile">
+      <div class="eyebrow">CONHEÇA A WM</div><h1 class="page-title">Barbearia WM.</h1><p class="page-subtitle">Seu espaço de cuidado e estilo no Taboão.</p>
+      <div class="profile-card">
+        <div class="profile-row"><span>Endereço</span><strong>R. Mearim, 66 · Taboão<br>Diadema - SP, 09932-130</strong></div>
+        <div class="profile-row"><span>WhatsApp</span><strong>(11) 94587-6259</strong></div>
+        <div class="profile-row"><span>Funcionamento</span><strong>Terça a sábado<br>9h às 20h</strong></div>
+        <div class="profile-row"><span>Serviços</span><strong>Corte · Barba · Corte + barba</strong></div>
+        <div class="detail-actions"><a class="btn" href="https://wa.me/5511945876259?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio%20na%20Barbearia%20WM." target="_blank" rel="noopener noreferrer">WhatsApp ↗</a><a class="btn secondary" href="https://www.google.com/maps/search/?api=1&query=R.%20Mearim%2C%2066%20-%20Tabo%C3%A3o%2C%20Diadema%20-%20SP%2C%2009932-130%2C%20Brasil" target="_blank" rel="noopener noreferrer">Como chegar ↗</a></div>
+      </div>
+    </section>
+    <section class="view" id="view-barber">
+      <button class="text-button" data-nav="explore">← Voltar para profissionais</button><div id="barber-detail"></div>
+    </section>
+  </main>
+</div>
+<nav class="mobile-nav" aria-label="Navegação inferior"><button class="active" data-nav="home"><span>⌂</span>Início</button><button data-nav="explore"><span>✂</span>Serviços</button><button data-nav="booking"><span>▦</span>Agendar</button><button data-nav="profile"><span>◎</span>Perfil</button></nav>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+</div>
+<script>
+(function(){
+'use strict';
+var services=[
+{id:'cut',name:'Corte masculino',description:'Do degradê ao clássico, no seu estilo.',price:45,icon:'✂',duration:'40 min'},
+{id:'beard',name:'Barba',description:'Modelagem e acabamento cuidadoso.',price:35,icon:'⌁',duration:'30 min'},
+{id:'combo',name:'Corte + barba',description:'O cuidado completo em uma visita.',price:70,icon:'✦',duration:'70 min'}
+];
+var barbers=[{id:'wm',name:'Profissional WM',initials:'WM',specialty:'Atendimento da Barbearia WM',tags:[],bio:'Atendimento realizado pelo profissional responsável pela Barbearia WM.',experience:'Barbearia WM'}];
+var state={view:'home',step:0,service:'',barber:'',date:'',time:'',payment:'pix',filter:'Todos',search:'',detail:''};
+var $=function(id){return document.getElementById(id)};
+var money=function(n){return n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})};
+var escapeHtml=function(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+var selectedService=function(){return services.find(function(s){return s.id===state.service})};
+var selectedBarber=function(){return barbers.find(function(b){return b.id===state.barber})};
+var appointments=function(){try{return JSON.parse(localStorage.getItem('wm-appointments')||'[]')}catch(e){return []}};
+function toast(message){var el=$('toast');el.textContent=message;el.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(function(){el.classList.remove('show')},2600)}
+function nav(view){state.view=view;document.querySelectorAll('.view').forEach(function(el){el.classList.toggle('active',el.id==='view-'+view)});document.querySelectorAll('[data-nav]').forEach(function(el){el.classList.toggle('active',el.getAttribute('data-nav')===view)});window.scrollTo({top:0,behavior:'smooth'});if(view==='explore')renderExplore();if(view==='appointments')renderAppointments();if(view==='booking')renderBooking();if(view==='barber')renderBarberDetail()}
+function serviceCard(s){return '<button class="service-card" data-service="'+s.id+'" aria-label="Selecionar '+escapeHtml(s.name)+'"><span class="service-symbol">'+s.icon+'</span><h3>'+escapeHtml(s.name)+'</h3><p>'+escapeHtml(s.duration)+' · '+escapeHtml(s.description)+'</p><span class="service-price">'+money(s.price)+'</span></button>'}
+function barberMini(b){return '<article class="barber-card"><div class="barber-avatar">'+b.initials+'</div><div><h3>'+escapeHtml(b.name)+'</h3><p>'+escapeHtml(b.specialty)+'</p><button data-barber-detail="'+b.id+'">Ver perfil ↗</button></div></article>'}
+function renderHome(){$('home-services').innerHTML=services.map(serviceCard).join('');$('service-catalog').innerHTML=services.map(serviceCard).join('')}
+function renderExplore(){$('service-catalog').innerHTML=services.map(serviceCard).join('')}
+function renderBarberDetail(){var b=barbers.find(function(x){return x.id===state.detail})||barbers[0];$('barber-detail').innerHTML='<div class="profile-card"><div class="barber-avatar" style="width:76px;height:76px;font-size:26px">'+b.initials+'</div><div class="eyebrow" style="margin-top:20px">ATENDIMENTO WM</div><h1 class="page-title">'+escapeHtml(b.name)+'</h1><p class="page-subtitle">'+escapeHtml(b.specialty)+'</p><p style="color:var(--muted);margin-top:18px">'+escapeHtml(b.bio)+'</p><div class="profile-row"><span>Equipe</span><strong>Barbearia WM</strong></div><div class="profile-row"><span>Especialidade</span><strong>'+escapeHtml(b.specialty)+'</strong></div><div class="detail-actions"><button class="btn" data-book-barber="'+b.id+'">Agendar com este profissional ↗</button></div></div>'}
+function renderBooking(){
+document.querySelectorAll('.booking-step').forEach(function(el){el.classList.toggle('active',Number(el.dataset.step)===state.step)});
+document.querySelectorAll('.step').forEach(function(el,i){el.classList.toggle('active',i===state.step);el.classList.toggle('done',i<state.step)});
+$('booking-back').disabled=state.step===0;$('booking-next').textContent=state.step===3?'Enviar solicitação ↗':'Continuar ↗';
+$('service-choices').innerHTML=services.map(function(s){return '<button class="choice '+(state.service===s.id?'selected':'')+'" data-pick-service="'+s.id+'"><span><strong>'+escapeHtml(s.name)+'</strong><small>'+escapeHtml(s.duration)+' · '+escapeHtml(s.description)+'</small></span><span class="price">'+money(s.price)+'</span><span class="radio"></span></button>'}).join('');
+if(!state.barber)state.barber='wm';$('barber-choices').innerHTML='<div class="choice selected"><span><strong>Profissional WM</strong><small>Atendimento da Barbearia WM</small></span><span class="radio"></span></div>';
+renderDates();renderTimes();
+$('payment-choices').innerHTML=[{id:'pix',name:'Pix',desc:'Preferência de pagamento via Pix'},{id:'card',name:'Cartão',desc:'Preferência de pagamento com cartão'},{id:'onsite',name:'Pagar na barbearia',desc:'Pix ou cartão diretamente no local'}].map(function(p){return '<button class="choice '+(state.payment===p.id?'selected':'')+'" data-pick-payment="'+p.id+'"><span><strong>'+p.name+'</strong><small>'+p.desc+'</small></span><span class="radio"></span></button>'}).join('');
+renderSummary()
+}
+function dateOptions(){var arr=[];var d=new Date();for(var i=1;i<=5;i++){var x=new Date(d);x.setDate(d.getDate()+i);if(x.getDay()===0||x.getDay()===1){i++;x.setDate(x.getDate()+1)}arr.push(x)}return arr}
+function dateKey(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function renderDates(){var arr=dateOptions();if(!state.date&&arr.length)state.date=dateKey(arr[0]);$('date-choices').innerHTML=arr.map(function(d){return '<button class="date-choice '+(state.date===dateKey(d)?'selected':'')+'" data-date="'+dateKey(d)+'"><small>'+d.toLocaleDateString('pt-BR',{weekday:'short'}).replace('.','')+'</small><strong>'+d.getDate()+'</strong><small>'+d.toLocaleDateString('pt-BR',{month:'short'}).replace('.','')+'</small></button>'}).join('')}
+function renderTimes(){var times=['09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00'];if(!state.time)state.time='10:00';$('time-choices').innerHTML=times.map(function(t){return '<button class="time-choice '+(state.time===t?'selected':'')+'" data-time="'+t+'">'+t+'</button>'}).join('')}
+function renderSummary(){var s=selectedService(),b=selectedBarber();var date=state.date?new Date(state.date+'T12:00:00').toLocaleDateString('pt-BR',{weekday:'short',day:'2-digit',month:'long'}):'—';$('booking-summary').innerHTML='<div class="summary-row"><span>Serviço</span><strong>'+(s?escapeHtml(s.name):'—')+'</strong></div><div class="summary-row"><span>Profissional</span><strong>'+(b?escapeHtml(b.name):'—')+'</strong></div><div class="summary-row"><span>Data e horário</span><strong>'+date+' · '+(state.time||'—')+'</strong></div><div class="summary-row"><span>Pagamento</span><strong>'+({pix:'Pix',card:'Cartão',onsite:'Na barbearia'}[state.payment])+'</strong></div><div class="summary-row total"><span>Valor estimado</span><strong>'+(s?money(s.price):'—')+'</strong></div>'}
+function validateStep(){if(state.step===0&&!state.service){toast('Selecione um serviço para continuar.');return false}if(state.step===1&&!state.barber){toast('Escolha um profissional.');return false}if(state.step===2&&(!state.date||!state.time)){toast('Escolha uma data e um horário.');return false}return true}
+function submitBooking(){var s=selectedService(),b=selectedBarber();if(!s||!b){toast('Revise os dados do agendamento.');return}var record={id:'WM-'+Date.now().toString().slice(-6),service:s.name,barber:b.name,date:state.date,time:state.time,payment:state.payment,total:s.price,status:'Aguardando confirmação',createdAt:new Date().toISOString()};var list=appointments();list.unshift(record);try{localStorage.setItem('wm-appointments',JSON.stringify(list))}catch(e){toast('Não foi possível salvar neste dispositivo.');return}$('booking-next').disabled=false;state.step=0;state.service='';state.barber='';state.time='';nav('appointments');toast('Solicitação registrada neste dispositivo. A equipe precisa confirmar pelo WhatsApp.')}
+function renderAppointments(){var list=appointments();$('appointments-content').innerHTML=list.length?'<div class="appointments-list">'+list.map(function(a){var d=new Date(a.date+'T12:00:00').toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'});return '<article class="appointment-card"><div><h3>'+escapeHtml(a.service)+'</h3><p>'+escapeHtml(a.barber)+'<br>'+d+' · '+escapeHtml(a.time)+'<br>'+money(a.total)+' · '+({pix:'Pix',card:'Cartão',onsite:'Na barbearia'}[a.payment]||a.payment)+'</p><p style="margin-top:9px">Código: '+escapeHtml(a.id)+'</p></div><span class="status">'+escapeHtml(a.status)+'</span></article>'}).join('')+'</div><p class="payment-note">Solicitações salvas neste navegador. A equipe WM ainda precisa confirmar a disponibilidade pelo WhatsApp.</p>':'<div class="empty-state"><div style="font-size:28px;color:var(--gold)">◷</div><strong>Sua agenda está livre.</strong>Quando você solicitar um horário, ele aparecerá aqui.<p><button class="btn" data-nav="booking" style="margin-top:12px">Agendar agora</button></p></div>'}
+document.addEventListener('click',function(e){
+var navEl=e.target.closest('[data-nav]');if(navEl){e.preventDefault();nav(navEl.getAttribute('data-nav'));return}
+var action=e.target.closest('[data-action]');if(action&&action.dataset.action==='start-booking'){state.step=0;nav('booking');return}
+var service=e.target.closest('[data-service]');if(service){state.service=service.dataset.service;nav('booking');state.step=0;renderBooking();return}
+var pickS=e.target.closest('[data-pick-service]');if(pickS){state.service=pickS.dataset.pickService;renderBooking();return}
+var pickB=e.target.closest('[data-pick-barber]');if(pickB){state.barber=pickB.dataset.pickBarber;renderBooking();return}
+var pickP=e.target.closest('[data-pick-payment]');if(pickP){state.payment=pickP.dataset.pickPayment;renderBooking();return}
+var date=e.target.closest('[data-date]');if(date){state.date=date.dataset.date;renderDates();return}
+var time=e.target.closest('[data-time]');if(time){state.time=time.dataset.time;renderTimes();return}
+var filter=e.target.closest('[data-filter]');if(filter){state.filter=filter.dataset.filter;renderExplore();return}
+var detail=e.target.closest('[data-barber-detail]');if(detail){state.detail=detail.dataset.barberDetail;nav('barber');return}
+var bookBarber=e.target.closest('[data-book-barber]');if(bookBarber){state.barber=bookBarber.dataset.bookBarber;state.step=0;nav('booking');renderBooking();return}
+});
+$('booking-next').addEventListener('click',function(){if(!validateStep())return;if(state.step<3){state.step++;renderBooking()}else submitBooking()});
+$('booking-back').addEventListener('click',function(){if(state.step>0){state.step--;renderBooking()}});
+$('barber-search').addEventListener('input',function(e){state.search=e.target.value;renderExplore()});
+var heroText='Cuidado no detalhe. Atitude em cada corte.';var heroNode=$('hero-typewriter');if(heroNode&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){heroNode.textContent='';heroNode.classList.add('typing');var heroIndex=0;var heroTimer=setInterval(function(){heroNode.textContent=heroText.slice(0,++heroIndex);if(heroIndex>=heroText.length){clearInterval(heroTimer);heroNode.classList.remove('typing')}},34)}else if(heroNode){heroNode.textContent=heroText}
+renderHome();renderBooking();
+})();
+</script>
+
+</body>
+</html>
