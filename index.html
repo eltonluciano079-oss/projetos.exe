@@ -947,6 +947,134 @@ button:focus-visible,a:focus-visible,[role="button"]:focus-visible{
   #view-home .info-strip .btn.secondary:hover{transform:none}
 }
 </style>
+
+<style id="wm-service-layout-fix">
+/* SERVICE LAYOUT FIX — readable text and aligned cards */
+#view-home #home-services,
+#view-explore #service-catalog{
+  width:100%;
+  min-width:0;
+  align-items:stretch;
+}
+#view-home #home-services .service-card,
+#view-explore #service-catalog .service-card{
+  box-sizing:border-box;
+  width:100%;
+  min-width:0;
+  max-width:100%;
+  overflow:hidden;
+  text-align:left;
+  align-items:flex-start;
+  justify-content:flex-start;
+  white-space:normal;
+  overflow-wrap:anywhere;
+  word-break:normal;
+  gap:0;
+}
+#view-home #home-services .service-card .service-symbol,
+#view-explore #service-catalog .service-card .service-symbol{
+  flex:0 0 48px;
+  margin:0 0 12px;
+}
+#view-home #home-services .service-card h3,
+#view-explore #service-catalog .service-card h3{
+  width:100%;
+  max-width:100%;
+  margin:0 0 7px;
+  line-height:1.18;
+  overflow-wrap:break-word;
+  hyphens:auto;
+}
+#view-home #home-services .service-card p,
+#view-explore #service-catalog .service-card p{
+  width:100%;
+  max-width:100%;
+  margin:0;
+  line-height:1.4;
+  overflow-wrap:break-word;
+}
+#view-home #home-services .service-card .service-price,
+#view-explore #service-catalog .service-card .service-price{
+  width:100%;
+  margin-top:auto;
+  padding-top:14px;
+  line-height:1.2;
+  text-align:left;
+}
+#view-home .section-head,
+#view-explore .section-head{
+  min-width:0;
+  align-items:flex-end;
+}
+#view-home .section-head>div,
+#view-explore .section-head>div{
+  min-width:0;
+}
+#view-home .section-head h2,
+#view-explore .section-head h2{
+  max-width:100%;
+  line-height:1.12;
+  overflow-wrap:break-word;
+}
+@media(max-width:620px){
+  #view-home .section{
+    width:calc(100% - 36px);
+    margin-left:auto;
+    margin-right:auto;
+  }
+  #view-home #home-services,
+  #view-explore #service-catalog{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+  }
+  #view-home #home-services .service-card,
+  #view-explore #service-catalog .service-card{
+    min-height:190px;
+    padding:14px 12px;
+    border-radius:16px;
+  }
+  #view-home #home-services .service-card:nth-child(3),
+  #view-explore #service-catalog .service-card:nth-child(3){
+    display:flex;
+    grid-column:1/-1;
+    min-height:150px;
+  }
+  #view-home #home-services .service-card h3,
+  #view-explore #service-catalog .service-card h3{
+    font-size:clamp(16px,4.5vw,20px);
+  }
+  #view-home #home-services .service-card p,
+  #view-explore #service-catalog .service-card p{
+    font-size:11px;
+  }
+  #view-home #home-services .service-card .service-price,
+  #view-explore #service-catalog .service-card .service-price{
+    font-size:13px;
+  }
+  #view-home .section-head{
+    gap:10px;
+  }
+  #view-home .section-head h2{
+    font-size:clamp(22px,6vw,28px);
+  }
+  #view-home .section-head .text-button{
+    flex:0 0 auto;
+    padding:0 12px;
+    white-space:nowrap;
+    font-size:10px;
+  }
+}
+@media(max-width:370px){
+  #view-home #home-services,
+  #view-explore #service-catalog{
+    grid-template-columns:minmax(0,1fr);
+  }
+  #view-home #home-services .service-card:nth-child(3),
+  #view-explore #service-catalog .service-card:nth-child(3){
+    grid-column:auto;
+  }
+}
+</style>
 </head>
 <body>
 <div class="app-shell">
