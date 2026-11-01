@@ -20,6 +20,131 @@
 @media(max-width:900px){.layout{grid-template-columns:1fr;gap:0;padding-top:22px}.side-nav{display:none}.main{max-width:none}.home-hero{min-height:260px}.barber-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:620px){.app-header{height:65px}.header-inner{width:calc(100% - 32px)}.brand-mark{width:34px;height:34px}.brand-name{font-size:17px}.location{display:none}.layout{width:calc(100% - 32px);padding:20px 0 100px}.home-hero{min-height:300px;padding:25px 22px}.hero-copy h1{font-size:43px}.hero-copy p{font-size:12px;max-width:270px}.service-grid{grid-template-columns:1fr 1fr}.service-card{min-height:150px;padding:14px}.service-card:last-child{grid-column:1/-1;min-height:120px}.barber-grid{grid-template-columns:1fr}.barber-card{padding:12px}.discover-grid{grid-template-columns:1fr}.booking-shell{padding:17px 14px}.steps{gap:2px}.step{font-size:8px;gap:4px}.step:not(:last-child):after{margin:0 3px}.step b{width:22px;height:22px}.date-row{grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}.date-choice{padding:9px 1px}.time-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.booking-actions .btn{flex:1;padding:0 10px}.appointment-card{padding:14px}.mobile-nav{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;bottom:0;left:0;right:0;padding:9px 8px calc(9px + env(safe-area-inset-bottom));background:rgba(15,12,10,.97);border-top:1px solid var(--line);backdrop-filter:blur(18px);z-index:30}.mobile-nav button{border:0;background:none;color:#8d8175;display:grid;justify-items:center;gap:3px;font-size:9px;font-weight:700;padding:4px}.mobile-nav button span{font-size:18px;line-height:1.2}.mobile-nav button.active{color:var(--sand)}.toast{bottom:85px}.section-head h2{font-size:22px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* Glassmorphism controls — visual enhancement only */
+.btn,
+.nav-btn,
+.text-button,
+.chip,
+.choice,
+.date-choice,
+.time-choice,
+.service-card,
+.mobile-nav button {
+  -webkit-backdrop-filter: blur(14px) saturate(135%);
+  backdrop-filter: blur(14px) saturate(135%);
+  transition: background .22s ease, border-color .22s ease, color .22s ease,
+              box-shadow .22s ease, transform .22s ease;
+}
+.btn {
+  color: var(--cream);
+  background: linear-gradient(135deg, rgba(188,149,100,.34), rgba(155,99,66,.16));
+  border: 1px solid rgba(236,229,218,.34);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 5px 18px rgba(0,0,0,.18);
+}
+.btn:hover {
+  color: #fff4e4;
+  background: linear-gradient(135deg, rgba(216,193,158,.42), rgba(155,99,66,.28));
+  border-color: rgba(216,193,158,.72);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.24), 0 8px 24px rgba(0,0,0,.26);
+  transform: translateY(-2px);
+}
+.btn.secondary,
+.btn.ghost {
+  color: var(--sand);
+  background: rgba(236,229,218,.045);
+  border-color: rgba(236,229,218,.2);
+}
+.btn.secondary:hover,
+.btn.ghost:hover {
+  background: rgba(216,193,158,.13);
+  border-color: rgba(216,193,158,.52);
+}
+.nav-btn {
+  border: 1px solid transparent;
+  background: rgba(236,229,218,.018);
+}
+.nav-btn:hover,
+.nav-btn.active {
+  background: linear-gradient(110deg, rgba(155,99,66,.22), rgba(236,229,218,.045));
+  border-color: rgba(216,193,158,.18);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.07);
+}
+.text-button {
+  border-radius: 9px;
+  padding: 8px 11px;
+}
+.text-button:hover {
+  background: rgba(216,193,158,.1);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.1);
+}
+.chip {
+  background: rgba(236,229,218,.035);
+  border-color: rgba(236,229,218,.16);
+}
+.chip:hover,
+.chip.active {
+  background: rgba(155,99,66,.24);
+  border-color: rgba(216,193,158,.48);
+  color: var(--sand);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.1);
+}
+.choice,
+.date-choice,
+.time-choice {
+  background: rgba(23,19,15,.68);
+  border-color: rgba(236,229,218,.14);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.035);
+}
+.choice:hover,
+.date-choice:hover,
+.time-choice:hover {
+  background: rgba(85,42,25,.34);
+  border-color: rgba(216,193,158,.38);
+  color: var(--cream);
+}
+.choice.selected,
+.date-choice.selected,
+.time-choice.selected {
+  background: linear-gradient(135deg, rgba(155,99,66,.34), rgba(85,42,25,.25));
+  border-color: rgba(216,193,158,.66);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 4px 16px rgba(0,0,0,.14);
+}
+.service-card {
+  background: linear-gradient(145deg, rgba(35,29,24,.76), rgba(21,18,15,.72));
+  border-color: rgba(236,229,218,.14);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.045);
+  color: var(--cream);
+  text-align: left;
+}
+.service-card:hover {
+  background: linear-gradient(145deg, rgba(85,55,39,.5), rgba(30,24,19,.82));
+  border-color: rgba(216,193,158,.48);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 10px 26px rgba(0,0,0,.2);
+}
+.mobile-nav button {
+  border-radius: 10px;
+  background: rgba(236,229,218,.025);
+}
+.mobile-nav button:hover,
+.mobile-nav button.active {
+  background: rgba(155,99,66,.16);
+  color: var(--sand);
+}
+.btn:active,
+.nav-btn:active,
+.chip:active,
+.choice:active,
+.date-choice:active,
+.time-choice:active,
+.mobile-nav button:active {
+  transform: scale(.98);
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn, .nav-btn, .text-button, .chip, .choice, .date-choice,
+  .time-choice, .service-card, .mobile-nav button { transition: none; }
+}
+
 </style>
 </head>
 <body>
