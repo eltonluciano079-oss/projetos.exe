@@ -1315,12 +1315,18 @@ html,body,.app-shell,.layout,.main{max-width:100%;overflow-x:clip}
 #view-explore #service-catalog .service-card:last-child:nth-child(even){grid-column:auto!important}
 #view-explore #service-catalog .service-card:last-child:nth-child(odd):not(:nth-child(3)){grid-column:1!important;width:100%!important;justify-self:stretch!important;min-height:235px!important}
 #view-explore #service-catalog .service-symbol{display:grid!important;place-items:center!important;flex:0 0 52px!important;width:52px!important;height:52px!important;margin:0 0 13px!important}
-#view-explore #service-catalog .service-symbol svg{display:block!important;width:31px!important;height:31px!important;color:#e6bb72!important;stroke:currentColor}
+#view-explore #service-catalog .service-symbol svg{display:block!important;width:38px!important;height:38px!important;color:#e6bb72!important;fill:none!important;stroke:currentColor!important;stroke-linejoin:round!important}
 #view-explore #service-catalog .service-card h3{font-size:clamp(17px,4.5vw,21px)!important;line-height:1.18!important;margin:0 0 10px!important;overflow-wrap:break-word!important}
 #view-explore #service-catalog .service-card p{font-size:12px!important;line-height:1.5!important;margin:0 0 18px!important;overflow-wrap:break-word!important}
 #view-explore #service-catalog .service-price{margin-top:auto!important;font-size:17px!important}
 }
 @media(max-width:370px){#view-explore #service-catalog{grid-template-columns:minmax(0,1fr)!important}#view-explore #service-catalog .service-card,#view-explore #service-catalog .service-card:nth-child(3),#view-explore #service-catalog .service-card:last-child:nth-child(odd){grid-column:1!important;width:100%!important;min-height:170px!important}}
+
+/* Keep vector artwork outlined while retaining intentional gold silhouettes */
+#view-explore #service-catalog .service-symbol svg [fill="currentColor"]{fill:currentColor!important}
+#view-explore #service-catalog .service-symbol svg [fill="none"]{fill:none!important}
+#view-explore #service-catalog .service-symbol svg [stroke="none"]{stroke:none!important}
+#view-explore #service-catalog .service-symbol svg path:not([fill]){fill:none!important}
 </style>
 </head>
 <body>
