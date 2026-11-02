@@ -1272,6 +1272,15 @@ html,body,.app-shell,.layout,.main{max-width:100%;overflow-x:clip}
 #view-home .service-card .service-symbol svg,#view-explore .service-card .service-symbol svg{display:block;width:34px;height:34px;max-width:100%;max-height:100%;fill:#e6bb72;stroke-linejoin:round}
 #view-home .service-card .service-symbol,#view-explore .service-card .service-symbol{isolation:isolate;overflow:hidden}
 </style>
+<style id="wm-booking-step-four-fix">
+/* BOOKING STEP 4 ALIGNMENT */
+@media(max-width:620px){
+#view-booking #step-indicator{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:4px!important;align-items:start!important;width:100%!important;margin:0 0 28px!important}
+#view-booking #step-indicator .step{box-sizing:border-box!important;min-width:0!important;width:100%!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;flex-wrap:nowrap!important;gap:7px!important;padding:0 1px!important;text-align:center!important;font-size:clamp(9px,2.4vw,11px)!important;line-height:1.25!important;white-space:normal!important;word-break:normal!important}
+#view-booking #step-indicator .step b{box-sizing:border-box!important;flex:0 0 30px!important;width:30px!important;height:30px!important;display:grid!important;place-items:center!important;margin:0!important}
+#view-booking #step-indicator .step::after{display:none!important}
+}
+</style>
 </head>
 <body>
 <div class="app-shell">
@@ -1373,7 +1382,7 @@ $('booking-back').disabled=state.step===0;$('booking-next').textContent=state.st
 $('service-choices').innerHTML=services.map(function(s){return '<button class="choice '+(state.service===s.id?'selected':'')+'" data-pick-service="'+s.id+'"><span><strong>'+escapeHtml(s.name)+'</strong><small>'+escapeHtml(s.duration)+' · '+escapeHtml(s.description)+'</small></span><span class="price">'+money(s.price)+'</span><span class="radio"></span></button>'}).join('');
 if(!state.barber)state.barber='wm';$('barber-choices').innerHTML='<div class="choice selected"><span><strong>Profissional WM</strong><small>Atendimento da Barbearia WM</small></span><span class="radio"></span></div>';
 renderDates();renderTimes();
-$('payment-choices').innerHTML=[{id:'pix',name:'Pix',desc:'Preferência de pagamento via Pix'},{id:'card',name:'Cartão',desc:'Preferência de pagamento com cartão'},{id:'onsite',name:'Pagar na barbearia',desc:'Pix ou cartão diretamente no local'}].map(function(p){return '<button class="choice '+(state.payment===p.id?'selected':'')+'" data-pick-payment="'+p.id+'"><span><strong>'+p.name+'</strong><small>'+p.desc+'</small></span><span class="radio"></span></button>'}).join('');
+$('payment-choices').innerHTML=[{id:'pix',name:'Pix',desc:'Preferência de pagamento via Pix'},{id:'onsite',name:'Pagar na barbearia',desc:'Pix ou cartão diretamente no local'}].map(function(p){return '<button class="choice '+(state.payment===p.id?'selected':'')+'" data-pick-payment="'+p.id+'"><span><strong>'+p.name+'</strong><small>'+p.desc+'</small></span><span class="radio"></span></button>'}).join('');
 renderSummary()
 }
 function dateOptions(){var arr=[];var d=new Date();for(var i=1;i<=5;i++){var x=new Date(d);x.setDate(d.getDate()+i);if(x.getDay()===0||x.getDay()===1){i++;x.setDate(x.getDate()+1)}arr.push(x)}return arr}
