@@ -1320,7 +1320,7 @@ html,body,.app-shell,.layout,.main{max-width:100%;overflow-x:clip}
         <div class="profile-row"><span>Endereço</span><strong>R. Mearim, 66 · Taboão<br>Diadema - SP, 09932-130</strong></div>
         <div class="profile-row"><span>WhatsApp</span><strong>(11) 94587-6259</strong></div>
         <div class="profile-row"><span>Funcionamento</span><strong>Terça a sábado<br>9h às 20h</strong></div>
-        <div class="profile-row"><span>Serviços</span><strong>Corte · Barba · Corte + barba</strong></div>
+        <div class="profile-row"><span>Serviços</span><strong>Corte · Barba · Corte + barba · Outros serviços</strong></div>
         <div class="detail-actions"><a class="btn" href="https://wa.me/5511945876259?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio%20na%20Barbearia%20WM." target="_blank" rel="noopener noreferrer">WhatsApp ↗</a><a class="btn secondary" href="https://www.google.com/maps/search/?api=1&query=R.%20Mearim%2C%2066%20-%20Tabo%C3%A3o%2C%20Diadema%20-%20SP%2C%2009932-130%2C%20Brasil" target="_blank" rel="noopener noreferrer">Como chegar ↗</a></div>
       </div>
     </section>
@@ -1336,9 +1336,14 @@ html,body,.app-shell,.layout,.main{max-width:100%;overflow-x:clip}
 (function(){
 'use strict';
 var services=[
-{id:'cut',name:'Corte masculino',description:'Do degradê ao clássico, no seu estilo.',price:45,icon:'✂',duration:'40 min'},
-{id:'beard',name:'Barba',description:'Modelagem e acabamento cuidadoso.',price:35,icon:'⌁',duration:'30 min'},
-{id:'combo',name:'Corte + barba',description:'O cuidado completo em uma visita.',price:70,icon:'✦',duration:'70 min'}
+{id:'cut',name:'Corte masculino',description:'Do degradê ao clássico, no seu estilo.',price:40,icon:'✂',duration:'40 min'},
+{id:'beard',name:'Barba',description:'Modelagem e acabamento cuidadoso.',price:30,icon:'⌁',duration:'30 min'},
+{id:'combo',name:'Corte + barba',description:'O cuidado completo em uma visita.',price:55,icon:'✦',duration:'70 min'},
+{id:'child',name:'Corte infantil',description:'Corte para crianças.',price:35,icon:'✂',duration:'Duração a confirmar'},
+{id:'eyebrow',name:'Sobrancelha',description:'Acabamento e alinhamento.',price:10,icon:'✧',duration:'Duração a confirmar'},
+{id:'neckline',name:'Pezinho',description:'Acabamento do contorno.',price:15,icon:'◇',duration:'Duração a confirmar'},
+{id:'pigment',name:'Pigmentação',description:'Pigmentação capilar.',price:30,icon:'◈',duration:'Duração a confirmar'},
+{id:'hydration',name:'Hidratação capilar',description:'Cuidado e hidratação dos fios.',price:25,icon:'✧',duration:'Duração a confirmar'}
 ];
 var barbers=[{id:'wm',name:'Profissional WM',initials:'WM',specialty:'Atendimento da Barbearia WM',tags:[],bio:'Atendimento realizado pelo profissional responsável pela Barbearia WM.',experience:'Barbearia WM'}];
 var state={view:'home',step:0,service:'',barber:'',date:'',time:'',payment:'pix',filter:'Todos',search:'',detail:''};
@@ -1352,7 +1357,7 @@ function toast(message){var el=$('toast');el.textContent=message;el.classList.ad
 function nav(view){state.view=view;document.querySelectorAll('.view').forEach(function(el){el.classList.toggle('active',el.id==='view-'+view)});document.querySelectorAll('[data-nav]').forEach(function(el){el.classList.toggle('active',el.getAttribute('data-nav')===view)});window.scrollTo({top:0,behavior:'smooth'});if(view==='explore')renderExplore();if(view==='appointments')renderAppointments();if(view==='booking')renderBooking();if(view==='barber')renderBarberDetail()}
 function serviceCard(s){return '<button class="service-card" data-service="'+s.id+'" aria-label="Selecionar '+escapeHtml(s.name)+'"><span class="service-symbol">'+s.icon+'</span><h3>'+escapeHtml(s.name)+'</h3><p>'+escapeHtml(s.duration)+' · '+escapeHtml(s.description)+'</p><span class="service-price">'+money(s.price)+'</span></button>'}
 function barberMini(b){return '<article class="barber-card"><div class="barber-avatar">'+b.initials+'</div><div><h3>'+escapeHtml(b.name)+'</h3><p>'+escapeHtml(b.specialty)+'</p><button data-barber-detail="'+b.id+'">Ver perfil ↗</button></div></article>'}
-function renderHome(){$('home-services').innerHTML=services.map(serviceCard).join('');$('service-catalog').innerHTML=services.map(serviceCard).join('')}
+function renderHome(){$('home-services').innerHTML=services.slice(0,3).map(serviceCard).join('');$('service-catalog').innerHTML=services.map(serviceCard).join('')}
 function renderExplore(){$('service-catalog').innerHTML=services.map(serviceCard).join('')}
 function renderBarberDetail(){var b=barbers.find(function(x){return x.id===state.detail})||barbers[0];$('barber-detail').innerHTML='<div class="profile-card"><div class="barber-avatar" style="width:76px;height:76px;font-size:26px">'+b.initials+'</div><div class="eyebrow" style="margin-top:20px">ATENDIMENTO WM</div><h1 class="page-title">'+escapeHtml(b.name)+'</h1><p class="page-subtitle">'+escapeHtml(b.specialty)+'</p><p style="color:var(--muted);margin-top:18px">'+escapeHtml(b.bio)+'</p><div class="profile-row"><span>Equipe</span><strong>Barbearia WM</strong></div><div class="profile-row"><span>Especialidade</span><strong>'+escapeHtml(b.specialty)+'</strong></div><div class="detail-actions"><button class="btn" data-book-barber="'+b.id+'">Agendar com este profissional ↗</button></div></div>'}
 function renderBooking(){
