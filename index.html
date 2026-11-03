@@ -1328,6 +1328,45 @@ html,body,.app-shell,.layout,.main{max-width:100%;overflow-x:clip}
 #view-explore #service-catalog .service-symbol svg [stroke="none"]{stroke:none!important}
 #view-explore #service-catalog .service-symbol svg path:not([fill]){fill:none!important}
 </style>
+
+<style id="wm-equal-row-actions">
+/* Consistent horizontal action rows: equal-width items and fixed spacing. */
+#view-booking .booking-actions,
+#view-profile .detail-actions,
+#view-appointments .appointment-controls{
+  display:flex!important;
+  flex-direction:row!important;
+  justify-content:space-between!important;
+  align-items:stretch!important;
+  gap:12px!important;
+  flex-wrap:nowrap!important;
+  width:100%;
+  max-width:100%;
+  box-sizing:border-box;
+}
+#view-booking .booking-actions > *,
+#view-profile .detail-actions > *,
+#view-appointments .appointment-controls > .confirm-whatsapp,
+#view-appointments .appointment-controls > .cancel-appointment{
+  flex:1 1 0!important;
+  width:0!important;
+  min-width:0!important;
+  max-width:none!important;
+  box-sizing:border-box;
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+#view-appointments .appointment-controls > .status{flex:0 0 auto;align-self:center}
+@media(max-width:380px){
+  #view-booking .booking-actions,
+  #view-profile .detail-actions,
+  #view-appointments .appointment-controls{gap:8px!important}
+  #view-appointments .appointment-controls > .confirm-whatsapp,
+  #view-appointments .appointment-controls > .cancel-appointment{font-size:10px;padding:8px 5px}
+}
+</style>
 </head>
 <body>
 <div class="app-shell">
