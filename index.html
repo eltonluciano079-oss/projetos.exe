@@ -1330,41 +1330,62 @@ html,body,.app-shell,.layout,.main{max-width:100%;overflow-x:clip}
 </style>
 
 <style id="wm-equal-row-actions">
-/* Consistent horizontal action rows: equal-width items and fixed spacing. */
+/* WM uniform rows v2: explicit equal tracks, stable gaps, mobile-safe widths. */
 #view-booking .booking-actions,
-#view-profile .detail-actions,
-#view-appointments .appointment-controls{
-  display:flex!important;
-  flex-direction:row!important;
-  justify-content:space-between!important;
-  align-items:stretch!important;
-  gap:12px!important;
-  flex-wrap:nowrap!important;
-  width:100%;
-  max-width:100%;
-  box-sizing:border-box;
+#view-profile .detail-actions {
+ display:flex!important;flex-direction:row!important;justify-content:space-between!important;
+ align-items:stretch!important;flex-wrap:nowrap!important;gap:12px!important;
+ width:100%!important;max-width:100%;box-sizing:border-box;
 }
-#view-booking .booking-actions > *,
-#view-profile .detail-actions > *,
+#view-booking .booking-actions > .btn,
+#view-profile .detail-actions > .btn {
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ flex:1 1 0%!important;width:0!important;min-width:0!important;max-width:none!important;
+ box-sizing:border-box;text-align:center;white-space:normal;
+}
+.mobile-nav {
+ display:flex!important;flex-direction:row!important;justify-content:space-between!important;
+ align-items:stretch!important;gap:6px!important;
+}
+.mobile-nav > button {flex:1 1 0%!important;width:0!important;min-width:0!important;max-width:none!important;box-sizing:border-box!important}
+#view-booking #step-indicator {
+ display:flex!important;flex-direction:row!important;justify-content:space-between!important;
+ align-items:stretch!important;gap:8px!important;width:100%!important;box-sizing:border-box;
+}
+#view-booking #step-indicator > .step {
+ flex:1 1 0%!important;width:0!important;min-width:0!important;max-width:none!important;
+ box-sizing:border-box!important;text-align:center;
+}
+#view-home #home-services,
+#view-explore #service-catalog {
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:12px!important;align-items:stretch!important;
+}
+#view-home #home-services > *,
+#view-explore #service-catalog > * {
+ grid-column:auto!important;width:100%!important;min-width:0!important;
+ max-width:none!important;box-sizing:border-box!important;
+}
+#view-appointments .appointment-controls {
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:10px!important;align-items:stretch!important;width:100%!important;
+ max-width:none!important;box-sizing:border-box;
+}
+#view-appointments .appointment-controls > .status {grid-column:1/-1;justify-self:start}
 #view-appointments .appointment-controls > .confirm-whatsapp,
-#view-appointments .appointment-controls > .cancel-appointment{
-  flex:1 1 0!important;
-  width:0!important;
-  min-width:0!important;
-  max-width:none!important;
-  box-sizing:border-box;
-  display:inline-flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
+#view-appointments .appointment-controls > .cancel-appointment {
+ width:100%!important;min-width:0!important;max-width:none!important;
+ box-sizing:border-box!important;display:flex!important;align-items:center;justify-content:center;
+ text-align:center;white-space:normal;
 }
-#view-appointments .appointment-controls > .status{flex:0 0 auto;align-self:center}
+@media(min-width:901px){.mobile-nav{display:none!important}}
 @media(max-width:380px){
-  #view-booking .booking-actions,
-  #view-profile .detail-actions,
-  #view-appointments .appointment-controls{gap:8px!important}
-  #view-appointments .appointment-controls > .confirm-whatsapp,
-  #view-appointments .appointment-controls > .cancel-appointment{font-size:10px;padding:8px 5px}
+ #view-booking .booking-actions,#view-profile .detail-actions,
+ #view-booking #step-indicator{gap:6px!important}
+ #view-profile .detail-actions > .btn{font-size:10px!important;padding-inline:5px!important}
+ #view-appointments .appointment-controls{gap:7px!important}
+ #view-appointments .appointment-controls > a,
+ #view-appointments .appointment-controls > button{font-size:10px!important;padding:8px 5px!important}
 }
 </style>
 </head>
