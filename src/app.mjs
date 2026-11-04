@@ -80,9 +80,7 @@ function renderDates(){
  selectChoice('date-choices','data-date',state.date);
 }
 function renderTimes(){
- const saturday=state.date&&new Date(state.date+'T12:00:00').getDay()===6;
  const times=['09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00'];
- if(saturday)times.push('20:00','21:00');
  if(!times.includes(state.time))state.time='10:00';
  setHTML('time-choices',times.map(t=>'<button class="time-choice" data-time="'+t+'">'+t+'</button>').join(''));
  selectChoice('time-choices','data-time',state.time);
