@@ -1593,6 +1593,36 @@ html,body,.app-shell,.layout,.main{max-width:100%;overflow-x:clip}
   }
 }
 </style>
+<style id="wm-premium-icons-restantes">
+/* Visual-only. Reuses exact icon dimensions and card CSS from the approved first four. */
+#view-explore #service-catalog .service-symbol .wm-reference-eyebrow,
+#view-home #home-services .service-symbol .wm-reference-eyebrow,
+#view-explore #service-catalog .service-symbol .wm-reference-neckline,
+#view-home #home-services .service-symbol .wm-reference-neckline,
+#view-explore #service-catalog .service-symbol .wm-reference-pigment,
+#view-home #home-services .service-symbol .wm-reference-pigment,
+#view-explore #service-catalog .service-symbol .wm-reference-hydration,
+#view-home #home-services .service-symbol .wm-reference-hydration{
+ background-image:url("https://raw.githubusercontent.com/eltonluciano079-oss/projetos.exe/main/assets/wm-service-icons-premium-restantes.webp")!important;
+}
+#view-explore #service-catalog .service-symbol .wm-reference-eyebrow,
+#view-home #home-services .service-symbol .wm-reference-eyebrow{
+ background-position:left top!important;
+}
+#view-explore #service-catalog .service-symbol .wm-reference-neckline,
+#view-home #home-services .service-symbol .wm-reference-neckline{
+ background-position:right top!important;
+}
+#view-explore #service-catalog .service-symbol .wm-reference-pigment,
+#view-home #home-services .service-symbol .wm-reference-pigment{
+ background-position:left bottom!important;
+}
+#view-explore #service-catalog .service-symbol .wm-reference-hydration,
+#view-home #home-services .service-symbol .wm-reference-hydration{
+ background-position:right bottom!important;
+}
+</style>
+
 </head>
 <body>
 <div class="app-shell">
@@ -1670,7 +1700,7 @@ html,body,.app-shell,.layout,.main{max-width:100%;overflow-x:clip}
 function wmIcon(kind){
   /* Arte fiel à referência enviada: atlas WebP em 4 quadrantes.
      Não altera dados, serviço, preço nem comportamento de reserva. */
-  var referenceArt={cut:true,beard:true,combo:true,child:true};
+  var referenceArt={cut:true,beard:true,combo:true,child:true,eyebrow:true,neckline:true,pigment:true,hydration:true};
   if(referenceArt[kind]){
     return '<span class="wm-premium-icon wm-reference-icon wm-reference-'+kind+'" aria-hidden="true"></span>';
   }
