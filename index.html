@@ -1683,7 +1683,7 @@ html,body,.app-shell,.layout,.main{max-width:100%;overflow-x:clip}
         <div class="profile-row"><span>WhatsApp</span><strong>(11) 94587-6259</strong></div>
         <div class="profile-row"><span>Funcionamento</span><strong>Terça a sexta<br>9h às 20h<br>Sábado<br>9h às 22h</strong></div>
         <div class="profile-row"><span>Serviços</span><strong>Corte · Barba · Corte + barba · Outros serviços</strong></div>
-        <div class="detail-actions"><a class="btn" href="https://wa.me/5511945876259?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20um%20hor%C3%A1rio%20na%20Barbearia%20WM." target="_blank" rel="noopener noreferrer">WhatsApp ↗</a><a class="btn secondary" href="https://www.google.com/maps/search/?api=1&query=R.%20Mearim%2C%2066%20-%20Tabo%C3%A3o%2C%20Diadema%20-%20SP%2C%2009932-130%2C%20Brasil" target="_blank" rel="noopener noreferrer">Como chegar ↗</a></div>
+        <div class="detail-actions"><a class="btn" id="wm-profile-whatsapp" href="https://wa.me/5511945876259" target="_blank" rel="noopener noreferrer">Falar com a WM ↗</a><a class="btn secondary" href="https://www.google.com/maps/search/?api=1&query=R.%20Mearim%2C%2066%20-%20Tabo%C3%A3o%2C%20Diadema%20-%20SP%2C%2009932-130%2C%20Brasil" target="_blank" rel="noopener noreferrer">Como chegar ↗</a></div>
       </div>
     </section>
     <section class="view" id="view-barber">
@@ -1783,7 +1783,7 @@ async function wmCancelBooking(a){
   }catch(err){toast(err.message||'Erro ao cancelar. Contate a barbearia pelo WhatsApp.')}
 }
 function toast(message){var el=$('toast');el.textContent=message;el.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(function(){el.classList.remove('show')},2600)}
-function nav(view){state.view=view;document.querySelectorAll('.view').forEach(function(el){el.classList.toggle('active',el.id==='view-'+view)});document.querySelectorAll('[data-nav]').forEach(function(el){el.classList.toggle('active',el.getAttribute('data-nav')===view)});window.scrollTo({top:0,behavior:'smooth'});if(view==='explore')renderExplore();if(view==='appointments'){renderAppointments();wmSyncAppointments();}if(view==='booking'){renderBooking();if(state.step===2&&!wmBusyLoading&&!wmBusyLoaded)wmLoadBusy();}if(view==='barber')renderBarberDetail()}
+function nav(view){state.view=view;document.querySelectorAll('.view').forEach(function(el){el.classList.toggle('active',el.id==='view-'+view)});document.querySelectorAll('[data-nav]').forEach(function(el){el.classList.toggle('active',el.getAttribute('data-nav')===view)});window.scrollTo({top:0,behavior:'smooth'});if(view==='explore')renderExplore();if(view==='appointments'){renderAppointments();wmSyncAppointments();}if(view==='booking'){renderBooking();if(state.step===2&&!wmBusyLoading&&!wmBusyLoaded)wmLoadBusy();}if(view==='barber')renderBarberDetail();if(view==='profile')wmUpdateProfileWhatsApp()}
 function serviceCard(s){return '<button class="service-card" data-service="'+s.id+'" aria-label="Selecionar '+escapeHtml(s.name)+'"><span class="service-symbol">'+s.icon+'</span><h3>'+escapeHtml(s.name)+'</h3><p>'+escapeHtml(s.duration)+' · '+escapeHtml(s.description)+'</p><span class="service-price">'+money(s.price)+'</span></button>'}
 function barberMini(b){return '<article class="barber-card"><div class="barber-avatar">'+b.initials+'</div><div><h3>'+escapeHtml(b.name)+'</h3><p>'+escapeHtml(b.specialty)+'</p><button data-barber-detail="'+b.id+'">Ver perfil ↗</button></div></article>'}
 function renderHome(){$('home-services').innerHTML=services.slice(0,3).map(serviceCard).join('');$('service-catalog').innerHTML=services.map(serviceCard).join('')}
@@ -1847,13 +1847,40 @@ function submitBooking(){
     })
     .finally(function(){btn.disabled=false;if(state.view==='booking')renderBooking()})
 }
+function wmWhatsAppMessage(a){
+  var day=new Date(String(a.date||'')+'T12:00:00');
+  var fullDate=Number.isFinite(day.getTime())
+    ?day.toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'2-digit',year:'numeric'})
+    :String(a.date||'não informada');
+  var time=/^\d{2}:\d{2}/.test(String(a.time||''))?String(a.time).slice(0,5):'não informado';
+  var canceled=a.status==='Cancelado';
+  return (canceled?'Olá, WM! Cancelei a reserva feita pelo aplicativo.':'Olá, WM! Fiz uma reserva pelo aplicativo e envio os detalhes:')
+    +'\n\n*Serviço:* '+String(a.service||'não informado')
+    +'\n*Dia:* '+fullDate
+    +'\n*Horário:* '+time
+    +'\n*Código da reserva:* '+String(a.id||'não informado')
+    +'\n\n'+(canceled?'Por favor, considere esse horário liberado.':'Obrigado! Até o dia agendado.');
+}
+function wmWhatsAppLink(a){
+  return 'https://wa.me/5511945876259?text='+encodeURIComponent(wmWhatsAppMessage(a));
+}
+function wmUpdateProfileWhatsApp(){
+  var link=$('wm-profile-whatsapp');
+  if(!link)return;
+  var latest=appointments().find(function(a){return a.status!=='Cancelado'&&a.backendId&&a.date&&a.time});
+  if(latest){
+    link.href=wmWhatsAppLink(latest);
+    link.textContent='Enviar minha reserva ↗';
+  }else{
+    link.href='https://wa.me/5511945876259?text='+encodeURIComponent('Olá, WM! Gostaria de informações sobre os agendamentos.');
+    link.textContent='Falar com a WM ↗';
+  }
+}
 function renderAppointments(){
   var list=appointments();
   $('appointments-content').innerHTML=list.length?'<div class="appointments-list">'+list.map(function(a){
     var d=new Date(a.date+'T12:00:00').toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'});
-    var dNum=new Date(a.date+'T12:00:00').toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'});
-    var msg=a.status==='Cancelado'?'Olá, cancelei minha reserva na WM. Código: *'+a.id+'*. Serviço: *'+a.service+'*. Data: *'+dNum+'* às *'+a.time+'*.':'Agendamento confirmado na *WM*! 💈🔥\n\nTe esperamos no dia *'+dNum+'* às *'+a.time+'*.\n\nServiço: *'+a.service+'*.\nCódigo: *'+a.id+'*.\n\nQualquer imprevisto, dá um toque por aqui. Até lá!';
-    var whats='<a class="confirm-whatsapp" href="https://wa.me/5511945876259?text='+encodeURIComponent(msg)+'" target="_blank" rel="noopener noreferrer">'+(a.status==='Cancelado'?'Avisar cancelamento':'Avisar a WM pelo WhatsApp')+'</a>';
+    var whats='<a class="confirm-whatsapp" href="'+wmWhatsAppLink(a)+'" target="_blank" rel="noopener noreferrer">'+(a.status==='Cancelado'?'Avisar cancelamento':'Enviar dia e horário no WhatsApp')+'</a>';
     return '<article class="appointment-card"><div><h3>'+escapeHtml(a.service)+'</h3><p>'+escapeHtml(a.barber)+'<br>'+escapeHtml(d)+' · '+escapeHtml(a.time)+'<br>'+money(Number(a.total)||0)+' · '+escapeHtml(({pix:'Pix',onsite:'Na barbearia'}[a.payment])||'Na barbearia')+'</p><p style="margin-top:9px">Código: '+escapeHtml(a.id)+'</p></div><div class="appointment-controls"><span class="status">'+escapeHtml(a.status)+'</span>'+whats+(a.status==='Cancelado'?'':'<button type="button" class="cancel-appointment" data-cancel-appointment="'+escapeHtml(a.id)+'">Cancelar reserva</button>')+'</div></article>'
   }).join('')+'</div><p class="payment-note">As reservas estão salvas no servidor. Guarde este navegador para acompanhar ou cancelar sua reserva. Envie a mensagem pelo WhatsApp para avisar a barbearia.</p>':'<div class="empty-state"><div style="font-size:28px;color:var(--gold)">◷</div><strong>Nenhuma reserva neste dispositivo.</strong>Selecione um serviço e escolha um horário disponível.<p><button class="btn" data-nav="booking" style="margin-top:12px">Agendar agora</button></p></div>';
 }
