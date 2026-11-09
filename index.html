@@ -1435,11 +1435,20 @@ html,body,.app-shell,.layout,.main{max-width:100%;overflow-x:clip}
 }
 #view-explore .wm-services-back:hover{background:rgba(220,179,106,.09)}
 #view-explore .wm-services-heading{text-align:center;min-width:0}
-#view-explore .wm-services-wordmark{display:block;font:600 22px/1 Georgia,'Times New Roman',serif;letter-spacing:.13em;color:#e7bd77}
-#view-explore .wm-services-wordmark:before,#view-explore .wm-services-wordmark:after{
-  content:'';display:inline-block;width:17px;height:1px;background:#ac7d48;vertical-align:middle;margin:0 8px 5px;
+#view-explore .wm-services-wordmark{
+  display:flex;flex-wrap:wrap;justify-content:center;align-items:center;column-gap:9px;
+  font:600 22px/1 Georgia,'Times New Roman',serif;letter-spacing:.13em;
+  color:#e7bd77;white-space:nowrap;text-align:center;
 }
-#view-explore .wm-services-wordmark small{display:block;font:600 7px/1.5 'DM Sans',sans-serif;letter-spacing:3px;margin:5px auto 0;color:#dfbb83}
+#view-explore .wm-services-wordmark:before,#view-explore .wm-services-wordmark:after{
+  content:'';display:block;flex:0 0 17px;width:17px;height:1px;
+  background:#ac7d48;align-self:center;margin:0;
+}
+#view-explore .wm-services-wordmark small{
+  display:block;flex:0 0 100%;width:100%;min-width:0;
+  font:600 7px/1.5 'DM Sans',sans-serif;letter-spacing:3px;
+  margin:5px 0 0;color:#dfbb83;text-align:center;
+}
 #view-explore .wm-services-heading .page-title{
   color:#edc58b!important;font:700 clamp(29px,4.8vw,37px)/1.1 Georgia,'Times New Roman',serif!important;
   margin:7px 0 0!important;letter-spacing:-.015em
