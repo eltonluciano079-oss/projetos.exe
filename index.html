@@ -1421,6 +1421,133 @@ html,body,.app-shell,.layout,.main{max-width:100%;overflow-x:clip}
 .time-choice:disabled:hover{transform:none!important}
 #view-booking .time-grid .payment-note{width:100%;font-size:12px;line-height:1.6}
 </style>
+
+<style id="wm-premium-services-final">
+/* Identidade visual aplicada ao catalogo real. Preserva fluxo de agenda e demais views. */
+#view-explore .wm-services-header{
+  display:grid;grid-template-columns:42px minmax(0,1fr) 42px;align-items:center;
+  gap:8px;margin:4px 0 12px;padding:10px 4px 17px;
+  border-bottom:1px solid rgba(239,203,137,.24);color:#e6c080;
+}
+#view-explore .wm-services-back{
+  appearance:none;background:transparent;border:0;color:#e1b875;
+  width:42px;height:44px;display:grid;place-items:center;border-radius:12px;
+}
+#view-explore .wm-services-back:hover{background:rgba(220,179,106,.09)}
+#view-explore .wm-services-heading{text-align:center;min-width:0}
+#view-explore .wm-services-wordmark{display:block;font:600 22px/1 Georgia,'Times New Roman',serif;letter-spacing:.13em;color:#e7bd77}
+#view-explore .wm-services-wordmark:before,#view-explore .wm-services-wordmark:after{
+  content:'';display:inline-block;width:17px;height:1px;background:#ac7d48;vertical-align:middle;margin:0 8px 5px;
+}
+#view-explore .wm-services-wordmark small{display:block;font:600 7px/1.5 'DM Sans',sans-serif;letter-spacing:3px;margin:5px auto 0;color:#dfbb83}
+#view-explore .wm-services-heading .page-title{
+  color:#edc58b!important;font:700 clamp(29px,4.8vw,37px)/1.1 Georgia,'Times New Roman',serif!important;
+  margin:7px 0 0!important;letter-spacing:-.015em
+}
+#view-explore .wm-services-ornament{display:grid;place-items:center;opacity:.82;color:#e1b875}
+#view-explore .wm-services-description{text-align:center;font-size:12px;color:#ab9e8d;margin:0 0 21px}
+#view-explore #service-catalog{
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:14px!important;align-items:stretch!important;padding:0 0 30px!important;
+  max-width:900px;margin:auto;
+}
+#view-explore #service-catalog > .service-card,
+#view-explore #service-catalog > .service-card:nth-child(3),
+#view-explore #service-catalog > .service-card:last-child,
+#view-explore #service-catalog > .service-card:last-child:nth-child(odd){
+  display:flex!important;flex-direction:column!important;align-items:flex-start!important;
+  position:relative;isolation:isolate;grid-column:auto!important;grid-row:auto!important;
+  box-sizing:border-box!important;min-width:0!important;width:100%!important;max-width:none!important;
+  min-height:288px!important;height:auto!important;margin:0!important;padding:16px 15px 17px!important;
+  overflow:hidden!important;border-radius:19px!important;border:1px solid rgba(216,175,112,.63)!important;
+  background:linear-gradient(156deg,#242424 0%,#191919 52%,#141414 100%)!important;
+  box-shadow:inset 0 1px 0 rgba(255,238,192,.07),0 9px 27px rgba(0,0,0,.2)!important;
+  text-align:left;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease!important;
+}
+#view-explore #service-catalog > .service-card:hover{
+  transform:translateY(-3px)!important;border-color:#e8c990!important;
+  box-shadow:0 14px 32px rgba(0,0,0,.33),0 0 0 1px rgba(237,192,116,.13)!important
+}
+#view-explore #service-catalog > .service-card:focus-visible{outline:2px solid #f3e5ab!important;outline-offset:3px!important}
+#view-explore #service-catalog .service-symbol{
+  display:flex!important;flex:0 0 88px!important;align-items:center!important;justify-content:center!important;
+  width:100%!important;height:88px!important;min-height:88px!important;margin:0 0 6px!important;
+  border:0!important;border-radius:0!important;background:transparent!important;color:#edd2a0!important
+}
+#view-explore #service-catalog .service-card .service-symbol svg.wm-premium-icon{
+  display:block!important;width:91px!important;height:91px!important;max-width:100%!important;
+  flex:none;overflow:visible;fill:none!important;stroke:none!important;
+  filter:drop-shadow(0 2px 5px rgba(237,185,93,.18));transform:none!important;
+}
+#view-explore #service-catalog .service-card h3{
+  color:#f7eee4!important;font:700 clamp(18px,2.3vw,25px)/1.14 Georgia,'Times New Roman',serif!important;
+  letter-spacing:-.02em;overflow-wrap:normal!important;word-break:normal!important;
+  margin:2px 0 10px!important;padding:0!important;min-height:0!important;text-wrap:balance
+}
+#view-explore #service-catalog .service-card p{
+  color:#d3cdc4!important;font:400 12px/1.5 'DM Sans',Arial,sans-serif!important;
+  margin:0 0 16px!important;overflow-wrap:break-word!important;word-break:normal!important;
+}
+#view-explore #service-catalog .service-card .service-price{
+  width:100%;margin-top:auto!important;padding-top:13px!important;
+  color:#f0c38a!important;font:750 19px/1.15 'DM Sans',Arial,sans-serif!important;
+  letter-spacing:-.015em
+}
+#view-explore #service-catalog .service-card .service-price:before{
+  content:'';display:block;width:29px;height:1px;background:#d5ac71;margin-bottom:11px;opacity:.9;
+}
+#view-home #home-services .service-card{border-color:rgba(216,175,112,.38)!important}
+#view-home #home-services .service-symbol{height:70px!important;width:80px!important;background:transparent!important;display:grid!important;place-items:center!important}
+#view-home #home-services .service-symbol .wm-premium-icon{width:73px!important;height:73px!important;filter:drop-shadow(0 2px 4px rgba(237,185,93,.14))}
+@media(max-width:900px){
+  #view-explore{padding-bottom:calc(120px + env(safe-area-inset-bottom))!important}
+  #view-explore #service-catalog{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:620px){
+  #view-explore .wm-services-header{padding-top:4px;margin-top:0}
+  #view-explore #service-catalog{gap:12px!important;padding-bottom:18px!important}
+  #view-explore #service-catalog > .service-card,
+  #view-explore #service-catalog > .service-card:nth-child(3),
+  #view-explore #service-catalog > .service-card:last-child,
+  #view-explore #service-catalog > .service-card:last-child:nth-child(odd){
+    min-height:274px!important;padding:12px 11px 15px!important;border-radius:16px!important
+  }
+  #view-explore #service-catalog .service-symbol{
+    flex-basis:78px!important;height:78px!important;min-height:78px!important;margin:0 0 5px!important
+  }
+  #view-explore #service-catalog .service-card .service-symbol svg.wm-premium-icon{width:81px!important;height:81px!important}
+  #view-explore #service-catalog .service-card h3{font-size:clamp(17px,4.6vw,21px)!important;line-height:1.16!important;margin-bottom:9px!important}
+  #view-explore #service-catalog .service-card p{font-size:11.2px!important;line-height:1.43!important;margin-bottom:12px!important}
+  #view-explore #service-catalog .service-card .service-price{font-size:17px!important}
+  .mobile-nav{
+    border:1px solid rgba(223,181,117,.6)!important;
+    background:linear-gradient(130deg,rgba(12,11,10,.96),rgba(25,19,14,.98))!important;
+    border-radius:28px!important;box-shadow:0 12px 29px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,217,155,.06)!important;
+    gap:4px!important;padding:7px!important;
+  }
+  .mobile-nav > button[data-nav="explore"].active{
+    background:linear-gradient(150deg,rgba(196,148,77,.54),rgba(81,55,26,.78))!important;
+    border:1px solid rgba(241,201,139,.58)!important;border-radius:20px!important;
+    box-shadow:inset 0 1px 0 rgba(255,240,202,.16),0 2px 8px rgba(218,158,68,.12)!important
+  }
+}
+@media(max-width:370px){
+  #view-explore #service-catalog{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}
+  #view-explore #service-catalog > .service-card,
+  #view-explore #service-catalog > .service-card:nth-child(3),
+  #view-explore #service-catalog > .service-card:last-child,
+  #view-explore #service-catalog > .service-card:last-child:nth-child(odd){
+    min-height:265px!important;padding:11px 9px 13px!important;grid-column:auto!important
+  }
+  #view-explore #service-catalog .service-card h3{font-size:16px!important}
+  #view-explore #service-catalog .service-card p{font-size:10.5px!important}
+  #view-explore #service-catalog .service-card .service-price{font-size:16px!important}
+  #view-explore #service-catalog .service-card .service-symbol svg.wm-premium-icon{width:73px!important;height:73px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  #view-explore #service-catalog > .service-card{transition:none!important}
+}
+</style>
 </head>
 <body>
 <div class="app-shell">
@@ -1448,12 +1575,17 @@ html,body,.app-shell,.layout,.main{max-width:100%;overflow-x:clip}
         <div class="hero-art" aria-hidden="true"><div class="hero-logo-seal"><span class="seal-wm">WM</span><span class="seal-name">BARBEARIA</span><span class="seal-city">DIADEMA · SP</span><span class="seal-tools">✂</span></div><div class="hero-tool tool-one">✂</div><div class="hero-tool tool-two">⌁</div></div>
         <div class="hero-copy"><div class="eyebrow hero-eyebrow">ESTILO <i>•</i> CONFIANÇA <i>•</i> ATITUDE</div><p class="hero-kicker">BARBEARIA WM <span>—</span> DIADEMA</p><h1>Seu próximo<br>corte.<br><em>Do seu jeito.</em></h1><p class="hero-intro">Agende seu horário e confira nossos serviços.</p><div class="hero-actions"><button class="btn hero-primary" data-action="start-booking"><span>▦</span> Agendar horário <b>→</b></button></div><div class="hero-footnote"><span>TER — SEX</span><i></i><span>09H — 20H · SÁB ATÉ 22H</span></div></div>
       </div>
-      <div class="section"><div class="section-head"><div><div class="eyebrow">NOSSOS SERVIÇOS</div><h2>Cuidados que fazem a diferença</h2></div><button class="text-button" data-action="start-booking">Ver todos →</button></div><div class="service-grid" id="home-services"></div></div>
+      <div class="section"><div class="section-head"><div><div class="eyebrow">NOSSOS SERVIÇOS</div><h2>Cuidados que fazem a diferença</h2></div><button class="text-button" data-nav="explore">Ver todos →</button></div><div class="service-grid" id="home-services"></div></div>
       <div class="section wm-benefits"><div class="section-head"><div><div class="eyebrow">POR QUE ESCOLHER A WM?</div><h2>Qualidade em cada detalhe</h2></div></div><div class="benefit-grid"><article><span>☆</span><strong>Profissional especializado</strong></article><article><span>♢</span><strong>Ambiente descontraído</strong></article><article><span>◷</span><strong>Atendimento organizado</strong></article><article><span>◇</span><strong>Cuidado nos detalhes</strong></article></div></div>
       <div class="info-strip"><div><strong>Estamos no Taboão, em Diadema</strong><span>Terça a sexta · 9h às 20h | Sábado · 9h às 22h</span></div><button class="btn secondary" data-nav="profile">Ver localização</button></div>
     </section>
     <section class="view" id="view-explore">
-      <div class="eyebrow">SERVIÇOS WM</div><h2 class="page-title">Escolha seu cuidado.</h2><p class="page-subtitle">Conheça os serviços e selecione o que deseja agendar.</p><div class="service-grid service-catalog" id="service-catalog"></div>
+      <div class="wm-services-header">
+  <button type="button" class="wm-services-back" data-nav="home" aria-label="Voltar ao início"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 5-7 7 7 7"/></svg></button>
+  <div class="wm-services-heading"><span class="wm-services-wordmark">WM <small>BARBEARIA</small></span><h2 class="page-title">Serviços</h2></div>
+  <span class="wm-services-ornament" aria-hidden="true"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M4 5h16l-6 7v5l-4 2v-7z"/><circle cx="18" cy="18" r="3"/><path d="m20 20 2 2"/></svg></span>
+</div>
+<p class="page-subtitle wm-services-description">Escolha um serviço para reservar seu horário.</p><div class="service-grid service-catalog" id="service-catalog"></div>
     </section>
     <section class="view" id="view-booking">
       <div class="eyebrow">RESERVE SEU MOMENTO</div><h2 class="page-title">Agende seu horário.</h2><p class="page-subtitle">Escolha um serviço e reserve um horário disponível na agenda da WM.</p>
@@ -1490,15 +1622,23 @@ html,body,.app-shell,.layout,.main{max-width:100%;overflow-x:clip}
 <script>
 (function(){
 'use strict';
+function wmIcon(kind){
+  var art={"cut":"\n<path d=\"M19 18 62 61M26 15 65 56\" opacity=\".97\"/>\n<path d=\"M18 13 60 59 54 66 11 20Z\" fill=\"url(#G)\" fill-opacity=\".11\"/>\n<circle cx=\"21\" cy=\"72\" r=\"10\"/><circle cx=\"48\" cy=\"73\" r=\"10\"/><circle cx=\"21\" cy=\"72\" r=\"4.2\"/><circle cx=\"48\" cy=\"73\" r=\"4.2\"/>\n<path d=\"M27 65 70 17M39 67 78 18M70 17l8-5-1 9-38 46\" />\n<circle cx=\"44\" cy=\"50\" r=\"3\" fill=\"#ead3a0\" stroke=\"#78511e\" stroke-width=\"1\"/>\n<g transform=\"rotate(18 71 39)\"><rect x=\"69\" y=\"12\" width=\"11\" height=\"43\" rx=\"2\" fill=\"url(#G)\" fill-opacity=\".13\"/><path d=\"M69 20h11M69 24h11M69 28h11M69 32h11M69 36h11M69 40h11M69 44h11M69 48h11\" stroke-width=\"1.1\"/></g>\n<path d=\"M8 42c4-15 14-25 29-30\" opacity=\".45\" stroke-width=\"1\"/>\n","beard":"\n<path d=\"M23 39c-5-16 2-30 22-30 20 0 27 15 23 30\" />\n<path d=\"M24 30c6-5 12-7 16-7 13-1 18-6 21-12M25 35c11-7 21-6 34-14M30 19c8-8 19-10 27-8\" stroke-width=\"1.5\"/>\n<path d=\"M24 40c-3 3-4 10-1 14l4-1c4 18 14 27 21 27s21-11 23-27l4 1c3-6 1-12-3-15\" />\n<path d=\"M29 46c5-5 11-4 16-1m8 0c5-3 10-4 15 0\" stroke-width=\"2\"/>\n<path d=\"M31 55c6-1 9-4 16-3 7-1 12 3 18 3-4 5-9 6-17 4-9 2-14 0-17-4Z\" fill=\"url(#G)\" fill-opacity=\".20\"/>\n<path d=\"M32 63c3 10 8 14 16 17m16-17c-4 9-9 14-16 17M40 64c3 9 5 11 8 12m8-12-8 12\" stroke-width=\"1\"/>\n<path d=\"M40 65c5 2 11 2 16 0\" stroke-width=\"1.5\"/>\n<g transform=\"translate(4 -3) rotate(23 75 51)\"><path d=\"M71 29h8v22h-8zM74 51l-4 23q4 5 8 0l-3-23\" fill=\"url(#G)\" fill-opacity=\".16\"/><path d=\"M71 32h8M70 36h10M74 55v15\" stroke-width=\"1.3\"/></g>\n","combo":"\n<path d=\"M15 15 59 60M22 11 64 55\" />\n<path d=\"M18 64 67 15M29 69 75 19\"/>\n<circle cx=\"16\" cy=\"77\" r=\"9\"/><circle cx=\"45\" cy=\"76\" r=\"9\"/><circle cx=\"16\" cy=\"77\" r=\"3.5\"/><circle cx=\"45\" cy=\"76\" r=\"3.5\"/>\n<path d=\"M12 34 56 68M59 12l8 3-2 8-39 44\" stroke-width=\"1.25\"/>\n<circle cx=\"44\" cy=\"48\" r=\"3\" fill=\"#efd6a2\" stroke=\"#8a612c\"/>\n<g transform=\"rotate(35 69 53)\"><path d=\"M63 30h11l-1 18h-9zM66 48l-5 32q5 5 9 0l-1-32\" fill=\"url(#G)\" fill-opacity=\".13\"/><path d=\"M63 34h11M64 39h9M64 44h8M66 53v22\" stroke-width=\"1.1\"/></g>\n<path d=\"M8 10l2 6 6 2-6 2-2 6-2-6-6-2 6-2zM79 13l2 4 4 2-4 2-2 4-2-4-4-2 4-2z\" fill=\"url(#G)\" fill-opacity=\".2\" stroke-width=\"1.2\"/>\n","child":"\n<path d=\"M24 43c-2-19 5-30 22-30 19 0 26 10 24 30\" />\n<path d=\"M24 34c5-14 19-22 34-15l7 7c-5 1-12-2-16-5-6 8-15 12-25 13Z\" fill=\"url(#G)\" fill-opacity=\".12\"/>\n<path d=\"M29 29c6-12 14-17 24-13M34 27c9-7 17-9 23-5\" stroke-width=\"1.4\"/>\n<path d=\"M24 41c-4 2-4 10 1 12l4-1c3 13 10 21 19 21s17-8 20-21l4 1c5-4 3-11-2-12\"/>\n<path d=\"M34 48q4-3 7 0M54 48q4-3 7 0\" stroke-width=\"2.5\"/>\n<path d=\"M38 59q9 10 20 0\" stroke-width=\"2.5\"/>\n<path d=\"M13 23l2 5 5 2-5 2-2 5-2-5-5-2 5-2zM77 34l2 4 4 1-4 2-2 4-2-4-4-2 4-1z\" stroke-width=\"1.1\" fill=\"url(#G)\" fill-opacity=\".18\"/>\n<g transform=\"translate(60 52) scale(.5)\"><circle cx=\"26\" cy=\"38\" r=\"8\"/><circle cx=\"45\" cy=\"38\" r=\"8\"/><path d=\"m10 5 33 31M55 5 30 35\" stroke-width=\"3\"/></g>\n","eyebrow":"\n<path d=\"M13 56c14-21 39-28 69-10-26-5-45-3-69 10Z\" fill=\"url(#G)\" fill-opacity=\".18\"/>\n<path d=\"M14 57c15-12 33-17 55-13M20 53c4-6 10-8 13-9m-8 8 9-8m-3 7 9-9m-4 7 9-8m-4 7 9-7m-3 6 10-6m-4 6 9-4\" stroke-width=\"1.2\"/>\n<g transform=\"rotate(29 43 33)\"><path d=\"M14 18Q30 8 70 14L82 22 70 26Q37 20 14 27\" fill=\"url(#G)\" fill-opacity=\".09\"/><path d=\"M14 18q29 6 56-4M14 27q29-4 56-1M70 14l12 8-12 4\" /><path d=\"M25 21h31\" stroke-width=\"1\"/></g>\n<path d=\"M74 12l2 5 5 2-5 2-2 5-2-5-5-2 5-2Z\" fill=\"url(#G)\" fill-opacity=\".22\" stroke-width=\"1.1\"/>\n","neckline":"\n<path d=\"M34 16v-6h29v6M32 16h33v11H32z\" fill=\"url(#G)\" fill-opacity=\".13\"/>\n<path d=\"M34 10v-5m5 5V5m5 5V5m5 5V5m5 5V5m5 5V5m4 5V5\" stroke-width=\"1.4\"/>\n<path d=\"M37 27h24l-3 48c-.2 5-4 8-9 8s-9-3-9-8z\" fill=\"url(#G)\" fill-opacity=\".12\"/>\n<path d=\"M39 33h20M42 38h14M42 69h14\" stroke-width=\"1.3\"/>\n<circle cx=\"49\" cy=\"49\" r=\"7.2\"/><path d=\"M49 43v7m-4-4a6 6 0 1 0 8 0\" stroke-width=\"1.7\"/>\n<path d=\"M44 58l9 8m-9-4 9 8m-9-4 9 8m-9 0 9-8m-9-2 9-8\" stroke-width=\".95\" opacity=\".8\"/>\n<path d=\"M25 25Q16 45 24 64M71 25q10 20 2 39\" stroke-width=\"1\" opacity=\".5\"/>\n","pigment":"\n<ellipse cx=\"41\" cy=\"54\" rx=\"31\" ry=\"12\" fill=\"url(#G)\" fill-opacity=\".11\"/>\n<path d=\"M11 54c4 19 13 28 30 28 18 0 27-9 31-28M10 54c0 7 14 13 31 13 18 0 32-6 32-13M21 79h40\" />\n<path d=\"M20 50c6-7 15-9 23-4 9 5 17 4 23-1M25 56c9 5 19 1 26-2M35 48c4 1 6 3 7 5\" stroke-width=\"1.35\"/>\n<g transform=\"rotate(33 68 35)\"><path d=\"M63 5h10l-2 44h-7z\" fill=\"url(#G)\" fill-opacity=\".16\"/><path d=\"M61 49h14l-4 17-8 0z\" fill=\"url(#G)\" fill-opacity=\".22\"/><path d=\"M64 52v13m3-13v14m3-14v13\" stroke-width=\"1\"/></g>\n<path d=\"M17 30c-3 7 0 10 5 10s7-6 2-13l-3-5Z\" fill=\"url(#G)\" fill-opacity=\".1\" stroke-width=\"1.2\"/>\n","hydration":"\n<path d=\"M15 22h25v6H15zM24 22v-8h21v-5h-6M19 28h22l2 46c0 4-4 7-13 7-8 0-12-3-12-7z\" fill=\"url(#G)\" fill-opacity=\".1\"/>\n<path d=\"M16 36h26M20 42h21M23 73h14\" stroke-width=\"1.1\"/>\n<path d=\"M30 48c-6 8-7 13 0 18 7-5 6-10 0-18z\" fill=\"url(#G)\" fill-opacity=\".16\"/>\n<path d=\"M46 34c10-7 14-4 21 5 10 13 9 23 24 17-8 13-22 11-30 0-9-12-14-14-17-11\" />\n<path d=\"M45 45c13-4 16 16 29 17M44 51c14 1 15 18 30 18M46 58c11 4 12 15 25 16\" stroke-width=\"1.3\"/>\n<path d=\"M73 14c-7 10-6 15 0 18 6-3 7-8 0-18zM85 29c-5 7-4 11 0 13 5-2 6-6 0-13z\" fill=\"url(#G)\" fill-opacity=\".1\"/>\n"};
+  if(!art[kind])return '';
+  var gradient='wm-metal-'+kind;
+  var defs='<defs><linearGradient id="'+gradient+'" x1="0%" y1="5%" x2="92%" y2="96%"><stop offset="0%" stop-color="#D4AF37"/><stop offset="38%" stop-color="#F3E5AB"/><stop offset="67%" stop-color="#D8AB63"/><stop offset="100%" stop-color="#F1D7A1"/></linearGradient></defs>';
+  return '<svg class="wm-premium-icon" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">'+defs+'<circle cx="48" cy="48" r="43" fill="none" stroke="url(#'+gradient+')" stroke-opacity=".11" stroke-width=".9"/><g fill="none" stroke="url(#'+gradient+')" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round">'+art[kind].replace(/url\(#G\)/g,'url(#'+gradient+')')+'</g></svg>';
+}
+
 var services=[
-{id:'cut',name:'Corte masculino',description:'Do degradê ao clássico, no seu estilo.',price:40,icon:'✂',duration:'40 min'},
-{id:'beard',name:'Barba',description:'Modelagem e acabamento cuidadoso.',price:30,icon:'<svg viewBox="0 0 64 64" width="34" height="34" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M11 22c1-12 9-18 21-18 9 0 14-2 20-5 3 12-2 22-12 24-10 2-20-3-29-1Zm1 1c-2 7-2 14 1 19l3-8-1-11Zm40 0c3 7 2 15-1 19l-3-8 1-11Z"/><path fill="currentColor" d="M15 28c5-3 13-3 18 0l-2 9c-3 4-10 4-13 0l-3-9Zm19 0c5-3 13-3 18 0l-3 9c-3 4-10 4-13 0l-2-9Z"/><path d="M30 30h5" fill="none" stroke="currentColor" stroke-width="2"/><path fill="currentColor" d="M13 37c3 1 6 7 9 8 3-5 7-8 11-8 4 0 8 3 11 8 3-1 6-7 9-8l-2 13c-2 10-10 14-18 14S17 60 15 50l-2-13Z"/><path d="M27 49c4-3 8-3 12 0-4 3-8 3-12 0Z" fill="#19130d"/><path d="M19 11c10-8 23 1 34-7M19 15c11-6 22 2 32-5" fill="none" stroke="#19130d" stroke-width="2" stroke-linecap="round"/></svg>',duration:'30 min'},
-{id:'combo',name:'Corte + barba',description:'O cuidado completo em uma visita.',price:55,icon:'✦',duration:'70 min'},
-{id:'child',name:'Corte infantil',description:'Corte para crianças.',price:35,icon:'<svg viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21c0-10 6-16 14-16 9 0 14 6 13 16-4-2-7-5-8-9-5 5-12 7-19 9Z" fill="currentColor" stroke="none"/><path d="M12 22v8c0 8 6 14 13 14s13-6 13-14v-8M18 29h2m11 0h2M21 36q4 3 8 0"/></svg>',duration:'40 min (estimados)'},
-{id:'eyebrow',name:'Sobrancelha',description:'Acabamento e alinhamento.',price:10,icon:'✧',duration:'20 min (estimados)'},
-{id:'neckline',name:'Pezinho',description:'Acabamento do contorno.',price:15,icon:'<svg viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 9h18l2 8-3 6H16l-3-6 2-8Zm4 14-3 16a4 4 0 0 0 4 5h8a4 4 0 0 0 4-5l-3-16M19 9V5m5 4V5m5 4V5M20 31h8"/><circle cx="24" cy="36" r="2"/></svg>',duration:'15 min (estimados)'},
-{id:'pigment',name:'Pigmentação',description:'Pigmentação capilar.',price:30,icon:'<svg viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 34c0-4 6-7 14-7s14 3 14 7-6 7-14 7-14-3-14-7ZM12 34h24M17 40l2 4h10l2-4M18 23 31 6l5 4-13 17M17 24l6 5M37 20c0 4-3 5-3 7a3 3 0 0 0 6 0c0-2-3-4-3-7Z"/></svg>',duration:'30 min (estimados)'},
-{id:'hydration',name:'Hidratação capilar',description:'Cuidado e hidratação dos fios.',price:25,icon:'<svg viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 24V12a7 7 0 0 1 14 0v5M19 17h15a5 5 0 0 1 5 5v3H14v-3a5 5 0 0 1 5-5ZM18 31v4m8-4v4m8-4v4m-16 5v3m8-3v3m8-3v3"/></svg>',duration:'30 min (estimados)'}
+{id:'cut',name:'Corte masculino',description:'Do degradê ao clássico, no seu estilo.',price:40,icon:wmIcon('cut'),duration:'40 min'},
+{id:'beard',name:'Barba',description:'Modelagem e acabamento cuidadoso.',price:30,icon:wmIcon('beard'),duration:'30 min'},
+{id:'combo',name:'Corte + barba',description:'O cuidado completo em uma visita.',price:55,icon:wmIcon('combo'),duration:'70 min'},
+{id:'child',name:'Corte infantil',description:'Corte para crianças.',price:35,icon:wmIcon('child'),duration:'40 min (estimados)'},
+{id:'eyebrow',name:'Sobrancelha',description:'Acabamento e alinhamento.',price:10,icon:wmIcon('eyebrow'),duration:'20 min (estimados)'},
+{id:'neckline',name:'Pezinho',description:'Acabamento do contorno.',price:15,icon:wmIcon('neckline'),duration:'15 min (estimados)'},
+{id:'pigment',name:'Pigmentação',description:'Pigmentação capilar.',price:30,icon:wmIcon('pigment'),duration:'30 min (estimados)'},
+{id:'hydration',name:'Hidratação capilar',description:'Cuidado e hidratação dos fios.',price:25,icon:wmIcon('hydration'),duration:'30 min (estimados)'}
 ];
 var barbers=[{id:'wm',name:'Profissional WM',initials:'WM',specialty:'Atendimento da Barbearia WM',tags:[],bio:'Atendimento realizado pelo profissional responsável pela Barbearia WM.',experience:'Barbearia WM'}];
 var state={view:'home',step:0,service:'',barber:'',date:'',time:'',payment:'pix',filter:'Todos',search:'',detail:''};
