@@ -1416,6 +1416,11 @@ html,body,.app-shell,.layout,.main{max-width:100%;overflow-x:clip}
  }
 }
 </style>
+<style id="wm-server-booking-styles">
+.time-choice:disabled{opacity:.38!important;filter:grayscale(1);cursor:not-allowed!important;transform:none!important;box-shadow:none!important}
+.time-choice:disabled:hover{transform:none!important}
+#view-booking .time-grid .payment-note{width:100%;font-size:12px;line-height:1.6}
+</style>
 </head>
 <body>
 <div class="app-shell">
@@ -1451,18 +1456,18 @@ html,body,.app-shell,.layout,.main{max-width:100%;overflow-x:clip}
       <div class="eyebrow">SERVIÇOS WM</div><h1 class="page-title">Escolha seu cuidado.</h1><p class="page-subtitle">Conheça os serviços e selecione o que deseja agendar.</p><div class="service-grid service-catalog" id="service-catalog"></div>
     </section>
     <section class="view" id="view-booking">
-      <div class="eyebrow">RESERVE SEU MOMENTO</div><h1 class="page-title">Agende seu horário.</h1><p class="page-subtitle">Escolha o que deseja e envie sua solicitação para a equipe WM.</p>
+      <div class="eyebrow">RESERVE SEU MOMENTO</div><h1 class="page-title">Agende seu horário.</h1><p class="page-subtitle">Escolha um serviço e reserve um horário disponível na agenda da WM.</p>
       <div class="booking-shell">
         <div class="steps" id="step-indicator"><div class="step active"><b>1</b>Serviço</div><div class="step"><b>2</b>WM</div><div class="step"><b>3</b>Horário</div><div class="step"><b>4</b>Pagamento</div></div>
         <div class="booking-step active" data-step="0"><h2>O que vamos fazer?</h2><p>Selecione o serviço para seu próximo atendimento.</p><div class="choice-list" id="service-choices"></div></div>
         <div class="booking-step" data-step="1"><h2>Seu atendimento WM.</h2><p>O atendimento é realizado pelo profissional da barbearia.</p><div class="choice-list" id="barber-choices"></div></div>
-        <div class="booking-step" data-step="2"><h2>Quando fica melhor?</h2><p>Escolha uma data e um horário de preferência.</p><div class="eyebrow">DATA</div><div class="date-row" id="date-choices"></div><div class="eyebrow">HORÁRIOS DISPONÍVEIS PARA SOLICITAÇÃO</div><div class="time-grid" id="time-choices"></div><div class="payment-note">Os horários exibidos são opções demonstrativas. A equipe precisa confirmar a disponibilidade antes de o agendamento ser considerado confirmado.</div></div>
-        <div class="booking-step" data-step="3"><h2>Como deseja pagar?</h2><p>Escolha sua preferência de pagamento.</p><div class="choice-list" id="payment-choices"></div><div class="payment-note">O pagamento digital ainda não está conectado a um provedor. Esta versão registra sua preferência, mas não realiza cobranças nem processa cartões ou Pix.</div><div class="summary" id="booking-summary"></div><div class="notice">Ao enviar, você solicita o horário. A equipe WM confirma o agendamento pelo WhatsApp.</div></div>
+        <div class="booking-step" data-step="2"><h2>Quando fica melhor?</h2><p>Escolha uma data e um horário de preferência.</p><div class="eyebrow">DATA</div><div class="date-row" id="date-choices"></div><div class="eyebrow">HORÁRIOS DISPONÍVEIS PARA SOLICITAÇÃO</div><div class="time-grid" id="time-choices"></div><div class="payment-note">Os horários disponíveis são consultados em tempo real. O servidor impede reservas no mesmo período.</div></div>
+        <div class="booking-step" data-step="3"><h2>Como deseja pagar?</h2><p>Escolha sua preferência de pagamento.</p><div class="choice-list" id="payment-choices"></div><div class="payment-note">O pagamento digital ainda não está conectado a um provedor. Esta versão registra sua preferência, mas não realiza cobranças nem processa cartões ou Pix.</div><div class="summary" id="booking-summary"></div><div class="notice">Ao reservar, o horário ficará bloqueado na agenda. Depois, avise a WM pelo WhatsApp.</div></div>
         <div class="booking-actions"><button class="btn ghost" id="booking-back" disabled>Voltar</button><button class="btn" id="booking-next">Continuar ↗</button></div>
       </div>
     </section>
     <section class="view" id="view-appointments">
-      <div class="eyebrow">SUA AGENDA</div><h1 class="page-title">Meus agendamentos.</h1><p class="page-subtitle">Acompanhe suas solicitações de horário.</p><div id="appointments-content"></div>
+      <div class="eyebrow">SUA AGENDA</div><h1 class="page-title">Meus agendamentos.</h1><p class="page-subtitle">Veja suas reservas neste dispositivo e cancele quando precisar.</p><div id="appointments-content"></div>
     </section>
     <section class="view" id="view-profile">
       <div class="eyebrow">CONHEÇA A WM</div><h1 class="page-title">Barbearia WM.</h1><p class="page-subtitle">Seu espaço de cuidado e estilo no Taboão.</p>
@@ -1502,9 +1507,62 @@ var money=function(n){return n.toLocaleString('pt-BR',{style:'currency',currency
 var escapeHtml=function(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
 var selectedService=function(){return services.find(function(s){return s.id===state.service})};
 var selectedBarber=function(){return barbers.find(function(b){return b.id===state.barber})};
-var appointments=function(){try{return JSON.parse(localStorage.getItem('wm-appointments')||'[]')}catch(e){return []}};
+var WM_URL='https://atzuglibamukkwhigmmq.supabase.co/rest/v1/rpc/';
+var WM_KEY='sb_publishable_C_4cNqS0a22kEiBMF8qDuw_pqWcLTuj';
+var wmBusy=[],wmBusyLoaded=false,wmBusyLoading=false;
+var appointments=function(){try{var a=JSON.parse(localStorage.getItem('wm-appointments')||'[]');return Array.isArray(a)?a.filter(function(x){return x.backendId&&x.cancelToken}):[]}catch(e){return []}};
+async function wmRpc(name,args){
+  var response=await fetch(WM_URL+name,{method:'POST',headers:{'apikey':WM_KEY,'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(args)});
+  var data;try{data=await response.json()}catch(err){throw new Error('Resposta inválida do servidor.')}
+  if(!response.ok)throw new Error(data.message||'Falha de comunicação com a agenda.');
+  return data;
+}
+function wmToday(){
+  var parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+  var p={};parts.forEach(function(x){p[x.type]=x.value});return p.year+'-'+p.month+'-'+p.day;
+}
+function wmMinute(v){var a=String(v||'').split(':');return Number(a[0])*60+Number(a[1])}
+function wmDuration(){return ({cut:40,beard:30,combo:70,child:40,eyebrow:20,neckline:15,pigment:30,hydration:30})[state.service]||40}
+function wmIsAvailable(t){
+  if(!wmBusyLoaded||!state.date||!t)return false;
+  var dow=new Date(state.date+'T12:00:00').getDay();
+  var begin=wmMinute(t),finish=begin+wmDuration(),close=(dow===6?22:20)*60;
+  if(dow<2||dow>6||begin<540||finish>close)return false;
+  return !wmBusy.some(function(b){return b.day===state.date&&begin<wmMinute(b.ending)&&wmMinute(b.slot)<finish});
+}
+async function wmLoadBusy(){
+  if(wmBusyLoading)return;
+  wmBusyLoading=true;wmBusyLoaded=false;renderTimes();
+  try{
+    var first=new Date(wmToday()+'T12:00:00'),last=new Date(first);
+    last.setDate(last.getDate()+29);
+    var busy=await wmRpc('wm_busy',{p_from:dateKey(first),p_to:dateKey(last)});
+    if(!Array.isArray(busy))throw new Error('Resposta de horários inválida.');
+    wmBusy=busy;wmBusyLoaded=true;
+  }catch(err){wmBusyLoaded=false;toast('Não foi possível consultar horários. Tente novamente.')}
+  finally{wmBusyLoading=false;renderTimes()}
+}
+async function wmSyncAppointments(){
+  var list=appointments().slice(0,15),changed=false;
+  for(var i=0;i<list.length;i++){
+    try{
+      var remote=await wmRpc('wm_status',{p_id:list[i].backendId,p_token:list[i].cancelToken});
+      if(remote&&remote.status==='cancelado'&&list[i].status!=='Cancelado'){list[i].status='Cancelado';changed=true}
+    }catch(err){break}
+  }
+  if(changed){try{localStorage.setItem('wm-appointments',JSON.stringify(appointments().map(function(a){return list.find(function(x){return x.id===a.id})||a})))}catch(err){}renderAppointments()}
+}
+async function wmCancelBooking(a){
+  try{
+    var ok=await wmRpc('wm_cancel',{p_id:a.backendId,p_token:a.cancelToken});
+    if(!ok){var remote=await wmRpc('wm_status',{p_id:a.backendId,p_token:a.cancelToken});if(!remote||remote.status!=='cancelado')throw new Error('Não foi possível cancelar a reserva.')}
+    var list=appointments(),entry=list.find(function(x){return x.id===a.id});
+    if(entry){entry.status='Cancelado';localStorage.setItem('wm-appointments',JSON.stringify(list))}
+    renderAppointments();toast('Reserva cancelada. Avise a WM pelo WhatsApp.');wmLoadBusy();
+  }catch(err){toast(err.message||'Erro ao cancelar. Contate a barbearia pelo WhatsApp.')}
+}
 function toast(message){var el=$('toast');el.textContent=message;el.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(function(){el.classList.remove('show')},2600)}
-function nav(view){state.view=view;document.querySelectorAll('.view').forEach(function(el){el.classList.toggle('active',el.id==='view-'+view)});document.querySelectorAll('[data-nav]').forEach(function(el){el.classList.toggle('active',el.getAttribute('data-nav')===view)});window.scrollTo({top:0,behavior:'smooth'});if(view==='explore')renderExplore();if(view==='appointments')renderAppointments();if(view==='booking')renderBooking();if(view==='barber')renderBarberDetail()}
+function nav(view){state.view=view;document.querySelectorAll('.view').forEach(function(el){el.classList.toggle('active',el.id==='view-'+view)});document.querySelectorAll('[data-nav]').forEach(function(el){el.classList.toggle('active',el.getAttribute('data-nav')===view)});window.scrollTo({top:0,behavior:'smooth'});if(view==='explore')renderExplore();if(view==='appointments'){renderAppointments();wmSyncAppointments();}if(view==='booking')renderBooking();if(view==='barber')renderBarberDetail()}
 function serviceCard(s){return '<button class="service-card" data-service="'+s.id+'" aria-label="Selecionar '+escapeHtml(s.name)+'"><span class="service-symbol">'+s.icon+'</span><h3>'+escapeHtml(s.name)+'</h3><p>'+escapeHtml(s.duration)+' · '+escapeHtml(s.description)+'</p><span class="service-price">'+money(s.price)+'</span></button>'}
 function barberMini(b){return '<article class="barber-card"><div class="barber-avatar">'+b.initials+'</div><div><h3>'+escapeHtml(b.name)+'</h3><p>'+escapeHtml(b.specialty)+'</p><button data-barber-detail="'+b.id+'">Ver perfil ↗</button></div></article>'}
 function renderHome(){$('home-services').innerHTML=services.slice(0,3).map(serviceCard).join('');$('service-catalog').innerHTML=services.map(serviceCard).join('')}
@@ -1513,23 +1571,79 @@ function renderBarberDetail(){var b=barbers.find(function(x){return x.id===state
 function renderBooking(){
 document.querySelectorAll('.booking-step').forEach(function(el){el.classList.toggle('active',Number(el.dataset.step)===state.step)});
 document.querySelectorAll('.step').forEach(function(el,i){el.classList.toggle('active',i===state.step);el.classList.toggle('done',i<state.step)});
-$('booking-back').disabled=state.step===0;$('booking-next').textContent=state.step===3?'Enviar solicitação ↗':'Continuar ↗';
+$('booking-back').disabled=state.step===0;$('booking-next').textContent=state.step===3?'Reservar horário ↗':'Continuar ↗';
 $('service-choices').innerHTML=services.map(function(s){return '<button class="choice '+(state.service===s.id?'selected':'')+'" data-pick-service="'+s.id+'"><span><strong>'+escapeHtml(s.name)+'</strong><small>'+escapeHtml(s.duration)+' · '+escapeHtml(s.description)+'</small></span><span class="price">'+money(s.price)+'</span><span class="radio"></span></button>'}).join('');
 if(!state.barber)state.barber='wm';$('barber-choices').innerHTML='<div class="choice selected"><span><strong>Profissional WM</strong><small>Atendimento da Barbearia WM</small></span><span class="radio"></span></div>';
 renderDates();renderTimes();
-$('payment-choices').innerHTML=[{id:'pix',name:'Pix',desc:'Preferência de pagamento via Pix'},{id:'onsite',name:'Pagar na barbearia',desc:'Pix ou cartão diretamente no local'}].map(function(p){return '<button class="choice '+(state.payment===p.id?'selected':'')+'" data-pick-payment="'+p.id+'"><span><strong>'+p.name+'</strong><small>'+p.desc+'</small></span><span class="radio"></span></button>'}).join('');
+$('payment-choices').innerHTML=[{id:'pix',name:'Pix',desc:'Preferência de pagamento via Pix'},{id:'onsite',name:'Pagar na barbearia',desc:'Pagamento feito diretamente na barbearia'}].map(function(p){return '<button class="choice '+(state.payment===p.id?'selected':'')+'" data-pick-payment="'+p.id+'"><span><strong>'+p.name+'</strong><small>'+p.desc+'</small></span><span class="radio"></span></button>'}).join('');
 renderSummary()
 }
-function dateOptions(){var arr=[];var d=new Date();for(var i=1;i<=5;i++){var x=new Date(d);x.setDate(d.getDate()+i);if(x.getDay()===0||x.getDay()===1){i++;x.setDate(x.getDate()+1)}arr.push(x)}return arr}
+function dateOptions(){
+  var arr=[],today=new Date(wmToday()+'T12:00:00');
+  for(var i=1;i<=30&&arr.length<12;i++){var d=new Date(today);d.setDate(d.getDate()+i);if(d.getDay()>=2&&d.getDay()<=6)arr.push(d)}
+  return arr
+}
 function dateKey(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
-function renderDates(){var arr=dateOptions();if(!state.date&&arr.length)state.date=dateKey(arr[0]);$('date-choices').innerHTML=arr.map(function(d){return '<button class="date-choice '+(state.date===dateKey(d)?'selected':'')+'" data-date="'+dateKey(d)+'"><small>'+d.toLocaleDateString('pt-BR',{weekday:'short'}).replace('.','')+'</small><strong>'+d.getDate()+'</strong><small>'+d.toLocaleDateString('pt-BR',{month:'short'}).replace('.','')+'</small></button>'}).join('')}
-function renderTimes(){var saturday=state.date&&new Date(state.date+'T12:00:00').getDay()===6;var times=['09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00'];if(saturday)times.push('20:00','21:00');if(!times.includes(state.time))state.time='10:00';$('time-choices').innerHTML=times.map(function(t){return '<button class="time-choice '+(state.time===t?'selected':'')+'" data-time="'+t+'">'+t+'</button>'}).join('')}
+function renderDates(){
+  var arr=dateOptions();
+  if(!arr.some(function(d){return dateKey(d)===state.date}))state.date=arr.length?dateKey(arr[0]):'';
+  $('date-choices').innerHTML=arr.map(function(d){return '<button class="date-choice '+(state.date===dateKey(d)?'selected':'')+'" data-date="'+dateKey(d)+'"><small>'+d.toLocaleDateString('pt-BR',{weekday:'short'}).replace('.','')+'</small><strong>'+d.getDate()+'</strong><small>'+d.toLocaleDateString('pt-BR',{month:'short'}).replace('.','')+'</small></button>'}).join('')
+}
+function renderTimes(){
+  var saturday=state.date&&new Date(state.date+'T12:00:00').getDay()===6;
+  var times=['09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00'];
+  if(saturday)times.push('20:00','21:00');
+  if(!wmIsAvailable(state.time))state.time='';
+  if(!state.time&&wmBusyLoaded)state.time=times.find(function(t){return wmIsAvailable(t)})||'';
+  $('time-choices').innerHTML=times.map(function(t){var ok=wmIsAvailable(t);return '<button class="time-choice '+(ok&&state.time===t?'selected':'')+'" data-time="'+t+'" '+(ok?'':'disabled aria-disabled="true"')+'>'+t+(ok?'':' · indisponível')+'</button>'}).join('');
+  if(!wmBusyLoaded)$('time-choices').insertAdjacentHTML('beforeend','<p class="payment-note" style="grid-column:1/-1">'+(wmBusyLoading?'Consultando horários reais...':'Os horários ficam disponíveis depois da consulta ao servidor.')+'</p>')
+}
+
 function renderSummary(){var s=selectedService(),b=selectedBarber();var date=state.date?new Date(state.date+'T12:00:00').toLocaleDateString('pt-BR',{weekday:'short',day:'2-digit',month:'long'}):'—';$('booking-summary').innerHTML='<div class="summary-row"><span>Serviço</span><strong>'+(s?escapeHtml(s.name):'—')+'</strong></div><div class="summary-row"><span>Profissional</span><strong>'+(b?escapeHtml(b.name):'—')+'</strong></div><div class="summary-row"><span>Data e horário</span><strong>'+date+' · '+(state.time||'—')+'</strong></div><div class="summary-row"><span>Pagamento</span><strong>'+({pix:'Pix',card:'Cartão',onsite:'Na barbearia'}[state.payment])+'</strong></div><div class="summary-row total"><span>Valor estimado</span><strong>'+(s?money(s.price):'—')+'</strong></div>'}
-function validateStep(){if(state.step===0&&!state.service){toast('Selecione um serviço para continuar.');return false}if(state.step===1&&!state.barber){toast('Escolha um profissional.');return false}if(state.step===2&&(!state.date||!state.time)){toast('Escolha uma data e um horário.');return false}return true}
-function submitBooking(){var s=selectedService(),b=selectedBarber();if(!s||!b){toast('Revise os dados do agendamento.');return}var record={id:'WM-'+Date.now().toString().slice(-6),service:s.name,barber:b.name,date:state.date,time:state.time,payment:state.payment,total:s.price,status:'Aguardando confirmação',createdAt:new Date().toISOString()};var list=appointments();list.unshift(record);try{localStorage.setItem('wm-appointments',JSON.stringify(list))}catch(e){toast('Não foi possível salvar neste dispositivo.');return}$('booking-next').disabled=false;state.step=0;state.service='';state.barber='';state.time='';nav('appointments');toast('Solicitação registrada neste dispositivo. A equipe precisa confirmar pelo WhatsApp.')}
-function renderAppointments(){var list=appointments();$('appointments-content').innerHTML=list.length?'<div class="appointments-list">'+list.map(function(a){var d=new Date(a.date+'T12:00:00').toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'});return '<article class="appointment-card"><div><h3>'+escapeHtml(a.service)+'</h3><p>'+escapeHtml(a.barber)+'<br>'+d+' · '+escapeHtml(a.time)+'<br>'+money(a.total)+' · '+({pix:'Pix',card:'Cartão',onsite:'Na barbearia'}[a.payment]||a.payment)+'</p><p style="margin-top:9px">Código: '+escapeHtml(a.id)+'</p></div><div class="appointment-controls"><span class="status">'+escapeHtml(a.status)+'</span>'+(a.status==='Cancelado'?'':'<a class="confirm-whatsapp" href="https://wa.me/5511945876259?text='+encodeURIComponent('Agendamento confirmado na *WM*! 💈🔥\n\nTe esperamos no dia *'+new Date(a.date+'T12:00:00').toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'})+'* às *'+a.time+'*.\n\nQualquer imprevisto, dá um toque por aqui. Até lá!')+'" target="_blank" rel="noopener noreferrer">Confirmar pelo WhatsApp</a><button type="button" class="cancel-appointment" data-cancel-appointment="'+escapeHtml(a.id)+'">Cancelar agendamento</button>')+'</div></article>'}).join('')+'</div><p class="payment-note">Solicitações salvas neste navegador. A equipe WM ainda precisa confirmar a disponibilidade pelo WhatsApp.</p>':'<div class="empty-state"><div style="font-size:28px;color:var(--gold)">◷</div><strong>Sua agenda está livre.</strong>Quando você solicitar um horário, ele aparecerá aqui.<p><button class="btn" data-nav="booking" style="margin-top:12px">Agendar agora</button></p></div>'}
+function validateStep(){if(state.step===0&&!state.service){toast('Selecione um serviço para continuar.');return false}if(state.step===1&&!state.barber){toast('Escolha um profissional.');return false}if(state.step===2&&(!wmBusyLoaded||!wmIsAvailable(state.time))){toast('Escolha uma data e um horário.');return false}return true}
+function submitBooking(){
+  if(!wmIsAvailable(state.time)){toast('Horário indisponível. Escolha outro.');wmLoadBusy();return}
+  var s=selectedService(),b=selectedBarber();
+  if(!s||!b){toast('Revise o serviço e horário.');return}
+  var btn=$('booking-next');if(btn.disabled)return;
+  btn.disabled=true;btn.textContent='Reservando horário...';
+  var token=Array.from(crypto.getRandomValues(new Uint8Array(32))).map(function(n){return n.toString(16).padStart(2,'0')}).join('');
+  wmRpc('wm_reserve',{p_service:s.id,p_day:state.date,p_slot:state.time,p_token:token})
+    .then(async function(data){
+      var record={id:'WM-'+String(data.id).slice(0,8).toUpperCase(),backendId:data.id,cancelToken:token,service:s.name,barber:b.name,date:state.date,time:state.time,payment:state.payment,total:s.price,status:'Reservado',createdAt:new Date().toISOString()};
+      var list=appointments();list.unshift(record);
+      try{localStorage.setItem('wm-appointments',JSON.stringify(list))}
+      catch(err){
+        await wmRpc('wm_cancel',{p_id:data.id,p_token:token}).catch(function(){});
+        throw new Error('Não foi possível salvar sua reserva neste dispositivo. Verifique espaço e permissões do navegador.')
+      }
+      state.step=0;state.service='';state.barber='';state.time='';
+      nav('appointments');toast('Horário reservado. Avise a WM pelo WhatsApp.');wmLoadBusy()
+    })
+    .catch(function(err){
+      toast(err.message||'Não foi possível reservar.');
+      state.step=2;renderBooking();wmLoadBusy()
+    })
+    .finally(function(){btn.disabled=false;if(state.view==='booking')renderBooking()})
+}
+function renderAppointments(){
+  var list=appointments();
+  $('appointments-content').innerHTML=list.length?'<div class="appointments-list">'+list.map(function(a){
+    var d=new Date(a.date+'T12:00:00').toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'});
+    var dNum=new Date(a.date+'T12:00:00').toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'});
+    var msg=a.status==='Cancelado'?'Olá, cancelei minha reserva na WM. Código: *'+a.id+'*. Serviço: *'+a.service+'*. Data: *'+dNum+'* às *'+a.time+'*.':'Agendamento confirmado na *WM*! 💈🔥\n\nTe esperamos no dia *'+dNum+'* às *'+a.time+'*.\n\nServiço: *'+a.service+'*.\nCódigo: *'+a.id+'*.\n\nQualquer imprevisto, dá um toque por aqui. Até lá!';
+    var whats='<a class="confirm-whatsapp" href="https://wa.me/5511945876259?text='+encodeURIComponent(msg)+'" target="_blank" rel="noopener noreferrer">'+(a.status==='Cancelado'?'Avisar cancelamento':'Avisar a WM pelo WhatsApp')+'</a>';
+    return '<article class="appointment-card"><div><h3>'+escapeHtml(a.service)+'</h3><p>'+escapeHtml(a.barber)+'<br>'+escapeHtml(d)+' · '+escapeHtml(a.time)+'<br>'+money(Number(a.total)||0)+' · '+escapeHtml(({pix:'Pix',onsite:'Na barbearia'}[a.payment])||'Na barbearia')+'</p><p style="margin-top:9px">Código: '+escapeHtml(a.id)+'</p></div><div class="appointment-controls"><span class="status">'+escapeHtml(a.status)+'</span>'+whats+(a.status==='Cancelado'?'':'<button type="button" class="cancel-appointment" data-cancel-appointment="'+escapeHtml(a.id)+'">Cancelar reserva</button>')+'</div></article>'
+  }).join('')+'</div><p class="payment-note">As reservas estão salvas no servidor. Guarde este navegador para acompanhar ou cancelar sua reserva. Envie a mensagem pelo WhatsApp para avisar a barbearia.</p>':'<div class="empty-state"><div style="font-size:28px;color:var(--gold)">◷</div><strong>Nenhuma reserva neste dispositivo.</strong>Selecione um serviço e escolha um horário disponível.<p><button class="btn" data-nav="booking" style="margin-top:12px">Agendar agora</button></p></div>';
+}
+
 document.addEventListener('click',function(e){
-var cancel=e.target.closest('[data-cancel-appointment]');if(cancel){var id=cancel.getAttribute('data-cancel-appointment');if(!window.confirm('Cancelar esta solicitação de agendamento? Esta ação altera somente o registro salvo neste navegador.'))return;var list=appointments();var found=list.find(function(a){return a.id===id});if(!found||found.status==='Cancelado')return;found.status='Cancelado';try{localStorage.setItem('wm-appointments',JSON.stringify(list))}catch(err){toast('Não foi possível cancelar neste dispositivo.');return}renderAppointments();toast('Solicitação cancelada neste dispositivo. Avise a barbearia pelo WhatsApp se já tiver enviado o pedido.');return}
+var cancel=e.target.closest('[data-cancel-appointment]');
+if(cancel){
+  var id=cancel.getAttribute('data-cancel-appointment'),found=appointments().find(function(a){return a.id===id});
+  if(found&&found.status!=='Cancelado'&&window.confirm('Cancelar sua reserva? O horário ficará disponível para outra pessoa.'))wmCancelBooking(found);
+  return
+}
 var navEl=e.target.closest('[data-nav]');if(navEl){e.preventDefault();nav(navEl.getAttribute('data-nav'));return}
 var action=e.target.closest('[data-action]');if(action&&action.dataset.action==='start-booking'){state.step=0;nav('booking');return}
 var service=e.target.closest('[data-service]');if(service){state.service=service.dataset.service;nav('booking');state.step=0;renderBooking();return}
@@ -1537,12 +1651,12 @@ var pickS=e.target.closest('[data-pick-service]');if(pickS){state.service=pickS.
 var pickB=e.target.closest('[data-pick-barber]');if(pickB){state.barber=pickB.dataset.pickBarber;renderBooking();return}
 var pickP=e.target.closest('[data-pick-payment]');if(pickP){state.payment=pickP.dataset.pickPayment;renderBooking();return}
 var date=e.target.closest('[data-date]');if(date){state.date=date.dataset.date;renderDates();renderTimes();return}
-var time=e.target.closest('[data-time]');if(time){state.time=time.dataset.time;renderTimes();return}
+var time=e.target.closest('[data-time]');if(time){if(!wmIsAvailable(time.dataset.time)){toast('Horário indisponível.');return}state.time=time.dataset.time;renderTimes();return}
 var filter=e.target.closest('[data-filter]');if(filter){state.filter=filter.dataset.filter;renderExplore();return}
 var detail=e.target.closest('[data-barber-detail]');if(detail){state.detail=detail.dataset.barberDetail;nav('barber');return}
 var bookBarber=e.target.closest('[data-book-barber]');if(bookBarber){state.barber=bookBarber.dataset.bookBarber;state.step=0;nav('booking');renderBooking();return}
 });
-$('booking-next').addEventListener('click',function(){if(!validateStep())return;if(state.step<3){state.step++;renderBooking()}else submitBooking()});
+$('booking-next').addEventListener('click',function(){if(!validateStep())return;if(state.step<3){state.step++;renderBooking();if(state.step===2)wmLoadBusy()}else submitBooking()});
 $('booking-back').addEventListener('click',function(){if(state.step>0){state.step--;renderBooking()}});
 $('barber-search').addEventListener('input',function(e){state.search=e.target.value;renderExplore()});
 var heroText='Cuidado no detalhe. Atitude em cada corte.';var heroNode=$('hero-typewriter');if(heroNode&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){heroNode.textContent='';heroNode.classList.add('typing');var heroIndex=0;var heroTimer=setInterval(function(){heroNode.textContent=heroText.slice(0,++heroIndex);if(heroIndex>=heroText.length){clearInterval(heroTimer);heroNode.classList.remove('typing')}},34)}else if(heroNode){heroNode.textContent=heroText}
