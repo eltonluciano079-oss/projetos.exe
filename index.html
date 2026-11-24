@@ -1927,7 +1927,6 @@ var bookBarber=e.target.closest('[data-book-barber]');if(bookBarber){state.barbe
 });
 $('booking-next').addEventListener('click',function(){if(!validateStep())return;if(state.step<3){state.step++;renderBooking();if(state.step===2)wmLoadBusy()}else submitBooking()});
 $('booking-back').addEventListener('click',function(){if(state.step>0){state.step--;renderBooking()}});
-$('barber-search').addEventListener('input',function(e){state.search=e.target.value;renderExplore()});
 var heroText='Cuidado no detalhe. Atitude em cada corte.';var heroNode=$('hero-typewriter');if(heroNode&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){heroNode.textContent='';heroNode.classList.add('typing');var heroIndex=0;var heroTimer=setInterval(function(){heroNode.textContent=heroText.slice(0,++heroIndex);if(heroIndex>=heroText.length){clearInterval(heroTimer);heroNode.classList.remove('typing')}},34)}else if(heroNode){heroNode.textContent=heroText}
 renderHome();renderBooking();
 })();
